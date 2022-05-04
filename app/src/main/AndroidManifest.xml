@@ -40,6 +40,11 @@
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".data.Find_password"
+            android:exported="true">
+
+        </activity>
 
 
 

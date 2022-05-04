@@ -1,6 +1,7 @@
 package com.cookandroid.capstone_front_android.network;
 
 import com.cookandroid.capstone_front_android.data.BooleanDto;
+import com.cookandroid.capstone_front_android.data.Find_password_data;
 import com.cookandroid.capstone_front_android.data.JoinData;
 import com.cookandroid.capstone_front_android.data.LoginData;
 import com.cookandroid.capstone_front_android.data.MemberDTO;
@@ -35,8 +36,8 @@ public interface ServiceApi {
 //    @DELETE("/users") //DELETE는 Body 사용 x
 //    Call<DeleteResponse> userDelete(@Body DeleteData data);
 
-//    @POST("/users/password") //비번 찾기
-//    Call<FindpasswordResponse> findpassword(@Body FindpasswordData data);
+    @POST("/users/password") //비번 찾기
+    Call<MemberDTO> findpassword(@Body Find_password_data data);
 
 
 

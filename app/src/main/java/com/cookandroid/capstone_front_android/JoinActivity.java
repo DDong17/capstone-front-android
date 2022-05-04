@@ -136,6 +136,42 @@ public class JoinActivity<ApiService> extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
+        //아이디 유효성 검사
+        if (userId.isEmpty()) {
+            muserId.setError("아이디를 입력해주세요");
+            focusView = muserId;
+            cancel = true;
+        } else if (!Idvalid(userId)) {
+            muserId.setError("아이디는 4~10글자 사이로 입력해주세요");
+            focusView = muserId;
+            cancel = true;
+        }
+
+
+
+        // 패스워드의 유효성 검사
+        if (password.isEmpty()) {
+            mpassword.setError("비밀번호를 입력해주세요.");
+            focusView = mpassword;
+            cancel = true;
+        } else if (!passwordvalid(password)) {
+            mpassword.setError("비밀번호는 6~10글자 사이로 입력해주세요");
+            focusView = mpassword;
+            cancel = true;
+        }
+
+        // 닉네임 유효성
+        if (nickname.isEmpty()) {
+            mnickname.setError("닉네임을 입력해주세요");
+            focusView = mnickname;
+            cancel = true;
+        } else if (!nicknamevalid(nickname)) {
+            mnickname.setError("닉네임은 2~6글자로 입력해주세요");
+            focusView = mnickname;
+            cancel = true;
+        }
+
+
         if (cancel) {
             focusView.requestFocus();
         } else {
@@ -238,7 +274,15 @@ public class JoinActivity<ApiService> extends AppCompatActivity {
     });
 
 }
-
+    private boolean Idvalid(String userId) {
+        return userId.length() <=10;
+    }
+    private boolean passwordvalid(String password) {
+        return password.length() >= 6;
+    }
+    private boolean nicknamevalid(String nickname) {
+        return nickname.length() <= 6;
+    }
 
 
 

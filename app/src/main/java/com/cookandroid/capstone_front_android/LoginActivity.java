@@ -1,5 +1,6 @@
 package com.cookandroid.capstone_front_android;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cookandroid.capstone_front_android.data.Find_password;
 import com.cookandroid.capstone_front_android.data.LoginData;
 //import com.cookandroid.capstone_front_android.data.Password_reset;
 import com.cookandroid.capstone_front_android.data.MemberDTO;
@@ -29,7 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mpassword;
     private Button mlogin;
     private Button mregister;
-    private Button mpasswordreset;
+    private Button mfindpassword;
+
+    private AlertDialog dialog;
 
     private ServiceApi service;
 
@@ -41,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         mpassword = (EditText) findViewById(R.id.login_password);
         mlogin = (Button) findViewById(R.id.login_button);
         mregister = (Button) findViewById(R.id.register_button);
-        mpasswordreset=(Button) findViewById((R.id.password_find_btn));
+        mfindpassword=(Button) findViewById((R.id.password_find_btn));
+
 
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
@@ -59,11 +64,11 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mpasswordreset.setOnClickListener(new OnClickListener() {
+        mfindpassword.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), Password_reset.class);
-//                startActivity(intent);
+               Intent intent = new Intent(getApplicationContext(), Find_password.class);
+              startActivity(intent);
             }
         });
 
@@ -74,22 +79,41 @@ public class LoginActivity extends AppCompatActivity {
         muserId.setError(null);
         mpassword.setError(null);
 
+
         String userId = muserId.getText().toString();
         String password = mpassword.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
+
+
+        //아이디 유효성 검사
+        if (userId.isEmpty()) {
+            muserId.setError("아이디를 입력해주세요");
+            focusView = muserId;
+            cancel = true;
+        } else if (!isPasswordValid(password)) {
+            muserId.setError("아이디는 4~10글자 사이로 입력해주세요");
+            focusView = muserId;
+            cancel = true;
+        }
+
+
+
         // 패스워드의 유효성 검사
         if (password.isEmpty()) {
-            muserId.setError("비밀번호를 입력해주세요.");
-            focusView = muserId;
+            mpassword.setError("비밀번호를 입력해주세요.");
+            focusView = mpassword;
             cancel = true;
         } else if (!isPasswordValid(password)) {
             mpassword.setError("비밀번호는 6~10글자 사이로 입력해주세요");
             focusView = mpassword;
             cancel = true;
         }
+
+
+
 
 
 
@@ -103,17 +127,22 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startLogin(LoginData data) {
         service.userLogin(data).enqueue(new Callback<MemberDTO>() {
+
             @Override
             public void onResponse(Call<MemberDTO> call, Response<MemberDTO> response) {
                 MemberDTO result = response.body();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+              try{
+                  if(result.getuserId()==null);
+
+              }catch(Exception e){
+                      AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                      dialog = builder.setMessage("로그인실패 아이디 비밀번호 확인 바랍니다.").setPositiveButton("확인", null).create();
+                      dialog.show();
+              }
+
 
             }
-
-
-            //   }
 
             @Override
             public void onFailure(Call<MemberDTO> call, Throwable t) {

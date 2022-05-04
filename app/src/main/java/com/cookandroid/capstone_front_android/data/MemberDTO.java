@@ -25,27 +25,27 @@ public class MemberDTO {
     @SerializedName("phoneNumber")
     private String phoneNumber;
 
-    public Long getId() {
+    public Long getid() {
         return id;
     }
 
-    public String getUserId() {
+    public String getuserId() {
         return userId;
     }
 
-    public String getEmail() {
+    public String getemail() {
         return email;
     }
 
-    public String getName() {
+    public String getname() {
         return name;
     }
 
-    public String getPassword() {
+    public String getpassword() {
         return password;
     }
 
-    public String getPhoneNumber() {
+    public String getphoneNumber() {
         return phoneNumber;
     }
 
