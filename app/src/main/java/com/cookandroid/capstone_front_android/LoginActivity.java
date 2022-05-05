@@ -131,9 +131,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MemberDTO> call, Response<MemberDTO> response) {
                 MemberDTO result = response.body();
+                try{
+                    if(result.getuserId()==null);
 
-              try{
-                  if(result.getuserId()==null);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+
+
 
               }catch(Exception e){
                       AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
