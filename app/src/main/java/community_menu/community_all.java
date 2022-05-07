@@ -24,6 +24,10 @@ public class community_all extends Fragment {
     private Button btn_together; // 같이 갈 사람.
     private Button btn_review; // 리뷰.
     private Button btn_write; // 글쓰기.
+    
+    private ServiceApi service;
+    Retrofit retrofit;
+    ItemAdapter adapter;
 
     @Nullable
     @Override
@@ -63,6 +67,16 @@ public class community_all extends Fragment {
             public void onClick(View view) { activity.setCommunity(3); }
         });
 
+        listView = (ListView) view.findViewById(R.id.list);
+
+        adapter = new ItemAdapter();
+        listView.setAdapter(adapter);
+
+        adapter.addItem("제목1", "내용1");
+        adapter.addItem("제목2", "내용2");
+        adapter.addItem("제목3", "내용3");
+        adapter.notifyDataSetChanged();
+        
         return view;
     }
 }
