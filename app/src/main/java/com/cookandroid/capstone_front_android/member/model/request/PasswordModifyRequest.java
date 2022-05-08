@@ -1,8 +1,8 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.member.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Password_modify_data {
+public class PasswordModifyRequest {
 
     @SerializedName("currentPassword")
      String currentPassword;
@@ -13,7 +13,7 @@ public class Password_modify_data {
     @SerializedName("newPasswordCheck")
      String newPasswordCheck;
 
-    public Password_modify_data(String currentPassword, String newPassword, String newPasswordCheck) {
+    public PasswordModifyRequest(String currentPassword, String newPassword, String newPasswordCheck) {
         this.currentPassword = currentPassword;
         this.newPassword = newPassword;
         this.newPasswordCheck = newPasswordCheck;

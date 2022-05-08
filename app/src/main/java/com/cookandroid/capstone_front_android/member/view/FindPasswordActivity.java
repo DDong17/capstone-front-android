@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.member.view;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -9,35 +9,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cookandroid.capstone_front_android.JoinActivity;
-import com.cookandroid.capstone_front_android.LoginActivity;
+import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
+import com.cookandroid.capstone_front_android.member.model.request.FindPasswordRequest;
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.data.Find_password;
-import com.cookandroid.capstone_front_android.data.LoginData;
 //import com.cookandroid.capstone_front_android.data.Password_reset;
-import com.cookandroid.capstone_front_android.data.MemberDTO;
 import com.cookandroid.capstone_front_android.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.network.ServiceApi;
-
 
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
-public class Find_password extends AppCompatActivity {
+public class FindPasswordActivity extends AppCompatActivity {
 
-    private EditText muserId;
-    private EditText memail;
-    private Button mfindpassword;
-    private Button mback;
+    private EditText edtUserId;
+    private EditText edtEmail;
+    private Button btnFindPassword;
+    private Button btnBack;
     private AlertDialog dialog;
-
 
     private ServiceApi service;
 
@@ -46,67 +39,56 @@ public class Find_password extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_password);
-        muserId = (EditText) findViewById(R.id.find_password_user);
-        memail = (EditText) findViewById(R.id.find_password_email);
-        mfindpassword = (Button) findViewById(R.id.find_password_btn);
-        mback = (Button) findViewById(R.id.find_password_back);
+        edtUserId = (EditText) findViewById(R.id.find_password_user);
+        edtEmail = (EditText) findViewById(R.id.find_password_email);
+        btnFindPassword = (Button) findViewById(R.id.find_password_btn);
+        btnBack = (Button) findViewById(R.id.find_password_back);
 
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
-        mfindpassword.setOnClickListener(new OnClickListener() {
+        btnFindPassword.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                findpassword();
+                findPassword();
             }
         });
-        mback.setOnClickListener(new OnClickListener() {
+        btnBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
-
-
     }
 
-    private void findpassword() {
-        muserId.setError(null);
-        memail.setError(null);
+    private void findPassword() {
+        edtUserId.setError(null);
+        edtEmail.setError(null);
 
-        String userId = muserId.getText().toString();
-        String email = memail.getText().toString();
+        String userId = edtUserId.getText().toString();
+        String email = edtEmail.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startfindpassword(new Find_password_data(userId, email));
-
+            startFindPassword(new FindPasswordRequest(userId, email));
         }
     }
 
-    private void startfindpassword(Find_password_data data) {
-        service.findpassword(data).enqueue(new Callback<MemberDTO>() {
+    private void startFindPassword(FindPasswordRequest data) {
+        service.findPassword(data).enqueue(new Callback<MemberResponse>() {
             @Override
-            public void onResponse(Call<MemberDTO> call, Response<MemberDTO> response) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Find_password.this);
+            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(FindPasswordActivity.this);
                 dialog = builder.setMessage("임시 비밀번호 발급되었습니다.").setPositiveButton("확인", null).create();
                 dialog.show();
-
-
             }
-
-
-            //   }
-
             @Override
-            public void onFailure(Call<MemberDTO> call, Throwable t) {
-
+            public void onFailure(Call<MemberResponse> call, Throwable t) {
                 Log.e("로그인 에러 발생", t.getMessage());
 
             }

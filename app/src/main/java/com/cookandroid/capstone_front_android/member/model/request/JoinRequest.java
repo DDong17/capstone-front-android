@@ -1,8 +1,8 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.member.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class JoinData {
+public class JoinRequest {
     @SerializedName("userId")
     private String userId;
 
@@ -27,7 +27,7 @@ public class JoinData {
 
 
 
-    public JoinData(String userId, String password,String passwordCheck, String name, String email, String phoneNumber, String nickname) {
+    public JoinRequest(String userId, String password, String passwordCheck, String name, String email, String phoneNumber, String nickname) {
         this.userId = userId;
         this.password = password;
         this.passwordCheck=passwordCheck;

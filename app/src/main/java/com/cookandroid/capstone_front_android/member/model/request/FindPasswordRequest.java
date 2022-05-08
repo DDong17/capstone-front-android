@@ -1,15 +1,15 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.member.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Find_password_data {
+public class FindPasswordRequest {
     @SerializedName("userId")
     String userId;
 
     @SerializedName("email")
     String email;
 
-    public Find_password_data(String userId, String email) {
+    public FindPasswordRequest(String userId, String email) {
         this.userId = userId;
         this.email = email;
     }
