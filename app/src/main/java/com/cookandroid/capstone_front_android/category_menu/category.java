@@ -1,4 +1,4 @@
-package category_menu;
+package com.cookandroid.capstone_front_android.category_menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

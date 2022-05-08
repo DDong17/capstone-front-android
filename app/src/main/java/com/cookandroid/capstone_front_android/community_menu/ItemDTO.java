@@ -1,4 +1,4 @@
-package community_menu;
+package com.cookandroid.capstone_front_android.community_menu;
 
 public class ItemDTO {
     private String title;

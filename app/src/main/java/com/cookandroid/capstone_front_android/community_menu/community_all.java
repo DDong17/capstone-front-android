@@ -1,36 +1,25 @@
-package community_menu;
+package com.cookandroid.capstone_front_android.community_menu;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.cookandroid.capstone_front_android.network.ServiceApi;
 
-public class community_together extends Fragment {
+import retrofit2.Retrofit;
+
+public class community_all extends Fragment {
     private View view;
+    private ListView listView;
 
     private MainActivity activity;
 
@@ -39,11 +28,15 @@ public class community_together extends Fragment {
     private Button btn_together; // 같이 갈 사람.
     private Button btn_review; // 리뷰.
     private Button btn_write; // 글쓰기.
+    
+    private ServiceApi service;
+    Retrofit retrofit;
+    ItemAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.item_community_together,container,false);
+        view = inflater.inflate(R.layout.item_community_all,container,false);
 
         activity = (MainActivity) getActivity();
 
@@ -56,9 +49,7 @@ public class community_together extends Fragment {
         // 버튼이벤트.
         btn_all.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                activity.setCommunity(0);
-            }
+            public void onClick(View view) { activity.setCommunity(0); }
         });
 
         btn_together.setOnClickListener(new View.OnClickListener(){
@@ -77,11 +68,19 @@ public class community_together extends Fragment {
 
         btn_write.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                activity.setCommunity(3);
-            }
+            public void onClick(View view) { activity.setCommunity(3); }
         });
 
+        listView = (ListView) view.findViewById(R.id.list);
+
+        adapter = new ItemAdapter();
+        listView.setAdapter(adapter);
+
+        adapter.addItem("제목1", "내용1");
+        adapter.addItem("제목2", "내용2");
+        adapter.addItem("제목3", "내용3");
+        adapter.notifyDataSetChanged();
+        
         return view;
     }
 }

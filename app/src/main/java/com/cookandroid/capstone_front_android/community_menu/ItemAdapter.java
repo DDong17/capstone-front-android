@@ -1,4 +1,4 @@
-package community_menu;
+package com.cookandroid.capstone_front_android.community_menu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.network.ServiceApi;
 
 import java.util.ArrayList;
-
-import retrofit2.Retrofit;
 
 public class ItemAdapter extends BaseAdapter {
     private TextView title;

@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import category_menu.*;
-import community_menu.*;
+import com.cookandroid.capstone_front_android.category_menu.*;
+import com.cookandroid.capstone_front_android.community_menu.*;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
@@ -22,29 +22,29 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
 
     // 첫번째 메뉴(카테고리).
-    private category_menu.category category; // 카테고리 메뉴.
-    private category_menu.category_all category_all; // 전체.
-    private category_menu.category_show category_show; // 공연.
-    private category_menu.category_display category_display; // 전시.
-    private category_menu.category_concert category_concert; // 콘서트.
-    private category_menu.category_musical category_musical; // 뮤지컬.
-    private category_menu.category_movie category_movie; // 영화.
-    private category_menu.category_festival category_festival; // 축제.
-    private category_menu.category_content_etc category_content_etc; //기타(콘텐츠).
-    private category_menu.category_whole category_whole; // 전국.
-    private category_menu.category_seoul category_seoul; // 서울.
-    private category_menu.category_gyeong_incheon category_gyeong_incheon; // 경기,인천.
-    private category_menu.category_gangwon category_gangwon; // 강원도.
-    private category_menu.category_chung category_chung; // 충청도.
-    private category_menu.category_gyeong category_gyeong; // 경상도.
-    private category_menu.category_jeolla category_jeolla; // 전라도.
-    private category_menu.category_whole_etc category_whole_etc; // 기타(위치).
+    private com.cookandroid.capstone_front_android.category_menu.category category; // 카테고리 메뉴.
+    private com.cookandroid.capstone_front_android.category_menu.category_all category_all; // 전체.
+    private com.cookandroid.capstone_front_android.category_menu.category_show category_show; // 공연.
+    private com.cookandroid.capstone_front_android.category_menu.category_display category_display; // 전시.
+    private com.cookandroid.capstone_front_android.category_menu.category_concert category_concert; // 콘서트.
+    private com.cookandroid.capstone_front_android.category_menu.category_musical category_musical; // 뮤지컬.
+    private com.cookandroid.capstone_front_android.category_menu.category_movie category_movie; // 영화.
+    private com.cookandroid.capstone_front_android.category_menu.category_festival category_festival; // 축제.
+    private com.cookandroid.capstone_front_android.category_menu.category_content_etc category_content_etc; //기타(콘텐츠).
+    private com.cookandroid.capstone_front_android.category_menu.category_whole category_whole; // 전국.
+    private com.cookandroid.capstone_front_android.category_menu.category_seoul category_seoul; // 서울.
+    private com.cookandroid.capstone_front_android.category_menu.category_gyeong_incheon category_gyeong_incheon; // 경기,인천.
+    private com.cookandroid.capstone_front_android.category_menu.category_gangwon category_gangwon; // 강원도.
+    private com.cookandroid.capstone_front_android.category_menu.category_chung category_chung; // 충청도.
+    private com.cookandroid.capstone_front_android.category_menu.category_gyeong category_gyeong; // 경상도.
+    private com.cookandroid.capstone_front_android.category_menu.category_jeolla category_jeolla; // 전라도.
+    private com.cookandroid.capstone_front_android.category_menu.category_whole_etc category_whole_etc; // 기타(위치).
 
     // 두번째 메뉴(커뮤니티).
-    private community_menu.community_all community_all; // 전체 보기.
-    private community_menu.community_together community_together; // 같이 갈 사람.
-    private community_menu.community_review community_review; // 리뷰.
-    private community_menu.community_write community_write; // 글쓰기.
+    private com.cookandroid.capstone_front_android.community_menu.community_all community_all; // 전체 보기.
+    private com.cookandroid.capstone_front_android.community_menu.community_together community_together; // 같이 갈 사람.
+    private com.cookandroid.capstone_front_android.community_menu.community_review community_review; // 리뷰.
+    private com.cookandroid.capstone_front_android.community_menu.community_write community_write; // 글쓰기.
 
     // 세번째 메뉴(지도).
     private jmap jmap;

@@ -1,11 +1,10 @@
-package community_menu;
+package com.cookandroid.capstone_front_android.community_menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 
-public class community_review extends Fragment {
+public class community_together extends Fragment {
     private View view;
 
     private MainActivity activity;
@@ -28,7 +27,7 @@ public class community_review extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.item_community_review,container,false);
+        view = inflater.inflate(R.layout.item_community_together,container,false);
 
         activity = (MainActivity) getActivity();
 

@@ -50,16 +50,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="530dp"
             android:text="전체보기"
-            android:textSize="50dp"/>
+            android:textSize="50dp"/>-->
 
-        <!--<ListView
+        <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="530dp">
-        </ListView>-->
+            android:layout_height="530dp"
+            android:choiceMode="singleChoice"
+            android:dividerHeight="1.5dp">
+        </ListView>
 
         <Button
             android:id="@+id/write"
