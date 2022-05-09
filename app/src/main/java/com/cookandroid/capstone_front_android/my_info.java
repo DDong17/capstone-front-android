@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.capstone_front_android.data.Password_modify;
+import com.cookandroid.capstone_front_android.member.view.PasswordModifyActivity;
 
 
 public class my_info extends Fragment {
@@ -34,7 +34,7 @@ public class my_info extends Fragment {
         P_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Password_modify.class);
+                Intent intent = new Intent(getActivity(), PasswordModifyActivity.class);
                 startActivity(intent);
 
 
