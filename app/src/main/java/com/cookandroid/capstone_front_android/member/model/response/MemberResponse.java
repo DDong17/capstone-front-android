@@ -1,11 +1,8 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.member.model.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MemberDTO {
-
-
-
+public class MemberResponse {
 
     @SerializedName("id")
     private Long id;
@@ -25,31 +22,27 @@ public class MemberDTO {
     @SerializedName("phoneNumber")
     private String phoneNumber;
 
-    public Long getid() {
+    public Long getId() {
         return id;
     }
 
-    public String getuserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public String getphoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-
-
-
-
 }

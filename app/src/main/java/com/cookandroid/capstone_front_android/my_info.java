@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.capstone_front_android.data.Password_modify;
+import com.cookandroid.capstone_front_android.member.view.PasswordModifyActivity;
 
 
 public class my_info extends Fragment {
 
     private View view;
-    private Button P_btn;
-    private Button R_btn;
+    private Button btnPasswordModify;
+    private Button btnRegisterDelete;
 
 
 
@@ -28,13 +28,13 @@ public class my_info extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.my_info,container,false);
 
-        P_btn= (Button) view.findViewById(R.id.Passwordmodify_btn);
-        R_btn= (Button) view.findViewById(R.id.register_delete_btn);
+        btnPasswordModify = (Button) view.findViewById(R.id.Passwordmodify_btn);
+        btnRegisterDelete = (Button) view.findViewById(R.id.register_delete_btn);
 
-        P_btn.setOnClickListener(new View.OnClickListener() {
+        btnPasswordModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Password_modify.class);
+                Intent intent = new Intent(getActivity(), PasswordModifyActivity.class);
                 startActivity(intent);
 
 
@@ -42,7 +42,7 @@ public class my_info extends Fragment {
             }
         });
 
-        R_btn.setOnClickListener(new View.OnClickListener() {
+        btnRegisterDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Intent intent = new Intent(getActivity(), Register_delete.class);
