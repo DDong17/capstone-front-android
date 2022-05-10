@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".register_delete">
+    tools:context=".registerDelete">
 
 
     <EditText
-        android:id="@+id/register_delete_password"
+        android:id="@+id/registerDeletePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/register_delete_passwordcheck"
+        android:id="@+id/registerDeletePasswordcheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -30,32 +30,32 @@
         android:hint="패스워드 확인"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/register_delete_password"
+        app:layout_constraintEnd_toEndOf="@+id/registerDeletePassword"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/register_delete_password"
-        app:layout_constraintTop_toBottomOf="@+id/register_delete_password" />
+        app:layout_constraintStart_toStartOf="@+id/registerDeletePassword"
+        app:layout_constraintTop_toBottomOf="@+id/registerDeletePassword" />
 
 
 
     <Button
-        android:id="@+id/password_delete_btn"
+        android:id="@+id/passwordDeleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="탈퇴"
-       app:layout_constraintEnd_toEndOf="@+id/register_delete_passwordcheck"
+       app:layout_constraintEnd_toEndOf="@+id/registerDeletePasswordcheck"
         app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/register_delete_passwordcheck"
-        app:layout_constraintTop_toBottomOf="@+id/register_delete_passwordcheck" />
+        app:layout_constraintStart_toStartOf="@+id/registerDeletePasswordcheck"
+        app:layout_constraintTop_toBottomOf="@+id/registerDeletePasswordcheck" />
 
     <Button
-        android:id="@+id/register_delete_back"
+        android:id="@+id/registerDeleteBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="돌아가기"
-        app:layout_constraintEnd_toEndOf="@+id/password_delete_btn"
+        app:layout_constraintEnd_toEndOf="@+id/passwordDeleteBtn"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password_delete_btn"
-        app:layout_constraintTop_toBottomOf="@+id/password_delete_btn" />
+        app:layout_constraintStart_toStartOf="@+id/passwordDeleteBtn"
+        app:layout_constraintTop_toBottomOf="@+id/passwordDeleteBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

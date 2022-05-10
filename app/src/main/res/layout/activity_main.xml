@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/main_frame"
+        android:id="@+id/mainFrame"
         android:layout_width="match_parent"
         android:layout_height="659dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavi"

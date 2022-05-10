@@ -9,7 +9,7 @@
 
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/s_map"
+        android:id="@+id/sMap"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>
 

@@ -36,7 +36,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/join_userId"
+        android:id="@+id/joinUserId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -49,79 +49,79 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/join_password"
+        android:id="@+id/joinPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="password"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_userId"
-        app:layout_constraintStart_toStartOf="@+id/join_userId"
-        app:layout_constraintTop_toBottomOf="@+id/join_userId" />
+        app:layout_constraintEnd_toEndOf="@+id/joinUserId"
+        app:layout_constraintStart_toStartOf="@+id/joinUserId"
+        app:layout_constraintTop_toBottomOf="@+id/joinUserId" />
 
     <EditText
-        android:id="@+id/join_passwordCheck"
+        android:id="@+id/joinPasswordCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="비번확인"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_password"
-        app:layout_constraintStart_toStartOf="@+id/join_password"
-        app:layout_constraintTop_toBottomOf="@+id/join_password" />
+        app:layout_constraintEnd_toEndOf="@+id/joinPassword"
+        app:layout_constraintStart_toStartOf="@+id/joinPassword"
+        app:layout_constraintTop_toBottomOf="@+id/joinPassword" />
 
     <EditText
-        android:id="@+id/join_name"
+        android:id="@+id/joinName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_passwordCheck"
-        app:layout_constraintStart_toStartOf="@+id/join_passwordCheck"
-        app:layout_constraintTop_toBottomOf="@+id/join_passwordCheck" />
+        app:layout_constraintEnd_toEndOf="@+id/joinPasswordCheck"
+        app:layout_constraintStart_toStartOf="@+id/joinPasswordCheck"
+        app:layout_constraintTop_toBottomOf="@+id/joinPasswordCheck" />
 
     <EditText
-        android:id="@+id/join_email"
+        android:id="@+id/joinEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="이메일"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_name"
-        app:layout_constraintStart_toStartOf="@+id/join_name"
-        app:layout_constraintTop_toBottomOf="@+id/join_name" />
+        app:layout_constraintEnd_toEndOf="@+id/joinName"
+        app:layout_constraintStart_toStartOf="@+id/joinName"
+        app:layout_constraintTop_toBottomOf="@+id/joinName" />
 
     <EditText
-        android:id="@+id/join_phoneNumber"
+        android:id="@+id/joinPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="전화"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_email"
-        app:layout_constraintStart_toStartOf="@+id/join_email"
-        app:layout_constraintTop_toBottomOf="@+id/join_email" />
+        app:layout_constraintEnd_toEndOf="@+id/joinEmail"
+        app:layout_constraintStart_toStartOf="@+id/joinEmail"
+        app:layout_constraintTop_toBottomOf="@+id/joinEmail" />
 
     <EditText
-        android:id="@+id/join_nickname"
+        android:id="@+id/joinNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="닉네임"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/join_phoneNumber"
-        app:layout_constraintStart_toStartOf="@+id/join_phoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/join_phoneNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/joinPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/joinPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/joinPhoneNumber" />
 
     <Button
-        android:id="@+id/join_register"
+        android:id="@+id/joinRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -139,12 +139,12 @@
         android:text="돌아가기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/join_register"
+        app:layout_constraintStart_toEndOf="@+id/joinRegister"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/Id_valid"
+        android:id="@+id/IdValid"
         android:layout_width="86dp"
         android:layout_height="48dp"
         android:layout_marginTop="236dp"
@@ -155,7 +155,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Nickname_valid"
+        android:id="@+id/NicknameValid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="240dp"
@@ -163,6 +163,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Id_valid" />
+        app:layout_constraintTop_toBottomOf="@+id/IdValid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
