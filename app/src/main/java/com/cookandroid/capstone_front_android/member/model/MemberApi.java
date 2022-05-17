@@ -59,7 +59,7 @@ public interface MemberApi {
 
     @GET("/users/user-id") // get 은 body 사용 불가
        //아이디 찾기
-    Call<MemberResponse> findId(@Query("email") String emaill,@Query("name") String namee);
+    Call<MemberResponse> findId(@Query("email") String emaill,@Query("name") String namee);//
 
     @PUT("/users/nickname/{newNickname}")
         //닉네임변경
