@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/all"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="전체보기"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:id="@+id/together"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="같이 갈 사람"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:id="@+id/review"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="리뷰"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            android:text="같이 갈 사람"
+            android:textSize="50dp"/>
+
+        <!--<ListView
+            android:layout_width="match_parent"
+            android:layout_height="530dp">
+        </ListView>-->
+
+        <Button
+            android:id="@+id/write"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:background="@drawable/talk2"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom|right"/>
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNavi"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:labelVisibilityMode="unlabeled"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:menu="@menu/bottom_menu" />
+
+</LinearLayout>
