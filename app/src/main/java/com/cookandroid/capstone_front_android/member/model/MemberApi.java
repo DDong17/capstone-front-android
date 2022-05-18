@@ -1,14 +1,18 @@
 package com.cookandroid.capstone_front_android.member.model;
 
 import com.cookandroid.capstone_front_android.data.BooleanDTO;
+import com.cookandroid.capstone_front_android.member.model.request.BoardRequest;
 import com.cookandroid.capstone_front_android.member.model.request.ChangePasswordRequest;
 import com.cookandroid.capstone_front_android.member.model.request.DeleteMemberRequest;
 import com.cookandroid.capstone_front_android.member.model.request.FindIdRequest;
 import com.cookandroid.capstone_front_android.member.model.request.FindPasswordRequest;
 import com.cookandroid.capstone_front_android.member.model.request.JoinRequest;
 import com.cookandroid.capstone_front_android.member.model.request.LoginRequest;
+import com.cookandroid.capstone_front_android.member.model.response.BoardResponse;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -65,5 +69,20 @@ public interface MemberApi {
         //닉네임변경
     Call<MemberResponse>registerNewNickname(@Path("newNickname") String newNickname);
 
+    @POST("/boards")
+        //게시판 등록
+    Call<BoardResponse> postBoard(@Body BoardRequest data);
+
+    @GET("/boards")
+        //게시판 조회
+    Call<List<BoardResponse>> getBoard();
+
+    @PUT("/boards/{boardId}")
+        //게시판 수정
+    Call<BoardResponse> putBoard(@Path("boardId") Long id, @Body BoardRequest data);
+
+    @DELETE("/boards/{boardId}")
+        //게시판 삭제
+    Call<Void> deleteBoard(@Path("boardId") Long id);
 
 }
