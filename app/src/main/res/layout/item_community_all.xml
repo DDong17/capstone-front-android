@@ -50,13 +50,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="530dp"
-            android:choiceMode="singleChoice"
-            android:dividerHeight="1.5dp">
-        </ListView>
+            android:layout_height="530dp">
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/write"
@@ -69,7 +67,7 @@
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <!--<com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:menu="@menu/bottom_menu" />-->
 
 
 </LinearLayout>
