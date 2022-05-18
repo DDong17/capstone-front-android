@@ -9,22 +9,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="310dp"
+        <EditText
+            android:id="@+id/boardWriteTitle"
+            android:layout_width="281dp"
             android:layout_height="50dp"
-            android:text="제목..."
+            android:layout_margin="5dp"
+            android:hint="제목"
             android:textColor="@color/black"
-            android:textSize="40dp"
-            android:layout_margin="5dp"/>
+            android:textSize="20dp" />
 
         <Button
-            android:id="@+id/exit"
+            android:id="@+id/boardWriteBtnBack"
             android:layout_width="80dp"
             android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/button_radius"
             android:text="나가기"
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"/>
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -44,30 +45,28 @@
         android:layout_width="match_parent"
         android:layout_height="450dp">
 
-        <TextView
+        <EditText
+            android:id="@+id/boardWriteContent"
             android:layout_width="match_parent"
             android:layout_height="530dp"
-            android:text="내용을 입력해주세요."
-            android:textSize="40dp"/>
+
+            android:gravity="top"
+            android:hint="내용입력"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="421dp"
         android:layout_height="70dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:text="관련 문화 행사(선택)."
-            android:textColor="@color/black" />
-
         <Button
-            android:layout_width="50dp"
+            android:id="@+id/BoardWriteRegister"
+            android:layout_width="366dp"
             android:layout_height="60dp"
-            android:text="위치지정"
-            android:layout_marginLeft="7dp"/>
+            android:layout_marginLeft="7dp"
+            android:text="게시글 등록" />
 
     </LinearLayout>
 

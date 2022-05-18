@@ -14,7 +14,7 @@ public class BoardRequest {
     @SerializedName("content")
     private String content;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public BoardRequest(String title, String content){
         this.title = title;
         this.content = content;

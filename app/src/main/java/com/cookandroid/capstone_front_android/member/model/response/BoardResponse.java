@@ -12,22 +12,60 @@ import java.util.List;
 
 public class BoardResponse {
 
+    @SerializedName("boardId")
+    private Long boardId;
+    @SerializedName("writerNickName")
+    private String writerNickName;
     @SerializedName("title")
     private String title;
-
     @SerializedName("content")
     private String content;
+    @SerializedName("viewCount")
+    private int viewCount;
+    @SerializedName("locationTitle")
+    private String locationTitle;
+    @SerializedName("createdTime")
+    private LocalDateTime createdTime;
+    @SerializedName("comments")
+//    private List<CommentResponse> comments;
 
-    private Long id;
+    public Long getBoardId() {
+        return boardId;
+    }
 
-    public String getTitle(){
+    public String getWriterNickName() {
+        return writerNickName;
+    }
+
+    public String getTitle() {
         return title;
     }
 
-    public String getContent(){
+    public String getContent() {
         return content;
     }
 
-    public Long getId(){ return id; }
+    public int getViewCount() {
+        return viewCount;
+    }
 
-}
+    public String getLocationTitle() {
+        return locationTitle;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+//    public List<CommentResponse> getComments() {
+//        return comments;
+    }
+
+
+
+
+
+
+
+
+

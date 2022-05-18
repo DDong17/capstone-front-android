@@ -36,6 +36,7 @@ public class MyInfo extends Fragment {
         btnPasswordModify = (Button) view.findViewById(R.id.PasswordmodifyBtn);
         btnRegisterDelete = (Button) view.findViewById(R.id.registerDeleteBtn);
         btnNewNickname = (Button) view.findViewById(R.id.newNickNameBtn);
+
         btnPasswordModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

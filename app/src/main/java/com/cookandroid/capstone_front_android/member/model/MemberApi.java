@@ -57,13 +57,9 @@ public interface MemberApi {
     Call<BooleanDTO> checkID(@Path("userId") String userId);
 
 
-
-
-
-
-    @GET("/users/user-id") // get 은 body 사용 불가
+    @POST("/users/user-id") //
        //아이디 찾기
-    Call<MemberResponse> findId(@Query("email") String email,@Query("name") String name);
+    Call<MemberResponse> findId(@Body FindIdRequest data);
 
     @PUT("/users/nickname/{newNickname}")
         //닉네임변경
@@ -71,7 +67,7 @@ public interface MemberApi {
 
     @POST("/boards")
         //게시판 등록
-    Call<BoardResponse> postBoard(@Body BoardRequest data);
+    Call<BoardResponse> registerBoardWrite(@Body BoardRequest data);
 
     @GET("/boards")
         //게시판 조회

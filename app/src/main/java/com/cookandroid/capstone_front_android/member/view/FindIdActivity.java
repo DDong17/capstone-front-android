@@ -56,7 +56,7 @@ public class FindIdActivity extends AppCompatActivity {
                 edtName.setError(null);
                 String email = edtEmail.getText().toString();
                 String name = edtName.getText().toString();
-                findId(email,name);
+                findId(new FindIdRequest(email,name));
             }
         });
         btnBack.setOnClickListener(new OnClickListener() {
@@ -68,25 +68,10 @@ public class FindIdActivity extends AppCompatActivity {
         });
     }
 
-//    private void findId() {
-//        edtEmail.setError(null);
-//        edtName.setError(null);
-//
-//        String email = edtEmail.getText().toString();
-//        String name = edtName.getText().toString();
-//
-//        boolean cancel = false;
-//        View focusView = null;
-//
-//        if (cancel) {
-//            focusView.requestFocus();
-//        } else {
-//            startFindPassword(new FindIdRequest(email, name));
-//        }
-//    }
 
-    private void findId(String email,String name) {
-        memberApi.findId(email,name).enqueue(new Callback<MemberResponse>() {
+
+    private void findId(FindIdRequest data) {
+        memberApi.findId(data).enqueue(new Callback<MemberResponse>() {
 
             @Override
             public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
