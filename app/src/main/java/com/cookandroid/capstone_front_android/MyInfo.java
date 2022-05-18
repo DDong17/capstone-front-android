@@ -18,7 +18,7 @@ import com.cookandroid.capstone_front_android.member.view.RegisterNewNIcknameAct
 //import com.cookandroid.capstone_front_android.member.view.PasswordModifyActivity;
 
 
-public class myInfo extends Fragment {
+public class MyInfo extends Fragment {
 
     private View view;
     private Button btnPasswordModify;

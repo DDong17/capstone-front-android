@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.communityMenu;
+package com.cookandroid.capstone_front_android.communitymenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

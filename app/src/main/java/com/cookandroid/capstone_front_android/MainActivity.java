@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.cookandroid.capstone_front_android.categoryMenu.*;
-import com.cookandroid.capstone_front_android.communityMenu.*;
+import com.cookandroid.capstone_front_android.categorymenu.*;
+import com.cookandroid.capstone_front_android.communitymenu.*;
 
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.cookandroid.capstone_front_android.network.RetrofitClient;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
 
     // 첫번째 메뉴(카테고리).
-    private com.cookandroid.capstone_front_android.categoryMenu.category category; // 카테고리 메뉴.
+    private com.cookandroid.capstone_front_android.categorymenu.category category; // 카테고리 메뉴.
     private categoryAll categoryAll; // 전체.
     private categoryShow categoryShow; // 공연.
     private categoryDisplay categoryDisplay; // 전시.
@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
     private communityWrite communityWrite; // 글쓰기.
 
     // 세번째 메뉴(지도).
-    private jmap jmap;
+    private Jmap jmap;
 
     // 네번째 메뉴(메시지).
-    private messageRead messageRead;
-    private messageWrite messageWrite;
+    private MessageRead messageRead;
+    private MessageWrite messageWrite;
 
     // 다섯번째 메뉴(내정보).
-    private myInfo myinfo;
+    private MyInfo myinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,14 +114,14 @@ public class MainActivity extends AppCompatActivity {
         communityWrite = new communityWrite();
 
         // 지도 객체생성.
-        jmap =new jmap();
+        jmap =new Jmap();
 
         // 메시지 객체생성.
-        messageWrite = new messageWrite();
-        messageRead =new messageRead();
+        messageWrite = new MessageWrite();
+        messageRead =new MessageRead();
 
         // 내정보 객체생성.
-        myinfo =new myInfo();
+        myinfo =new MyInfo();
 
         setMap(); // 지도가 첫 화면.
     }

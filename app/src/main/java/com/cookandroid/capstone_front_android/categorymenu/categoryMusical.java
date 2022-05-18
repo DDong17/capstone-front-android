@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android;
+package com.cookandroid.capstone_front_android.categorymenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,29 +10,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class messageRead extends Fragment {
+import com.cookandroid.capstone_front_android.MainActivity;
+import com.cookandroid.capstone_front_android.R;
 
+public class categoryMusical extends Fragment {
     private View view;
 
     private MainActivity activity;
 
-    private Button btn_write; // 메시지 쓰기 버튼.
+    private Button btnExit; // 나가기 버튼.
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.message_read,container,false);
+        view = inflater.inflate(R.layout.category_musical, container, false);
 
         activity = (MainActivity) getActivity();
 
-        // 버튼 설정.
-        btn_write = view.findViewById(R.id.write);
+        btnExit = view.findViewById(R.id.exit);
 
-        // 버튼 이벤트.
-        btn_write.setOnClickListener(new View.OnClickListener(){
+        // 버튼이벤트.
+        btnExit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                activity.setMessage(1);
+                activity.setCategory(0);
             }
         });
 

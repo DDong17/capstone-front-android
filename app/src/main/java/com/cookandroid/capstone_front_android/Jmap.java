@@ -39,7 +39,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class, RetrofitClient.getSessionId());
     private View view;
     TextView text;

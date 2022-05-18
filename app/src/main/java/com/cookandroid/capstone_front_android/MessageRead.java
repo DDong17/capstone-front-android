@@ -10,28 +10,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class messageWrite extends Fragment {
+public class MessageRead extends Fragment {
 
     private View view;
 
     private MainActivity activity;
 
-    private Button btn_exit; // 나가기 버튼.
+    private Button btn_write; // 메시지 쓰기 버튼.
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.message_write,container,false);
+        view = inflater.inflate(R.layout.message_read,container,false);
 
         activity = (MainActivity) getActivity();
 
         // 버튼 설정.
-        btn_exit = view.findViewById(R.id.exit);
+        btn_write = view.findViewById(R.id.write);
 
         // 버튼 이벤트.
-        btn_exit.setOnClickListener(new View.OnClickListener(){
+        btn_write.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) { activity.setMessage(0); }
+            public void onClick(View view) {
+                activity.setMessage(1);
+            }
         });
 
         return view;

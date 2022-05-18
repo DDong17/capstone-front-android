@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.categoryMenu;
+package com.cookandroid.capstone_front_android.categorymenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 
-public class categoryChung extends Fragment {
+public class categoryGyeongIncheon extends Fragment {
     private View view;
 
     private MainActivity activity;
@@ -23,7 +23,7 @@ public class categoryChung extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.category_chung, container, false);
+        view = inflater.inflate(R.layout.category_gyeong_incheon, container, false);
 
         activity = (MainActivity) getActivity();
 
