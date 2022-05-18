@@ -69,13 +69,32 @@ public class jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         if(location == null){
             location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         }
-        provider = location.getProvider();
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
-        text.setText("위치정보 : " + provider + "\n" + "위도 : " + longitude + "\n" + "경도 : " + latitude);
 
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+        // last known location 이 위치를 제대로 가져왔는지 확인
+        if(location == null) { // 위치 확인 안 되는 경우
+            Toast.makeText(getActivity(), "마지막 위치 가져오기 실패", Toast.LENGTH_SHORT).show();
+
+            //location = new Location(LocationManager.NETWORK_PROVIDER);
+            provider = "null";
+            longitude = 0;
+            latitude = 0;
+            text.setText("위치정보 확인 불가");
+        } else { // 위치 확인 성공한 경우
+            provider = location.getProvider();
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            text.setText("위치정보 : " + provider + "\n" + "위도 : " + longitude + "\n" + "경도 : " + latitude);
+
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+        }
+
+        /*try {
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
+        } catch(IllegalArgumentException e) {
+            Toast.makeText(getActivity(), "위치 업데이트 실패", Toast.LENGTH_SHORT).show();
+        }*/
 
         sView = (MapView) view.findViewById(R.id.sMap);
         sView.onCreate(savedInstanceState);
