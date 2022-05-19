@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.data;
+package com.cookandroid.capstone_front_android.util.model;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,8 +1,6 @@
-package com.cookandroid.capstone_front_android.communitymenu;
+package com.cookandroid.capstone_front_android.board.presenter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.member.model.response.BoardResponse;
+import com.cookandroid.capstone_front_android.board.model.BoardResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {

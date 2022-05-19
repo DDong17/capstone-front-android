@@ -1,8 +1,6 @@
-package com.cookandroid.capstone_front_android.communitymenu;
+package com.cookandroid.capstone_front_android.board.view;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,27 +8,12 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.member.model.MemberApi;
-import com.cookandroid.capstone_front_android.member.model.request.BoardRequest;
-import com.cookandroid.capstone_front_android.member.model.response.BoardResponse;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class communityAll extends Fragment {
+public class BoardAllFragment extends Fragment {
     private View view;
 
     private MainActivity activity;

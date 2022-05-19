@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.network;
+package com.cookandroid.capstone_front_android.util.network;
 
 import android.util.Log;
 

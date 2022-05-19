@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 import com.cookandroid.capstone_front_android.member.model.request.FindPasswordRequest;
 import com.cookandroid.capstone_front_android.R;
-//import com.cookandroid.capstone_front_android.data.Password_reset;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
+//import com.cookandroid.capstone_front_android.util.data.Password_reset;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 
 

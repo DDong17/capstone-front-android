@@ -1,17 +1,14 @@
-package com.cookandroid.capstone_front_android.network;
+package com.cookandroid.capstone_front_android.util.network;
 
 import android.webkit.CookieManager;
 
-import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class RetrofitClient {
-    public final static String BASE_URL = "http://192.168.25.30:8080";
+//    public final static String BASE_URL = "http://192.168.25.30:8080";
+    public final static String BASE_URL = "http://10.0.2.2:8080";
 
     // 로그인 인터셉터를 탑재하기 위한 OkHttp 클라이언트 제작 메소드
     private static OkHttpClient provideOkHttpClient(LoginInterceptor loginInterceptor) {

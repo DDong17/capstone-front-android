@@ -15,10 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.data.BooleanDTO;
-import com.cookandroid.capstone_front_android.member.model.request.JoinRequest;
+import com.cookandroid.capstone_front_android.util.model.BooleanDTO;
+import com.cookandroid.capstone_front_android.member.model.request.RegisterRequest;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 
 
@@ -150,11 +150,11 @@ public class RegisterActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin(new JoinRequest(userId, password, passwordCheck, name, email, phoneNumber, nickname));
+            startJoin(new RegisterRequest(userId, password, passwordCheck, name, email, phoneNumber, nickname));
         }
     }
 
-    private void startJoin(JoinRequest data) {
+    private void startJoin(RegisterRequest data) {
         memberApi.userJoin(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {

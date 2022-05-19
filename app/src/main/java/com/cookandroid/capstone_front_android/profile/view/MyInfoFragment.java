@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android;
+package com.cookandroid.capstone_front_android.profile.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,22 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.view.ChangePasswordActivity;
 import com.cookandroid.capstone_front_android.member.view.DeleteMemberActivity;
 import com.cookandroid.capstone_front_android.member.view.RegisterNewNIcknameActivity;
 
-//import com.cookandroid.capstone_front_android.member.view.PasswordModifyActivity;
 
-
-public class MyInfo extends Fragment {
+public class MyInfoFragment extends Fragment {
 
     private View view;
     private Button btnPasswordModify;
     private Button btnRegisterDelete;
     private Button btnNewNickname;
-
-
-
 
     @Nullable
     @Override

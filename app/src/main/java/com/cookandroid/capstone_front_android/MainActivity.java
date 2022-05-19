@@ -7,11 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardWriteFragment;
 import com.cookandroid.capstone_front_android.categorymenu.*;
-import com.cookandroid.capstone_front_android.communitymenu.*;
 
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
+import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 
@@ -43,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
     private categoryWholeEtc categoryWholeEtc; // 기타(위치).
 
     // 두번째 메뉴(커뮤니티).
-    private communityAll communityAll; // 전체 보기.
-    private communityTogether communityTogether; // 같이 갈 사람.
-    private communityReview communityReview; // 리뷰.
-    private communityWrite communityWrite; // 글쓰기.
+    private BoardAllFragment communityAll; // 전체 보기.
+    private BoardTogetherFragment communityTogether; // 같이 갈 사람.
+    private BoardReviewFragment communityReview; // 리뷰.
+    private BoardWriteFragment communityWrite; // 글쓰기.
 
     // 세번째 메뉴(지도).
     private Jmap jmap;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private MessageWrite messageWrite;
 
     // 다섯번째 메뉴(내정보).
-    private MyInfo myinfo;
+    private MyInfoFragment myinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
         categoryWholeEtc = new categoryWholeEtc();
 
         // 커뮤니티 객체생성.
-        communityAll =new communityAll();
-        communityTogether = new communityTogether();
-        communityReview = new communityReview();
-        communityWrite = new communityWrite();
+        communityAll =new BoardAllFragment();
+        communityTogether = new BoardTogetherFragment();
+        communityReview = new BoardReviewFragment();
+        communityWrite = new BoardWriteFragment();
 
         // 지도 객체생성.
         jmap =new Jmap();
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         messageRead =new MessageRead();
 
         // 내정보 객체생성.
-        myinfo =new MyInfo();
+        myinfo =new MyInfoFragment();
 
         setMap(); // 지도가 첫 화면.
     }

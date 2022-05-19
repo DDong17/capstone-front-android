@@ -1,4 +1,4 @@
-package com.cookandroid.capstone_front_android.communitymenu;
+package com.cookandroid.capstone_front_android.board.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 
-public class communityTogether extends Fragment {
+public class BoardTogetherFragment extends Fragment {
     private View view;
 
     private MainActivity activity;

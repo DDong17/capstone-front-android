@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.ChangePasswordRequest;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
-import com.cookandroid.capstone_front_android.MyInfo;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
+import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 
 import retrofit2.Call;
@@ -60,7 +60,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyInfo.class);
+                Intent intent = new Intent(getApplicationContext(), MyInfoFragment.class);
                 startActivity(intent);
             }
         });

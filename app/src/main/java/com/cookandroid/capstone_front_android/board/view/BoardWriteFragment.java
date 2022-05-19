@@ -1,7 +1,5 @@
-package com.cookandroid.capstone_front_android.communitymenu;
+package com.cookandroid.capstone_front_android.board.view;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,28 +14,26 @@ import androidx.fragment.app.Fragment;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
+import com.cookandroid.capstone_front_android.board.model.BoardApi;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
-import com.cookandroid.capstone_front_android.member.model.request.BoardRequest;
-import com.cookandroid.capstone_front_android.member.model.request.ChangePasswordRequest;
-import com.cookandroid.capstone_front_android.member.model.response.BoardResponse;
-import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
-import com.cookandroid.capstone_front_android.member.view.ChangePasswordActivity;
-import com.cookandroid.capstone_front_android.network.RetrofitClient;
+import com.cookandroid.capstone_front_android.board.model.BoardRequest;
+import com.cookandroid.capstone_front_android.board.model.BoardResponse;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class communityWrite extends Fragment {
+public class BoardWriteFragment extends Fragment {
     private View view;
-    private EditText edtboardWriteTitle;
-    private EditText edtboardWriteContent;
+    private EditText edtBoardWriteTitle;
+    private EditText edtBoardWriteContent;
     private Button btnBoardWriteRegister;
     private Button btnBack;
     private MainActivity activity;
 
 
-    private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class, RetrofitClient.getSessionId());
+    private final BoardApi boardApi = RetrofitClient.getClient(BoardApi.class, RetrofitClient.getSessionId());
 
     @Nullable
     @Override
@@ -46,8 +42,8 @@ public class communityWrite extends Fragment {
 
         activity = (MainActivity) getActivity();
 
-        edtboardWriteTitle = (EditText) view.findViewById(R.id.boardWriteTitle);
-        edtboardWriteContent = (EditText) view.findViewById(R.id.boardWriteContent);
+        edtBoardWriteTitle = (EditText) view.findViewById(R.id.boardWriteTitle);
+        edtBoardWriteContent = (EditText) view.findViewById(R.id.boardWriteContent);
         btnBoardWriteRegister = (Button) view.findViewById(R.id.BoardWriteRegister);
         btnBack = view.findViewById(R.id.boardWriteBtnBack);
 
@@ -68,12 +64,12 @@ public class communityWrite extends Fragment {
     }
 
     private void BoardWrite() {
-        edtboardWriteTitle.setError(null);
-        edtboardWriteContent.setError(null);
+        edtBoardWriteTitle.setError(null);
+        edtBoardWriteContent.setError(null);
 
 
-        String title = edtboardWriteTitle.getText().toString();
-        String content = edtboardWriteContent.getText().toString();
+        String title = edtBoardWriteTitle.getText().toString();
+        String content = edtBoardWriteContent.getText().toString();
 
 
         boolean cancel = false;
@@ -89,7 +85,7 @@ public class communityWrite extends Fragment {
     }
 
     private void startBoardWrite(BoardRequest data) {
-        memberApi.registerBoardWrite(data).enqueue(new Callback<BoardResponse>() {
+        boardApi.registerBoardWrite(data).enqueue(new Callback<BoardResponse>() {
             @Override
             public void onResponse(Call<BoardResponse> call, Response<BoardResponse> response) {
 
