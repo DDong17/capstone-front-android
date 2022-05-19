@@ -3,7 +3,7 @@ package com.cookandroid.capstone_front_android.member.model.response;
 
 public class MemberResponse {
 
-    private Long id;
+    private Long memberId;
     private String userId;
     private String email;
     private String name;
@@ -11,8 +11,8 @@ public class MemberResponse {
     private String phoneNumber;
     private String sessionId;
 
-    public MemberResponse(Long id, String userId, String email, String name, String password, String phoneNumber, String sessionId) {
-        this.id = id;
+    public MemberResponse(Long memberId, String userId, String email, String name, String password, String phoneNumber, String sessionId) {
+        this.memberId = memberId;
         this.userId = userId;
         this.email = email;
         this.name = name;
@@ -21,8 +21,8 @@ public class MemberResponse {
         this.sessionId = sessionId;
     }
 
-    public Long getId() {
-        return id;
+    public Long getMemberId() {
+        return memberId;
     }
 
     public String getUserId() {
@@ -49,8 +49,8 @@ public class MemberResponse {
         return sessionId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public void setUserId(String userId) {

@@ -2,22 +2,28 @@ package com.cookandroid.capstone_front_android.member.view;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.ChangePasswordRequest;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
+
+import java.util.Optional;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,10 +34,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private EditText edtCurrentPassword;
     private EditText edtNewPassword;
     private EditText edtNewPasswordCheck;
-    private Button btnRegister;
-    private Button btnBack;
-
-    private AlertDialog dialog;
 
     /* 
     로그인 정보가 필요한 액티비티에서는 쿠키매니저에서 가져온 세션아이디를 필수적으로 넘겨줘야
@@ -47,17 +49,20 @@ public class ChangePasswordActivity extends AppCompatActivity {
         edtCurrentPassword = (EditText) findViewById(R.id.currentPasswordBtn);
         edtNewPassword = (EditText) findViewById(R.id.newPasswordBtn);
         edtNewPasswordCheck = (EditText) findViewById(R.id.newPasswordCheckBtn);
-        btnRegister = (Button) findViewById(R.id.ChangepasswordBtn);
-        btnBack = (Button) findViewById(R.id.ChangepasswordBack);
 
-        btnRegister.setOnClickListener(new OnClickListener() {
+        // 비밀번호 변경 버튼
+        findViewById(R.id.ChangepasswordBtn).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePassword() ;
+                ChangePasswordRequest requestData = validatePasswordForm();
+                changePasswordRequestToServer(requestData);
+                Intent intent = new Intent(getApplicationContext(), MyInfoFragment.class);
+                startActivity(intent);
             }
         });
 
-        btnBack.setOnClickListener(new OnClickListener() {
+        // 뒤로가기 버튼
+        findViewById(R.id.ChangepasswordBack).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyInfoFragment.class);
@@ -66,7 +71,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
     }
 
-    private void changePassword() {
+    private ChangePasswordRequest validatePasswordForm() {
         edtCurrentPassword.setError(null);
         edtNewPassword.setError(null);
         edtNewPasswordCheck.setError(null);
@@ -98,29 +103,23 @@ public class ChangePasswordActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startPasswordModify(new ChangePasswordRequest(currentPassword,newPassword,newPasswordCheck));
-
+            return new ChangePasswordRequest(currentPassword, newPassword, newPasswordCheck);
         }
+        return null;
     }
 
-    private void startPasswordModify(ChangePasswordRequest data) {
-
+    private void changePasswordRequestToServer(ChangePasswordRequest data) {
         memberApi.changePassword(data).enqueue(new Callback<MemberResponse>() {
             @Override
-            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);
-                dialog = builder.setMessage("변경성공.").setPositiveButton("확인", null).create();
-                dialog.show();
-                Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
-                startActivity(intent);
-
-
+            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);
+//                dialog = builder.setMessage("변경성공.").setPositiveButton("확인", null).create();
+//                dialog.show();
+                Toast.makeText(ChangePasswordActivity.this, "비밀번호 변경 완료", Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onFailure(Call<MemberResponse> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {
                 Log.e(" 에러 발생", t.getMessage());
-
             }
         });
     }

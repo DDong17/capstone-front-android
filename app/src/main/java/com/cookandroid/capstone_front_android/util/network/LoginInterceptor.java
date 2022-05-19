@@ -25,7 +25,6 @@ public class LoginInterceptor implements Interceptor {
 
     // 로그인 인터셉터를 생성할때 해당 토큰(세션값)을 넣어줌
     public LoginInterceptor(String tokenFromCookieManager) {
-        Log.d("interceptor Session", tokenFromCookieManager);
         this.tokenFromCookieManager = tokenFromCookieManager;
     }
 
@@ -36,7 +35,6 @@ public class LoginInterceptor implements Interceptor {
         Request request = chain.request().newBuilder()
                 .addHeader("cookie", tokenFromCookieManager)
                 .build();
-        chain.proceed(request);
-        return null;
+        return chain.proceed(request);
     }
 }

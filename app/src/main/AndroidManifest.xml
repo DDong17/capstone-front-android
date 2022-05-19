@@ -39,7 +39,7 @@
             android:name=".member.view.FindIdActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".member.view.RegisterNewNIcknameActivity"
+            android:name=".member.view.RegisterNewNicknameActivity"
             android:exported="true"></activity>
         <activity
 

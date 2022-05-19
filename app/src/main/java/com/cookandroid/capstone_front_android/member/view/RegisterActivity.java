@@ -1,5 +1,6 @@
 package com.cookandroid.capstone_front_android.member.view;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,10 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtEmail;
     private EditText edtPhoneNumber;
     private EditText edtNickname;
-    private Button btnRegister;
-    private Button btnBack;
-    private Button btnValid;
-    private Button btnValid2;
 
     private AlertDialog dialog;
 
@@ -45,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     // 통신에 필요한 api 이 매핑된 인터페이스를 파라미터로 넘겨줘서 생성
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class);
 
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,38 +56,43 @@ public class RegisterActivity extends AppCompatActivity {
         edtEmail = (EditText) findViewById(R.id.joinEmail);
         edtPhoneNumber = (EditText) findViewById(R.id.joinPassword);
         edtNickname = (EditText) findViewById(R.id.joinNickname);
-        btnRegister = (Button) findViewById(R.id.joinRegister);
-        btnBack = (Button) findViewById(R.id.back);
-        btnValid = (Button) findViewById(R.id.IdValid);
-        btnValid2 = (Button) findViewById(R.id.NicknameValid);
+        Button btnRegister = (Button) findViewById(R.id.joinRegister);
+        Button btnBack = (Button) findViewById(R.id.back);
+        Button btnUserIdValidation = (Button) findViewById(R.id.IdValid);
+        Button btnNicknameValidation = (Button) findViewById(R.id.NicknameValid);
 
-
-//        memberApi = RetrofitClient.getClient().create(MemberApi.class);
-
-        btnRegister.setOnClickListener(new View.OnClickListener() { //회원가입
+        // 회원가입
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptJoin();
-//
+                RegisterRequest requestData = validateRegisterForm();
+                registerRequestToServer(requestData);
+
             }
         });
-        btnValid.setOnClickListener(new View.OnClickListener() { //회원 ID 중복확인
+
+        // 회원 ID 중복 확인
+        btnUserIdValidation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 edtUserId.setError(null);
                 String userId = edtUserId.getText().toString();
-                idCheck((userId));
+                userIdDuplicateCheck((userId));
             }
         });
-        btnValid2.setOnClickListener(new View.OnClickListener() { //닉네임 중복확인
+
+        // 닉네임 중복 확인
+        btnNicknameValidation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 edtNickname.setError(null);
                 String nickname = edtNickname.getText().toString();
-                nickNameCheck((nickname));
+                nicknameDuplicateCheck((nickname));
             }
         });
-        btnBack.setOnClickListener(new View.OnClickListener() { //뒤로가기
+
+        // 뒤로가기
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -97,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void attemptJoin() {
+    private RegisterRequest validateRegisterForm() {
         edtUserId.setError(null);
         edtPassword.setError(null);
         edtPasswordCheck.setError(null);
@@ -150,21 +154,23 @@ public class RegisterActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin(new RegisterRequest(userId, password, passwordCheck, name, email, phoneNumber, nickname));
+            return new RegisterRequest(userId, password, passwordCheck, name, email, phoneNumber, nickname);
         }
+        return null;
     }
 
-    private void startJoin(RegisterRequest data) {
+    private void registerRequestToServer(RegisterRequest data) {
         memberApi.userJoin(data).enqueue(new Callback<MemberResponse>() {
             @Override
-            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
+            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                 dialog = builder.setMessage("회원가입성공.").setPositiveButton("확인", null).create();
                 dialog.show();
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
             }
             @Override
-            public void onFailure(Call<MemberResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {
                 Toast.makeText(RegisterActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("회원가입 에러 발생", t.getMessage());
             }
@@ -172,10 +178,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void idCheck(String userId) {//아이디 중복확인
+    private void userIdDuplicateCheck(String userId) {//아이디 중복확인
         memberApi.checkID(userId).enqueue(new Callback<BooleanDTO>() {
             @Override
-            public void onResponse(Call<BooleanDTO> call, Response<BooleanDTO> response) {
+            public void onResponse(@NonNull Call<BooleanDTO> call, @NonNull Response<BooleanDTO> response) {
                 BooleanDTO result = response.body();
                 if (result.getresult() == true) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -188,17 +194,17 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<BooleanDTO> call, Throwable t) {
+            public void onFailure(@NonNull Call<BooleanDTO> call, @NonNull Throwable t) {
                 Toast.makeText(RegisterActivity.this, "에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("에러 발생", t.getMessage());
             }
         });
     }
 
-    private void nickNameCheck(String nickname) {
+    private void nicknameDuplicateCheck(String nickname) {
         memberApi.checkNickname(nickname).enqueue(new Callback<BooleanDTO>() {
             @Override
-            public void onResponse(Call<BooleanDTO> call, Response<BooleanDTO> response) {
+            public void onResponse(@NonNull Call<BooleanDTO> call, @NonNull Response<BooleanDTO> response) {
                 BooleanDTO result = response.body();
                 if (result.getresult() == true) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -211,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<BooleanDTO> call, Throwable t) {
+            public void onFailure(@NonNull Call<BooleanDTO> call, @NonNull Throwable t) {
                 Toast.makeText(RegisterActivity.this, "에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("에러 발생", t.getMessage());
             }

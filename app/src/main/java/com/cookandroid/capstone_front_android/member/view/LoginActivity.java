@@ -1,5 +1,6 @@
 package com.cookandroid.capstone_front_android.member.view;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,10 +31,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private EditText edtUserId;
     private EditText edtPassword;
-    private Button btnLogin;
-    private Button btnRegister;
-    private Button btnIdPassword;
-    private Button btnFindPassword;
 
     private AlertDialog dialog;
 
@@ -46,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         edtUserId = (EditText) findViewById(R.id.loginUserId);
         edtPassword = (EditText) findViewById(R.id.loginPassword);
-        btnLogin = (Button) findViewById(R.id.loginButton);
-        btnRegister = (Button) findViewById(R.id.registerButton);
-        btnIdPassword= (Button) findViewById(R.id.idFindBtn);
-        btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
+        Button btnLogin = (Button) findViewById(R.id.loginButton);
+        Button btnRegister = (Button) findViewById(R.id.registerButton);
+        Button btnIdPassword = (Button) findViewById(R.id.idFindBtn);
+        Button btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
 
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
@@ -125,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     private void startLogin(LoginRequest data) {
         memberApi.userLogin(data).enqueue(new Callback<MemberResponse>() {
 
+            @SuppressLint("LongLogTag")
             @Override
             public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
                 // 로그인 실패시 NPE 를 던짐
@@ -140,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                     // 쿠키매니저에 쿠키 저장 키 : BASE_URL - 값 : 서버로부터 전송받은 세션값
                     cookieManager.setCookie(RetrofitClient.BASE_URL, result.getSessionId());
                     Log.d("sessionId From Server", result.getSessionId());
+                    Log.d("sessionId From CookieManager", cookieManager.getCookie(RetrofitClient.BASE_URL));
 
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } catch (NullPointerException e) {

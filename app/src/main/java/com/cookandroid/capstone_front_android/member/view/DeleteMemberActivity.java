@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,8 +29,6 @@ public class DeleteMemberActivity extends AppCompatActivity {
 
     private EditText editPassword;
     private EditText editPasswordCheck;
-    private Button btnDeleteRegister;
-    private Button btnBack;
 
     private AlertDialog dialog;
 
@@ -42,8 +41,8 @@ public class DeleteMemberActivity extends AppCompatActivity {
 
         editPassword = (EditText) findViewById(R.id.btnDeletePassword);
         editPasswordCheck = (EditText) findViewById(R.id.btnDeletePasswordCheck);
-        btnDeleteRegister = (Button) findViewById(R.id.btnDeleteRegister);
-        btnBack = (Button) findViewById(R.id.btnBack);
+        Button btnDeleteRegister = (Button) findViewById(R.id.btnDeleteRegister);
+        Button btnBack = (Button) findViewById(R.id.btnBack);
 
         btnDeleteRegister.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,7 +92,7 @@ public class DeleteMemberActivity extends AppCompatActivity {
 
         memberApi.deleteMember(data).enqueue(new Callback<MemberResponse>() {
             @Override
-            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
+            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DeleteMemberActivity.this);
                 dialog = builder.setMessage("탈퇴성공.").setPositiveButton("확인", null).create();
                 dialog.show();
@@ -101,7 +100,7 @@ public class DeleteMemberActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             @Override
-            public void onFailure(Call<MemberResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {
                 Toast.makeText(DeleteMemberActivity.this, " 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e(" 에러 발생", t.getMessage());
             }

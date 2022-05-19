@@ -25,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterNewNIcknameActivity extends AppCompatActivity {
+public class RegisterNewNicknameActivity extends AppCompatActivity {
     private EditText edtNewNickname;
     private Button btnRegisterNewNickname;
     private Button btnBack;
@@ -64,13 +64,13 @@ public class RegisterNewNIcknameActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
                 try {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterNewNIcknameActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterNewNicknameActivity.this);
                     dialog = builder.setMessage("변경완료").setPositiveButton("확인", null).create();
                     dialog.show();
-                    Intent intent = new Intent(getApplicationContext(), RegisterNewNIcknameActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), RegisterNewNicknameActivity.class);
                     startActivity(intent);
                 }catch (Exception e){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterNewNIcknameActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterNewNicknameActivity.this);
                     dialog = builder.setMessage("중복된 닉네임").setPositiveButton("확인", null).create();
                     dialog.show();
                 }
@@ -80,7 +80,7 @@ public class RegisterNewNIcknameActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MemberResponse> call, Throwable t) {
-                Toast.makeText(RegisterNewNIcknameActivity.this, "에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterNewNicknameActivity.this, "에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("에러 발생", t.getMessage());
             }
 

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cookandroid.capstone_front_android.member.model.request.FindIdRequest;
@@ -29,13 +30,9 @@ public class FindIdActivity extends AppCompatActivity {
 
     private EditText edtEmail;
     private EditText edtName;
-    private Button btnFindId;
-    private Button btnBack;
     private TextView edtIdResult;
-    private AlertDialog dialog;
 
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +40,8 @@ public class FindIdActivity extends AppCompatActivity {
         setContentView(R.layout.find_id);
         edtEmail = (EditText) findViewById(R.id.findIdUser);
         edtName = (EditText) findViewById(R.id.findIdName);
-        btnFindId = (Button) findViewById(R.id.findIdBtn);
-        btnBack = (Button) findViewById(R.id.findIdBack);
+        Button btnFindId = (Button) findViewById(R.id.findIdBtn);
+        Button btnBack = (Button) findViewById(R.id.findIdBack);
         edtIdResult = (TextView) findViewById(R.id.idResult);
 
         btnFindId.setOnClickListener(new OnClickListener() {
@@ -66,23 +63,17 @@ public class FindIdActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void findId(FindIdRequest data) {
         memberApi.findId(data).enqueue(new Callback<MemberResponse>() {
-
             @Override
-            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
+            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                MemberResponse result = response.body();
                 edtIdResult.setText(result.getUserId());
-
             }
             @Override
-            public void onFailure(Call<MemberResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<MemberResponse> call, Throwable t) {
                 Log.e("로그인 에러 발생", t.getMessage());
-
             }
-
         });
     }
 }
