@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,6 +36,9 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     String provider;
     double longitude = 0;
     double latitude = 0;
+
+    private GoogleMap gMap;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,8 +61,8 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
             //location = new Location(LocationManager.NETWORK_PROVIDER);
             provider = "null";
-            longitude = 0;
-            latitude = 0;
+            longitude = 127.187559;
+            latitude = 37.224158;
             text.setText("위치정보 확인 불가");
         } else { // 위치 확인 성공한 경우
             provider = location.getProvider();
@@ -69,16 +74,15 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
         }
 
-        /*try {
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
-        } catch(IllegalArgumentException e) {
-            Toast.makeText(getActivity(), "위치 업데이트 실패", Toast.LENGTH_SHORT).show();
-        }*/
-
         sView = (MapView) view.findViewById(R.id.sMap);
         sView.onCreate(savedInstanceState);
+
+        //Log.e(this.getClass().getName(), "맵 켜짐");
+
         sView.getMapAsync(this);
+
+        //Log.e(this.getClass().getName(), "async 맵");
+
         return view;
     }
     final LocationListener gpsLocationListener = new LocationListener() {
@@ -122,21 +126,25 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     }
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        //마커찍기(위도,경도)
-        //LatLng solnae = new LatLng(37.145995272094034, 127.06707518461991); // 위치지정.
-        LatLng solnae = new LatLng(latitude, longitude);
-        //text.setText("위치정보 : " + provider + "   " + "위도 : " + latitude + "\n" + "경도 : " + longitude);
-        //마커 옵션.
-        MarkerOptions marker = new MarkerOptions();
-        //marker.title("역");
-        //marker.snippet("오산역");
-        marker.position(solnae); //마커 위치.
-        //맵에 마커표시, 인포윈도우 보여줌.
-        googleMap.addMarker(marker);
-        //인포윈도우 클릭
+        this.gMap = googleMap;
+
+        // 현재 위치 마커 표시
+        /*MarkerOptions curLocMarker = new MarkerOptions();
+        curLocMarker.position(new LatLng(latitude, longitude));
+        curLocMarker.title("현위치");
+        googleMap.addMarker(curLocMarker);
         googleMap.setOnMarkerClickListener(this);
-        //맵뷰 카메라위치, 줌 설정
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(solnae, 16));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(curLocMarker.getPosition(), 15));*/
+
+        // 현재 위치 마커 표시
+        googleMap.addMarker(new MarkerOptions().
+                position(new LatLng(latitude, longitude)).
+                title("현위치").
+                icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        googleMap.setOnMarkerClickListener(this);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
+
+
     }
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
