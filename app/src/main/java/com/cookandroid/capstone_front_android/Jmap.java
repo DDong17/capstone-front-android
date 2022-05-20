@@ -52,11 +52,11 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     double longitude = 0;
     double latitude = 0;
 
-    private Button refreshLocationButton;
-    private Marker curLocMarker;
-    private GoogleMap gMap;
-    private LocationAPI locationAPI;
-    private Map<LatLng, LocationResponse> locationMap = new HashMap<>();
+    private Button refreshLocationButton;                                   // 위치정보 갱신 버튼
+    private Marker curLocMarker;                                            // 현 위치 표시 마커
+    private GoogleMap gMap;                                                 // 구글맵!
+    private LocationAPI locationAPI;                                        // 서버 통신을 위한 레트로핏 클라이언트
+    private Map<LatLng, LocationResponse> locationMap = new HashMap<>();    // 위치, 위치정보 쌍
 
     @Nullable
     @Override
