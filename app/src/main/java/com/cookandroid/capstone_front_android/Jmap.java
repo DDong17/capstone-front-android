@@ -130,6 +130,9 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.gMap = googleMap;
 
+        // 확대 축소 버튼 표시
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
         // 현재 위치 마커 표시
         /*MarkerOptions curLocMarker = new MarkerOptions();
         curLocMarker.position(new LatLng(latitude, longitude));

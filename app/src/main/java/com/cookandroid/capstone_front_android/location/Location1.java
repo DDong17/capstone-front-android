@@ -43,6 +43,10 @@ public class Location1 {
 
                 LocationListResponse r = response.body();
 
+                if(r == null) {
+                    Log.e("Location1", "정보가 없습니다.");
+                    return;
+                }
                 List<LocationResponse> l = r.getLocations();
 
                 Log.e("Location1", "정보 가져옴");
