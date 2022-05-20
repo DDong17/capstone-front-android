@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -18,6 +19,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.capstone_front_android.location.Location1;
+import com.cookandroid.capstone_front_android.location.model.LocationAPI;
+import com.cookandroid.capstone_front_android.location.model.LocationListResponse;
+import com.cookandroid.capstone_front_android.location.model.LocationResponse;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +32,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class, RetrofitClient.getSessionId());
     private View view;
@@ -39,6 +50,8 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     double longitude = 0;
     double latitude = 0;
 
+    private Button refreshLocationButton;
+    private Marker curLocMarker;
     private GoogleMap gMap;
 
     @Nullable
@@ -55,6 +68,8 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         if(location == null){
             location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         }
+
+        refreshLocationButton = view.findViewById(R.id.getLocationButton);
 
 
         // last known location 이 위치를 제대로 가져왔는지 확인
@@ -87,6 +102,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
         return view;
     }
+
     final LocationListener gpsLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             provider = location.getProvider();
@@ -101,6 +117,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         public void onProviderDisabled(String provider) {
         }
     };
+
     @Override
     public void onStart() {
         super.onStart();
@@ -142,7 +159,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(curLocMarker.getPosition(), 15));*/
 
         // 현재 위치 마커 표시
-        googleMap.addMarker(new MarkerOptions().
+        curLocMarker = googleMap.addMarker(new MarkerOptions().
                 position(new LatLng(latitude, longitude)).
                 title("현위치").
                 icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
@@ -157,6 +174,59 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
                 position(new LatLng(37.2217035027, 127.1856397023)).
                 title("현위치2").
                 icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));*/
+
+        // 버튼 클릭시 위치 정보 갱신
+        refreshLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //new Location1().setMarkerByPosition();
+
+                // 현 위치 마커 및 현 위치 업데이트
+                curLocMarker.setPosition(googleMap.getCameraPosition().target);
+                longitude = googleMap.getCameraPosition().target.longitude;
+                latitude = googleMap.getCameraPosition().target.latitude;
+
+                LocationAPI locationAPI = RetrofitClient.getClient(LocationAPI.class);
+
+                locationAPI.findAllByPostition(longitude, latitude).enqueue(new Callback<LocationListResponse>() {
+                    @Override
+                    public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
+
+                        LocationListResponse r = response.body();
+
+                        Log.e("tag", "위치:" + longitude + "," + latitude);
+
+                        if(r == null) {
+                            Log.e("Location1", "정보가 없습니다.");
+                            Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<LocationResponse> l = r.getLocations();
+
+                        Log.e("Location1", "정보 가져옴");
+
+                        for(LocationResponse i : l) {
+                            Log.e("Location1", "정보 추가:" + i.getTitle());
+                            googleMap.addMarker(new MarkerOptions().
+                                    position(new LatLng(i.getMapY(), i.getMapX())).
+                                    title(i.getTitle()).
+                                    snippet(i.getAddress()).
+                                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                        }
+
+                        Log.e("Location1", "정보 추가완료");
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<LocationListResponse> call, Throwable t) {
+
+                        Log.e("정보 받아오기 에러 발생", t.getMessage());
+
+                    }
+                });
+            }
+        });
 
 
     }
