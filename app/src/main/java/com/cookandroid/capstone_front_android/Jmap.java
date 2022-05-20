@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
+import com.cookandroid.capstone_front_android.location.Location1;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -59,7 +61,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         if(location == null) { // 위치 확인 안 되는 경우
             Toast.makeText(getActivity(), "마지막 위치 가져오기 실패", Toast.LENGTH_SHORT).show();
 
-            //location = new Location(LocationManager.NETWORK_PROVIDER);
+            //location = new Location(Location1.NETWORK_PROVIDER);
             provider = "null";
             longitude = 127.187559;
             latitude = 37.224158;
@@ -144,10 +146,27 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         googleMap.setOnMarkerClickListener(this);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
 
+        // 현재 위치 주변 정보 마커 표시
+        //new Location1().setMarkerByPosition(googleMap, latitude, longitude);
+        new Location1().setMarkerByPosition(googleMap, longitude, latitude);
+
+        /*googleMap.addMarker(new MarkerOptions().
+                position(new LatLng(37.2217035027, 127.1856397023)).
+                title("현위치2").
+                icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));*/
+
 
     }
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         return false;
     }
+
+    private void updateMarkers() {
+
+    }
+
+
+
+
 }
