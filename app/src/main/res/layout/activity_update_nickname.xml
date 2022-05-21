@@ -7,32 +7,33 @@
     tools:context=".passwordModify">
 
     <EditText
-        android:id="@+id/registerNewNinckname"
+        android:id="@+id/edt_updateNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="288dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="새로운 닉네임"
+        android:hint="새로운 닉네임"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:privateImeOptions="defaultInputMode=korean"/>
 
     <Button
-        android:id="@+id/btnNicknameRegister"
+        android:id="@+id/btn_nicknameCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="288dp"
-        android:text="중복확인"
+        android:text="중복확인 및 변경"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/btn_updateNickname_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="292dp"

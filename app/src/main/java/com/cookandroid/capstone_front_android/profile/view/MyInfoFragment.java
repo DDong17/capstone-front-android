@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.view.ChangePasswordActivity;
 import com.cookandroid.capstone_front_android.member.view.DeleteMemberActivity;
-import com.cookandroid.capstone_front_android.member.view.RegisterNewNicknameActivity;
+import com.cookandroid.capstone_front_android.member.view.UpdateNicknameActivity;
 
 
 public class MyInfoFragment extends Fragment {
@@ -48,7 +48,7 @@ public class MyInfoFragment extends Fragment {
         btnNewNickname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RegisterNewNicknameActivity.class);
+                Intent intent = new Intent(getActivity(), UpdateNicknameActivity.class);
                 startActivity(intent);
 
             }
