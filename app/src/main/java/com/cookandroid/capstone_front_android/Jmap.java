@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.cookandroid.capstone_front_android.location.model.LocationAPI;
 import com.cookandroid.capstone_front_android.location.model.LocationListResponse;
 import com.cookandroid.capstone_front_android.location.model.LocationResponse;
@@ -59,6 +61,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     private LocationAPI locationAPI;                                        // 서버 통신을 위한 레트로핏 클라이언트
     private Map<LatLng, LocationResponse> locationMap = new HashMap<>();    // 위치, 위치정보 쌍
     private TextView locInfo;                                               // 문화 생활 상세 정보 텍스트뷰
+    private ImageView locImage;                                             // 문화 생활 상세 정보 이미지뷰
     private SlidingUpPanelLayout mapLayout;                                 // 맵 전체 레이아웃
 
     // 테스트용으로 임시 좌표
@@ -87,11 +90,10 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         }
 
         refreshLocationButton = view.findViewById(R.id.getLocationButton);
-        mjButton = view.findViewById(R.id.myongji_button);
-        locInfo = view.findViewById(R.id.location_info);
-        mapLayout = view.findViewById(R.id.map);
-
-        locInfo.setText("테스트 텍스트");
+        mjButton    = view.findViewById(R.id.myongji_button);
+        locInfo     = view.findViewById(R.id.location_info);
+        locImage    = view.findViewById(R.id.location_image);
+        mapLayout   = view.findViewById(R.id.map);
 
         // last known location 이 위치를 제대로 가져왔는지 확인
         if(location == null) { // 위치 확인 안 되는 경우
@@ -287,7 +289,9 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
                 } else {
                     locInfo.setText("문화생활:" + l.getTitle() + "\n" +
                             "주소: " + l.getAddress() + "\n" +
-                            "지역: " + l.getAreaName());
+                            "지역: " + l.getAreaName() + "\n" +
+                            "종류: " + l.getContentName());
+                    if(l.getFirstImage() != null) Glide.with(Jmap.this).load(l.getFirstImage()).into(locImage);
                     mapLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
                 }
             }
