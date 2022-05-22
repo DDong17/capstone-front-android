@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,10 +54,13 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     double latitude = 0;
 
     private Button refreshLocationButton;                                   // 위치정보 갱신 버튼
+    private Button mjButton;                                                // 학교 위치로 이동
     private Marker curLocMarker;                                            // 현 위치 표시 마커
     private GoogleMap gMap;                                                 // 구글맵!
     private LocationAPI locationAPI;                                        // 서버 통신을 위한 레트로핏 클라이언트
     private Map<LatLng, LocationResponse> locationMap = new HashMap<>();    // 위치, 위치정보 쌍
+    private TextView locInfo;                                               // 문화 생활 상세 정보 텍스트뷰
+    private SlidingUpPanelLayout mapLayout;                                 // 맵 전체 레이아웃
 
     @Nullable
     @Override
@@ -74,7 +78,11 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         }
 
         refreshLocationButton = view.findViewById(R.id.getLocationButton);
+        mjButton = view.findViewById(R.id.myongji_button);
+        locInfo = view.findViewById(R.id.location_info);
+        mapLayout = view.findViewById(R.id.map);
 
+        locInfo.setText("테스트 텍스트");
 
         // last known location 이 위치를 제대로 가져왔는지 확인
         if(location == null) { // 위치 확인 안 되는 경우
@@ -163,7 +171,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         // 현재 위치 주변 정보 마커 표시
         //new Location1().setMarkerByPosition(googleMap, longitude, latitude);
 
-        // 버튼 클릭시 위치 정보 갱신
+        // 위치 정보 갱신 버튼 클릭시
         refreshLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -233,6 +241,15 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
             }
         });
 
+        // 학교로 순간이동 버튼
+        mjButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                curLocMarker.setPosition(new LatLng(37.224158, 127.187559));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(curLocMarker.getPosition()));
+            }
+        });
+
         // 정보창 클릭시 상세정보 표시
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
@@ -246,16 +263,16 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
                 }
 
                 // 마커 찾아서 정보 보여주기
-                // TODO 따로 뛰워서 거기로 정보표시하기(지금은 지도 밑의 텍스트뷰에 표시)
                 LocationResponse l = locationMap.get(marker.getPosition());
                 if(l == null) {
                     Log.e("정보 받아오기 에러 발생", "" + marker.getPosition().toString());
                     Toast.makeText(getActivity(), "" + marker.getPosition().toString(), Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    text.setText("문화생활:" + l.getTitle() + "\n" +
+                    locInfo.setText("문화생활:" + l.getTitle() + "\n" +
                             "주소: " + l.getAddress() + "\n" +
                             "지역: " + l.getAreaName());
+                    mapLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
                 }
             }
 
