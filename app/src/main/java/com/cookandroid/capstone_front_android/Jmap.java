@@ -95,6 +95,9 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         locImage    = view.findViewById(R.id.location_image);
         mapLayout   = view.findViewById(R.id.map);
 
+        // 레트로핏 클라이언트 가져오기
+        locationAPI = RetrofitClient.getClient(LocationAPI.class);
+
         // last known location 이 위치를 제대로 가져왔는지 확인
         if(location == null) { // 위치 확인 안 되는 경우
             Toast.makeText(getActivity(), "마지막 위치 가져오기 실패", Toast.LENGTH_SHORT).show();
@@ -112,9 +115,6 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
         }
-
-        // 레트로핏 클라이언트 가져오기
-        locationAPI = RetrofitClient.getClient(LocationAPI.class);
 
         sView = (MapView) view.findViewById(R.id.sMap);
         sView.onCreate(savedInstanceState);
@@ -183,89 +183,12 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         updateLocations(googleMap);
 
         // 위치 정보 갱신 버튼 클릭시
-        refreshLocationButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                updateLocations(googleMap);
-            }
-
-            /*
-            @Override
-            public void onClick(View view) {
-
-                // 현 위치 마커 및 현 위치 업데이트
-                curLocMarker.setPosition(googleMap.getCameraPosition().target);
-                longitude = googleMap.getCameraPosition().target.longitude;
-                latitude = googleMap.getCameraPosition().target.latitude;
-                text.setText(text.getText() + "\n지도위치: " + longitude + ", " + latitude);
-
-                Log.e("tag", "위치:" + longitude + "," + latitude);
-
-                // 서버 통신을 위한 레트로핏 클라이언트 가져오기
-                LocationAPI locationAPI = RetrofitClient.getClient(LocationAPI.class);
-
-                locationAPI.findAllByPostition(longitude, latitude).enqueue(new Callback<LocationListResponse>() {
-                    @Override
-                    public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
-
-                        LocationListResponse r = response.body();
-                        if(r == null) {
-                            Log.e("tag", "정보가 없습니다.");
-                            Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        // 서버로부터 위치 리스트 받기
-                        List<LocationResponse> l = r.getLocations();
-
-                        Log.e("tag", "정보 가져옴");
-
-                        // 가져온 위치를 지도(구글맵)와 맵(Map<LatLng, LocationResponse)에 추가
-                        for(LocationResponse i : l) {
-                            //if(locationMap.containsKey((new LatLng(i.getMapY(), i.getMapX())).toString()) == true) {
-                            // 이미 추가됐는지 확인
-                            if(locationMap.containsKey((new LatLng(i.getMapY(), i.getMapX()))) == true) {
-                                Log.e("tag", "이미 존재하는 마커: " + new LatLng(i.getMapY(), i.getMapX()));
-                                continue;
-                            } else {
-                                // 추가 안된경우 (위치, LocationResponse) 쌍 추가
-                                locationMap.put((new LatLng(i.getMapY(), i.getMapX())), i);
-                            }
-
-                            Log.e("tag", "정보 추가:" + i.getTitle());
-                            Log.e("tag", "위치: " + (new LatLng(i.getMapY(), i.getMapX())).toString());
-
-                            // 마커 추가
-                            googleMap.addMarker(new MarkerOptions().
-                                    position(new LatLng(i.getMapY(), i.getMapX())).
-                                    title(i.getTitle()).
-                                    snippet(i.getAddress()).
-                                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                        }
-
-                        Log.e("tag", "정보 추가완료");
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<LocationListResponse> call, Throwable t) {
-
-                        Log.e("정보 받아오기 에러 발생", t.getMessage());
-                        Toast.makeText(getActivity(), "정보 받아오기 에러 발생", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-            }*/
-        });
+        refreshLocationButton.setOnClickListener(v -> updateLocations(googleMap));
 
         // 학교로 순간이동 버튼
-        mjButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                curLocMarker.setPosition(new LatLng(37.224158, 127.187559));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(curLocMarker.getPosition()));
-            }
+        mjButton.setOnClickListener(v -> {
+            curLocMarker.setPosition(new LatLng(37.224158, 127.187559));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(curLocMarker.getPosition()));
         });
 
         // 정보창 클릭시 상세정보 표시
@@ -300,6 +223,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
 
     }
+
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         return false;
@@ -315,9 +239,6 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         text.setText(text.getText() + "\n지도위치: " + longitude + ", " + latitude);
 
         Log.e("tag", "위치:" + longitude + "," + latitude);
-
-        // 서버 통신을 위한 레트로핏 클라이언트 가져오기
-        LocationAPI locationAPI = RetrofitClient.getClient(LocationAPI.class);
 
         locationAPI.findAllByPostition(longitude, latitude).enqueue(new Callback<LocationListResponse>() {
             @Override
