@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.capstone_front_android.location.Location1;
 import com.cookandroid.capstone_front_android.location.model.LocationAPI;
 import com.cookandroid.capstone_front_android.location.model.LocationListResponse;
 import com.cookandroid.capstone_front_android.location.model.LocationResponse;
@@ -61,6 +60,16 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     private Map<LatLng, LocationResponse> locationMap = new HashMap<>();    // 위치, 위치정보 쌍
     private TextView locInfo;                                               // 문화 생활 상세 정보 텍스트뷰
     private SlidingUpPanelLayout mapLayout;                                 // 맵 전체 레이아웃
+
+    // 테스트용으로 임시 좌표
+    public static final double SEOUL_CITY_HALL_X = 126.9779;
+    public static final double SEOUL_CITY_HALL_Y = 37.5663;
+    public static final double SUWON_HWASEONG_X = 127.0119;
+    public static final double SUWON_HWASEONG_Y = 37.2871;
+    public static final double YONGIN_CITY_HALL_X = 127.1779;
+    public static final double YONGIN_CITY_HALL_Y = 37.2410;
+    public static final double MJU_NS_X = 127.187559;
+    public static final double MJU_NS_Y = 37.224158;
 
     @Nullable
     @Override
@@ -169,10 +178,17 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
 
         // 현재 위치 주변 정보 마커 표시
-        //new Location1().setMarkerByPosition(googleMap, longitude, latitude);
+        updateLocations(googleMap);
 
         // 위치 정보 갱신 버튼 클릭시
         refreshLocationButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                updateLocations(googleMap);
+            }
+
+            /*
             @Override
             public void onClick(View view) {
 
@@ -238,7 +254,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
                     }
                 });
-            }
+            }*/
         });
 
         // 학교로 순간이동 버튼
@@ -285,11 +301,69 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         return false;
     }
 
-    private void updateMarkers() {
+    // 지도상의 위치로 현재 위치 업데이트하고 주변 문화 생활 정보 찾기
+    private void updateLocations(GoogleMap googleMap) {
 
+        // 현 위치 마커 및 현 위치 업데이트
+        curLocMarker.setPosition(googleMap.getCameraPosition().target);
+        longitude = googleMap.getCameraPosition().target.longitude;
+        latitude = googleMap.getCameraPosition().target.latitude;
+        text.setText(text.getText() + "\n지도위치: " + longitude + ", " + latitude);
+
+        Log.e("tag", "위치:" + longitude + "," + latitude);
+
+        // 서버 통신을 위한 레트로핏 클라이언트 가져오기
+        LocationAPI locationAPI = RetrofitClient.getClient(LocationAPI.class);
+
+        locationAPI.findAllByPostition(longitude, latitude).enqueue(new Callback<LocationListResponse>() {
+            @Override
+            public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
+
+                LocationListResponse r = response.body();
+                if(r == null) {
+                    Log.e("tag", "정보가 없습니다.");
+                    Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // 서버로부터 위치 리스트 받기
+                List<LocationResponse> l = r.getLocations();
+
+                Log.e("tag", "정보 가져옴");
+
+                // 가져온 위치를 지도(구글맵)와 맵(Map<LatLng, LocationResponse)에 추가
+                for(LocationResponse i : l) {
+
+                    // 이미 추가됐는지 확인
+                    if(locationMap.containsKey((new LatLng(i.getMapY(), i.getMapX()))) == true) {
+                        Log.e("tag", "중복 위치: " + i.getTitle() + ", 위치: " + (new LatLng(i.getMapY(), i.getMapX())).toString());
+                        continue;
+                    } else {
+                        // 추가 안된경우 (위치, LocationResponse) 쌍 추가
+                        locationMap.put((new LatLng(i.getMapY(), i.getMapX())), i);
+                    }
+
+                    Log.e("tag", "정보 추가: " + i.getTitle() + ", 위치: " + (new LatLng(i.getMapY(), i.getMapX())).toString());
+
+                    // 마커 추가
+                    googleMap.addMarker(new MarkerOptions().
+                            position(new LatLng(i.getMapY(), i.getMapX())).
+                            title(i.getTitle()).
+                            snippet(i.getAddress()).
+                            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                }
+
+                Log.e("tag", "정보 추가완료");
+
+            }
+
+            @Override
+            public void onFailure(Call<LocationListResponse> call, Throwable t) {
+
+                Log.e("정보 받아오기 에러 발생", t.getMessage());
+                Toast.makeText(getActivity(), "정보 받아오기 에러 발생", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
-
-
-
-
 }
