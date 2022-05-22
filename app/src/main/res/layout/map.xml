@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="주변 문화 생활 찾기" />
 
             <Button
                 android:id="@+id/myongji_button"
