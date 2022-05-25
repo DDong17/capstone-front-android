@@ -1,12 +1,15 @@
 package com.cookandroid.capstone_front_android.member.view;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import android.preference.PreferenceManager;
@@ -28,6 +31,7 @@ import com.cookandroid.capstone_front_android.member.model.request.LoginRequest;
 //import com.cookandroid.capstone_front_android.data.Password_reset;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.google.android.gms.common.util.SharedPreferencesUtils;
 
 
