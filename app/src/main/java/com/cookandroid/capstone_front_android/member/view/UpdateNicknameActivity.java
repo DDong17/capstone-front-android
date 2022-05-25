@@ -61,7 +61,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
     }
 
     private void updateNickname(String newNickname) {
-        memberApi.registerNewNickname(newNickname).enqueue(new Callback<MemberResponse>() {
+        memberApi.putUpdateNickname(newNickname).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 if (response.body() == null) {
