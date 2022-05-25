@@ -1,6 +1,7 @@
 package com.cookandroid.capstone_front_android.member.view;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.DeleteMemberRequest;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
+import com.cookandroid.capstone_front_android.util.model.BooleanDTO;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 
@@ -30,8 +32,6 @@ public class DeleteMemberActivity extends AppCompatActivity {
     private EditText editPassword;
     private EditText editPasswordCheck;
 
-    private AlertDialog dialog;
-
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class, RetrofitClient.getSessionId());
 
     @Override
@@ -41,13 +41,13 @@ public class DeleteMemberActivity extends AppCompatActivity {
 
         editPassword = (EditText) findViewById(R.id.btnDeletePassword);
         editPasswordCheck = (EditText) findViewById(R.id.btnDeletePasswordCheck);
-        Button btnDeleteRegister = (Button) findViewById(R.id.btnDeleteRegister);
+        Button btnDeleteMember = (Button) findViewById(R.id.btnDeleteRegister);
         Button btnBack = (Button) findViewById(R.id.btnBack);
 
-        btnDeleteRegister.setOnClickListener(new OnClickListener() {
+        btnDeleteMember.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteMember() ;
+                validatePassword();
             }
         });
 
@@ -60,7 +60,7 @@ public class DeleteMemberActivity extends AppCompatActivity {
         });
     }
 
-    private void deleteMember() {
+    private void validatePassword() {
         editPassword.setError(null);
         editPasswordCheck.setError(null);
 
@@ -84,23 +84,30 @@ public class DeleteMemberActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startDeleteMember(new DeleteMemberRequest(password,passwordCheck));
+            new AlertDialog.Builder(DeleteMemberActivity.this)
+                    .setMessage("회원 탈퇴를 하시겠습니까?").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteMemberRequestToServer(new DeleteMemberRequest(password, passwordCheck));
+                }
+            })
+                    .create()
+                    .show();
         }
     }
 
-    private void startDeleteMember(DeleteMemberRequest data) {
+    private void deleteMemberRequestToServer(DeleteMemberRequest data) {
 
-        memberApi.deleteMember(data).enqueue(new Callback<MemberResponse>() {
+        memberApi.deleteMember(data).enqueue(new Callback<BooleanDTO>() {
             @Override
-            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(DeleteMemberActivity.this);
-                dialog = builder.setMessage("탈퇴성공.").setPositiveButton("확인", null).create();
-                dialog.show();
-                Intent intent = new Intent(getApplicationContext(), DeleteMemberRequest.class);
+            public void onResponse(@NonNull Call<BooleanDTO> call, @NonNull Response<BooleanDTO> response) {
+                Toast.makeText(DeleteMemberActivity.this, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
+
             @Override
-            public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<BooleanDTO> call, @NonNull Throwable t) {
                 Toast.makeText(DeleteMemberActivity.this, " 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e(" 에러 발생", t.getMessage());
             }

@@ -36,9 +36,9 @@ public interface MemberApi {
     @PUT("/users/password")
     Call<MemberResponse> putUpdatePassword(@Body ChangePasswordRequest data);
 
-
-    @DELETE("/users")
-    Call<MemberResponse> deleteMember(@Body DeleteMemberRequest data);
+    // delete 는 바디를 넣을 수 없는데 넣어줘야 하니까 이렇게 해야함
+    @HTTP(method = "DELETE", path = "/users", hasBody = true)
+    Call<BooleanDTO> deleteMember(@Body DeleteMemberRequest data);
 
     @POST("/users/password")
     Call<MemberResponse> postFindPassword(@Body FindPasswordRequest data);
