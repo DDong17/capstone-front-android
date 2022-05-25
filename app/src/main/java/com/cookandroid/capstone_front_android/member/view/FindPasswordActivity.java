@@ -33,7 +33,7 @@ public class FindPasswordActivity extends AppCompatActivity {
 
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class);
 
-
+// comit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +76,7 @@ public class FindPasswordActivity extends AppCompatActivity {
     }
 
     private void startFindPassword(FindPasswordRequest data) {
-        memberApi.findPassword(data).enqueue(new Callback<MemberResponse>() {
+        memberApi.postFindPassword(data).enqueue(new Callback<MemberResponse>() {
 
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {

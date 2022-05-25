@@ -1,8 +1,6 @@
 package com.cookandroid.capstone_front_android.member.view;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +10,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.ChangePasswordRequest;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
-
-import java.util.Optional;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -109,7 +103,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
     private void changePasswordRequestToServer(ChangePasswordRequest data) {
-        memberApi.changePassword(data).enqueue(new Callback<MemberResponse>() {
+        memberApi.putUpdatePassword(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
 //                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);

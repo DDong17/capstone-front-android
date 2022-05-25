@@ -160,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerRequestToServer(RegisterRequest data) {
-        memberApi.userJoin(data).enqueue(new Callback<MemberResponse>() {
+        memberApi.postRegister(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -179,7 +179,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void userIdDuplicateCheck(String userId) {//아이디 중복확인
-        memberApi.checkID(userId).enqueue(new Callback<BooleanDTO>() {
+        memberApi.getUserIdCheck(userId).enqueue(new Callback<BooleanDTO>() {
             @Override
             public void onResponse(@NonNull Call<BooleanDTO> call, @NonNull Response<BooleanDTO> response) {
                 BooleanDTO result = response.body();
@@ -202,7 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void nicknameDuplicateCheck(String nickname) {
-        memberApi.checkNickname(nickname).enqueue(new Callback<BooleanDTO>() {
+        memberApi.getNicknameCheck(nickname).enqueue(new Callback<BooleanDTO>() {
             @Override
             public void onResponse(@NonNull Call<BooleanDTO> call, @NonNull Response<BooleanDTO> response) {
                 BooleanDTO result = response.body();

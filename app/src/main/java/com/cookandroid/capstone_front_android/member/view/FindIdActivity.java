@@ -1,6 +1,5 @@
 package com.cookandroid.capstone_front_android.member.view;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -64,7 +63,7 @@ public class FindIdActivity extends AppCompatActivity {
     }
 
     private void findId(FindIdRequest data) {
-        memberApi.findId(data).enqueue(new Callback<MemberResponse>() {
+        memberApi.postFindUserId(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                MemberResponse result = response.body();
