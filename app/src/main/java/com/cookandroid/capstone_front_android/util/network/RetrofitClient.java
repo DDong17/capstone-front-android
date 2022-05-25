@@ -7,6 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
+
 //    public final static String BASE_URL = "http://192.168.25.30:8080";
 //    public final static String BASE_URL = "http://192.168.0.25:8080";
     public final static String BASE_URL = "http://10.0.2.2:8080"; // 애뮬레이터 로컬호스트 접근시 필요하므로 삭제하지 말아주세요

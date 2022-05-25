@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+//import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;

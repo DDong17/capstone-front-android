@@ -1,11 +1,11 @@
 package com.cookandroid.capstone_front_android.board.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,63 +15,52 @@ import com.cookandroid.capstone_front_android.board.model.BoardResponse;
 
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
-    private List<BoardResponse> item;
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
+
     private Context context;
+    private List<BoardResponse> dataList;
     LayoutInflater layoutInflater;
 
-    public RecyclerAdapter(Context context, List<BoardResponse> item){
+
+
+    public RecyclerAdapter(Context context, List<BoardResponse> dataList){
         this.context = context;
-        this.item = item;
+        this.dataList= dataList;
+
     }
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item, parent, false);
-        return new ItemViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_board_list , parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.title.setText(item.get(position).getTitle());
-        holder.content.setText(item.get(position).getContent());
+    public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
+        holder.title.setText(dataList.get(position).getTitle());
+
     }
 
 
     @Override
     public int getItemCount() {
-            return item.size();
+
+
+        return dataList.size();
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView title;
-        private TextView content;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
 
-        ItemViewHolder(View itemView) {
+
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.title);
-            content = itemView.findViewById(R.id.content);
+            title = (TextView)itemView.findViewById(R.id.dataTitle);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = getAdapterPosition();
-                    Toast.makeText(view.getContext(), item.get(pos).getTitle(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
-        /*void onBind(BoardResponse item) {
-            title.setText(item.getTitle());
-            content.setText(item.getContent());
-        }*/
-
-        public void setItem(BoardResponse board, ItemViewHolder holder) {
-            title.setText(board.getTitle());
-            content.setText(board.getContent());
         }
     }
 
