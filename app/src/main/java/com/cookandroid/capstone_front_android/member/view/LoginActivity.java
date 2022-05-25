@@ -1,5 +1,6 @@
 package com.cookandroid.capstone_front_android.member.view;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,13 +20,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.LoginRequest;
-//import com.cookandroid.capstone_front_android.util.data.Password_reset;
+//import com.cookandroid.capstone_front_android.data.Password_reset;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
-import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.google.android.gms.common.util.SharedPreferencesUtils;
 
@@ -37,6 +38,11 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private EditText edtUserId;
     private EditText edtPassword;
+    private Button btnLogin;
+    private Button btnRegister;
+    private Button btnIdPassword;
+    private Button btnFindPassword;
+
     private AlertDialog dialog;
     private SharedPreferencesUtils pref;
     private SharedPreferences.Editor editor;
@@ -44,16 +50,19 @@ public class LoginActivity extends AppCompatActivity {
     // 로그인할때는 세션값을 생성하는 단계이므로, 레트로핏 클라이언트를 생성할때 세션값을 가져올 필요가 없음
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class);
 
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         edtUserId = (EditText) findViewById(R.id.loginUserId);
         edtPassword = (EditText) findViewById(R.id.loginPassword);
-        Button btnLogin = (Button) findViewById(R.id.loginButton);
-        Button btnRegister = (Button) findViewById(R.id.registerButton);
-        Button btnIdPassword = (Button) findViewById(R.id.idFindBtn);
-        Button btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
+        btnLogin = (Button) findViewById(R.id.loginButton);
+        btnRegister = (Button) findViewById(R.id.registerButton);
+        btnIdPassword= (Button) findViewById(R.id.idFindBtn);
+        btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
 
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
@@ -82,6 +91,30 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
+                    .setTitle("GPS권한 설정")
+                    .setMessage("앱 실행을 위해 GPS권한 설정이 필요합니다.")
+                    .setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // 앱종료.
+                            finishAffinity();
+                            System.runFinalization();
+                            System.exit(0);
+                        }
+                    })
+                    .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(LoginActivity.this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
 
 
     }
