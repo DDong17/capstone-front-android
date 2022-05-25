@@ -1,10 +1,18 @@
 package com.cookandroid.capstone_front_android.member.view;
 
+
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,15 +21,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.member.model.request.LoginRequest;
-//import com.cookandroid.capstone_front_android.util.data.Password_reset;
+//import com.cookandroid.capstone_front_android.data.Password_reset;
 import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
-import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
+import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
+import com.google.android.gms.common.util.SharedPreferencesUtils;
 
 
 import retrofit2.Call;
@@ -31,11 +42,20 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private EditText edtUserId;
     private EditText edtPassword;
+    private Button btnLogin;
+    private Button btnRegister;
+    private Button btnIdPassword;
+    private Button btnFindPassword;
 
     private AlertDialog dialog;
+    private SharedPreferencesUtils pref;
+    private SharedPreferences.Editor editor;
 
     // 로그인할때는 세션값을 생성하는 단계이므로, 레트로핏 클라이언트를 생성할때 세션값을 가져올 필요가 없음
     private final MemberApi memberApi = RetrofitClient.getClient(MemberApi.class);
+
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +63,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         edtUserId = (EditText) findViewById(R.id.loginUserId);
         edtPassword = (EditText) findViewById(R.id.loginPassword);
-        Button btnLogin = (Button) findViewById(R.id.loginButton);
-        Button btnRegister = (Button) findViewById(R.id.registerButton);
-        Button btnIdPassword = (Button) findViewById(R.id.idFindBtn);
-        Button btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
+        btnLogin = (Button) findViewById(R.id.loginButton);
+        btnRegister = (Button) findViewById(R.id.registerButton);
+        btnIdPassword= (Button) findViewById(R.id.idFindBtn);
+        btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
 
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                validateLoginForm();
             }
         });
         btnRegister.setOnClickListener(new OnClickListener() {
@@ -76,10 +96,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
+                    .setTitle("GPS권한 설정")
+                    .setMessage("앱 실행을 위해 GPS권한 설정이 필요합니다.")
+                    .setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // 앱종료.
+                            finishAffinity();
+                            System.runFinalization();
+                            System.exit(0);
+                        }
+                    })
+                    .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(LoginActivity.this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+
 
     }
 
-    private void attemptLogin() {
+    private void validateLoginForm() {
         edtUserId.setError(null);
         edtPassword.setError(null);
         
@@ -114,17 +158,16 @@ public class LoginActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startLogin(new LoginRequest(userId, password));
+            login(new LoginRequest(userId, password));
 
         }
     }
 
-    private void startLogin(LoginRequest data) {
-        memberApi.userLogin(data).enqueue(new Callback<MemberResponse>() {
-
+    private void login(LoginRequest data) {
+        memberApi.postLogin(data).enqueue(new Callback<MemberResponse>() {
             @SuppressLint("LongLogTag")
             @Override
-            public void onResponse(Call<MemberResponse> call, Response<MemberResponse> response) {
+            public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 // 로그인 실패시 NPE 를 던짐
                 try {
                     MemberResponse result = response.body();
@@ -135,10 +178,18 @@ public class LoginActivity extends AppCompatActivity {
                     // 캐쉬되어있던 정보 모두 날리기
                     cookieManager.removeAllCookie();
 
+                    // 프로필을 그리기위한 회원 PK를 저장함
+                    Context mContext = getApplicationContext();
+                    SharedPreferences pref = mContext.getSharedPreferences("pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putLong("memberId", result.getMemberId());
+                    editor.commit();
+
                     // 쿠키매니저에 쿠키 저장 키 : BASE_URL - 값 : 서버로부터 전송받은 세션값
                     cookieManager.setCookie(RetrofitClient.BASE_URL, result.getSessionId());
                     Log.d("sessionId From Server", result.getSessionId());
                     Log.d("sessionId From CookieManager", cookieManager.getCookie(RetrofitClient.BASE_URL));
+                    Toast.makeText(LoginActivity.this, result.getName() + "님 환영합니다 :)", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } catch (NullPointerException e) {
@@ -149,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MemberResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {
                 Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
 

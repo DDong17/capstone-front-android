@@ -7,16 +7,20 @@ public class MemberResponse {
     private String userId;
     private String email;
     private String name;
+    private String nickname;
     private String password;
+    private int point;
     private String phoneNumber;
     private String sessionId;
 
-    public MemberResponse(Long memberId, String userId, String email, String name, String password, String phoneNumber, String sessionId) {
+    public MemberResponse(Long memberId, String userId, String email, String name, String nickname, String password, int point, String phoneNumber, String sessionId) {
         this.memberId = memberId;
         this.userId = userId;
         this.email = email;
         this.name = name;
+        this.nickname = nickname;
         this.password = password;
+        this.point = point;
         this.phoneNumber = phoneNumber;
         this.sessionId = sessionId;
     }
@@ -75,5 +79,13 @@ public class MemberResponse {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getPoint() {
+        return point;
     }
 }

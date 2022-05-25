@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="bottom">
+        android:gravity="center"
+        android:layout_weight="1">
 
         <ImageView
             android:layout_width="100dp"
@@ -20,9 +21,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_profile_userName"
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
@@ -33,11 +36,22 @@
                 android:textSize="23dp" />
 
             <TextView
+                android:id="@+id/tv_profile_userId"
                 android:layout_width="200dp"
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="abc@mju.ac.kr"
+                android:textColor="@color/black"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_profile_point"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="0"
                 android:textColor="@color/black"
                 android:textSize="13dp" />
 
@@ -47,44 +61,40 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="5">
+
+        <TextView
+            android:id="@+id/tv_profile_userNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용자 닉네임"
+            android:textSize="30dp"/>
 
         <Button
-            android:id="@+id/info"
+            android:id="@+id/btn_profile_updateNickname"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button_radius"
-            android:text="회원정보"
+            android:text="닉네임 변경"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            />
-
-        <Button
-            android:id="@+id/newNickNameBtn"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="닉네임 수정"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_weight="5">
 
         <Button
-            android:id="@+id/PasswordmodifyBtn"
+            android:id="@+id/btn_profile_updatePassword"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button_radius"
@@ -97,7 +107,7 @@
             />
 
         <Button
-            android:id="@+id/registerDeleteBtn"
+            android:id="@+id/btn_profile_deleteMember"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button_radius"

@@ -49,4 +49,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
+    // SlidingUpPanel(슬라이딩 드로어 패널)
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
+    // Glide(웹에 있는 이미지 표시)
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }
