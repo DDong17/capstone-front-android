@@ -106,9 +106,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
         memberApi.putUpdatePassword(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);
-//                dialog = builder.setMessage("변경성공.").setPositiveButton("확인", null).create();
-//                dialog.show();
                 Toast.makeText(ChangePasswordActivity.this, "비밀번호 변경 완료", Toast.LENGTH_SHORT).show();
             }
             @Override
