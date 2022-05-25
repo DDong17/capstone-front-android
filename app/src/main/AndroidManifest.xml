@@ -43,6 +43,7 @@
             android:exported="true"></activity>
         <activity
 
+
             android:name=".member.view.LoginActivity"
             android:exported="true">
             <intent-filter>
