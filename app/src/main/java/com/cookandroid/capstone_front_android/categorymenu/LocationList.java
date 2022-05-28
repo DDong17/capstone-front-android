@@ -38,6 +38,14 @@ public class LocationList extends Fragment {
         return this;
     }
 
+    public int getCategoryCode() {
+        return categoryCode;
+    }
+
+    public int getCategoryType() {
+        return categoryType;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,8 +57,6 @@ public class LocationList extends Fragment {
 
         recyclerView = view.findViewById(R.id.list);
 
-
-
         switch(categoryType) {
             case 1: // 지역으로 조회
                 locationAPI.findAllByArea(categoryCode).enqueue(new Callback<LocationListResponse>() {
@@ -58,7 +64,7 @@ public class LocationList extends Fragment {
                     public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
 
                         LocationListResponse r = response.body();
-                        ;
+
                         if (r == null) {
                             Log.e("tag", "정보가 없습니다.");
                             Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();

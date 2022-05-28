@@ -13,6 +13,7 @@ import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardWriteFragment;
 import com.cookandroid.capstone_front_android.categorymenu.*;
 
+import com.cookandroid.capstone_front_android.location.model.LocationResponse;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private categoryGyeong categoryGyeong; // 경상도.
     private categoryJeolla categoryJeolla; // 전라도.
     private categoryWholeEtc categoryWholeEtc; // 기타(위치).
-    private LocationList categoryList;
+    private LocationList locationList;
+    private LocationInfo locationInfo;
 
     // 두번째 메뉴(커뮤니티).
     private BoardAllFragment communityAll; // 전체 보기.
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         categoryGyeong = new categoryGyeong();
         categoryJeolla = new categoryJeolla();
         categoryWholeEtc = new categoryWholeEtc();
-        categoryList = new LocationList();
+        locationList = new LocationList();
+        locationInfo = new LocationInfo();
 
         // 커뮤니티 객체생성.
         communityAll =new BoardAllFragment();
@@ -133,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         setMap(); // 지도가 첫 화면.
     }
 
-    // 카테고리 화면이동(순서는 선언순서).
+    // 카테고리 화면이동
     public void setCategory(int categoryCode) {
 
         fm = getSupportFragmentManager();
@@ -146,14 +149,28 @@ public class MainActivity extends AppCompatActivity {
         } else if((categoryCode & 0x00001000) == 0x00001000) {
             categoryCode &= ~(0x00001000);
             if(categoryCode == 99) return;
-            ft.replace(R.id.mainFrame, categoryList.setCategory(1, categoryCode));
+            ft.replace(R.id.mainFrame, locationList.setCategory(1, categoryCode));
         // 종류별
         } else if((categoryCode & 0x00002000) == 0x00002000) {
             categoryCode &= ~(0x00002000);
             if(categoryCode == 99) return;
-            ft.replace(R.id.mainFrame, categoryList.setCategory(2, categoryCode));
+            ft.replace(R.id.mainFrame, locationList.setCategory(2, categoryCode));
         } else return;
+
         ft.commit();
+
+    }
+
+    // 문화생활 상세정보
+    public void setLocation(LocationResponse location, int categoryType, int categoryCode) {
+
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+
+        ft.replace(R.id.mainFrame, locationInfo.setLocation(location).setCategory(categoryType, categoryCode));
+
+        ft.commit();
+
     }
 
     // 커뮤니티 화면이동(순서는 선언순서).

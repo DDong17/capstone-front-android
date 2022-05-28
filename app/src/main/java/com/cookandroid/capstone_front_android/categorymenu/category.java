@@ -14,6 +14,7 @@ import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 
 public class category extends Fragment {
+
     private View view;
 
     private MainActivity activity;

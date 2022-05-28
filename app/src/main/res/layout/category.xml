@@ -122,7 +122,7 @@
             android:id="@+id/locationAreaButton05"
             android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:text="충첨남도"/>
+            android:text="충청남도"/>
 
         <Button
             android:id="@+id/locationAreaButton06"
