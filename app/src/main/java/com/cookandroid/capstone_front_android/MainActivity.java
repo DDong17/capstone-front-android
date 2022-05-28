@@ -17,6 +17,7 @@ import com.cookandroid.capstone_front_android.member.model.MemberApi;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationBarView;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private categoryGyeong categoryGyeong; // 경상도.
     private categoryJeolla categoryJeolla; // 전라도.
     private categoryWholeEtc categoryWholeEtc; // 기타(위치).
+    private LocationList categoryList;
 
     // 두번째 메뉴(커뮤니티).
     private BoardAllFragment communityAll; // 전체 보기.
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         categoryGyeong = new categoryGyeong();
         categoryJeolla = new categoryJeolla();
         categoryWholeEtc = new categoryWholeEtc();
+        categoryList = new LocationList();
 
         // 커뮤니티 객체생성.
         communityAll =new BoardAllFragment();
@@ -131,79 +134,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 카테고리 화면이동(순서는 선언순서).
-    public void setCategory(int n) {
+    public void setCategory(int categoryCode) {
+
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        switch (n) {
-            case 0:
-                ft.replace(R.id.mainFrame, category);
-                ft.commit();
-                break;
-            case 1:
-                ft.replace(R.id.mainFrame, categoryAll);
-                ft.commit();
-                break;
-            case 2:
-                ft.replace(R.id.mainFrame, categoryShow);
-                ft.commit();
-                break;
-            case 3:
-                ft.replace(R.id.mainFrame, categoryDisplay);
-                ft.commit();
-                break;
-            case 4:
-                ft.replace(R.id.mainFrame, categoryConcert);
-                ft.commit();
-                break;
-            case 5:
-                ft.replace(R.id.mainFrame, categoryMusical);
-                ft.commit();
-                break;
-            case 6:
-                ft.replace(R.id.mainFrame, categoryMovie);
-                ft.commit();
-                break;
-            case 7:
-                ft.replace(R.id.mainFrame, categoryFestival);
-                ft.commit();
-                break;
-            case 8:
-                ft.replace(R.id.mainFrame, categoryContentEtc);
-                ft.commit();
-                break;
-            case 9:
-                ft.replace(R.id.mainFrame, categoryWhole);
-                ft.commit();
-                break;
-            case 10:
-                ft.replace(R.id.mainFrame, categorySeoul);
-                ft.commit();
-                break;
-            case 11:
-                ft.replace(R.id.mainFrame, categoryGyeongIncheon);
-                ft.commit();
-                break;
-            case 12:
-                ft.replace(R.id.mainFrame, categoryGangwon);
-                ft.commit();
-                break;
-            case 13:
-                ft.replace(R.id.mainFrame, categoryChung);
-                ft.commit();
-                break;
-            case 14:
-                ft.replace(R.id.mainFrame, categoryGyeong);
-                ft.commit();
-                break;
-            case 15:
-                ft.replace(R.id.mainFrame, categoryJeolla);
-                ft.commit();
-                break;
-            case 16:
-                ft.replace(R.id.mainFrame, categoryWholeEtc);
-                ft.commit();
-                break;
-        }
+
+        // 카테고리 메인 메뉴
+        if(categoryCode == 0) {
+            ft.replace(R.id.mainFrame, category);
+        // 지역별
+        } else if((categoryCode & 0x00001000) == 0x00001000) {
+            categoryCode &= ~(0x00001000);
+            if(categoryCode == 99) return;
+            ft.replace(R.id.mainFrame, categoryList.setCategory(1, categoryCode));
+        // 종류별
+        } else if((categoryCode & 0x00002000) == 0x00002000) {
+            categoryCode &= ~(0x00002000);
+            if(categoryCode == 99) return;
+            ft.replace(R.id.mainFrame, categoryList.setCategory(2, categoryCode));
+        } else return;
+        ft.commit();
     }
 
     // 커뮤니티 화면이동(순서는 선언순서).

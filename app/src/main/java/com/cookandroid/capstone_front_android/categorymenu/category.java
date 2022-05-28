@@ -18,161 +18,121 @@ public class category extends Fragment {
 
     private MainActivity activity;
 
-    // 카테고리 버튼.
-    private Button btnbtnAll; // 전체.
-    private Button btnShow; // 공연.
-    private Button btnDisplay; // 전시.
-    private Button btnConcert; // 콘서트.
-    private Button btnMusical; // 뮤지컬.
-    private Button btnMovie; // 영화.
-    private Button btnFestival; // 축제.
-    private Button btnContentEtc; // 기타(콘텐츠).
-    private Button btnWhole; // 전국.
-    private Button btnSeoul; // 서울.
-    private Button btnGyeongIncheon; // 경기, 인천.
-    private Button btnGangwon; // 강원도.
-    private Button btnChung; // 충청도.
-    private Button btnGyeong; // 경상도.
-    private Button btnJeolla; // 전라도.
-    private Button btnWholeEtc; // 기타(위치).
+    private Button[] areaButtons              = new Button[10];                     // 지역 버튼
+    private View.OnClickListener areaListener = new View.OnClickListener() {        // 지역 버튼 리스너
+        @Override
+        public void onClick(View view) {
+            int code;
+            switch(view.getId()) {
+                case R.id.locationAreaButton01:
+                    code = 1;
+                    break;
+                case R.id.locationAreaButton02:
+                    code = 31;
+                    break;
+                case R.id.locationAreaButton03:
+                    code = 32;
+                    break;
+                case R.id.locationAreaButton04:
+                    code = 33;
+                    break;
+                case R.id.locationAreaButton05:
+                    code = 34;
+                    break;
+                case R.id.locationAreaButton06:
+                    code = 35;
+                    break;
+                case R.id.locationAreaButton07:
+                    code = 36;
+                    break;
+                case R.id.locationAreaButton08:
+                    code = 37;
+                    break;
+                case R.id.locationAreaButton09:
+                    code = 38;
+                    break;
+                case R.id.locationAreaButton10:
+                    code = 39;
+                    break;
+                default:
+                    code = 99;
+            }
+
+            code |= 0x00001000;
+            activity.setCategory(code);
+        }
+    };
+
+    private Button[] contentButtons              = new Button[8];                   // 종류 버튼
+    private View.OnClickListener contentListener = new View.OnClickListener() {     // 종류 버튼 리스너
+        @Override
+        public void onClick(View view) {
+            int code;
+            switch(view.getId()) {
+                case R.id.locationContentButton01:
+                    code = 12;
+                    break;
+                case R.id.locationContentButton02:
+                    code = 14;
+                    break;
+                case R.id.locationContentButton03:
+                    code = 15;
+                    break;
+                case R.id.locationContentButton04:
+                    code = 25;
+                    break;
+                case R.id.locationContentButton05:
+                    code = 28;
+                    break;
+                case R.id.locationContentButton06:
+                    code = 32;
+                    break;
+                case R.id.locationContentButton07:
+                    code = 38;
+                    break;
+                case R.id.locationContentButton08:
+                    code = 39;
+                    break;
+                default:
+                    code = 99;
+            }
+
+            code |= 0x00002000;
+            activity.setCategory(code);
+        }
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.category,container,false);
-
         activity = (MainActivity) getActivity();
 
-        // 버튼설정.
-        btnbtnAll = view.findViewById(R.id.allContent);
-        btnShow = view.findViewById(R.id.show);
-        btnDisplay = view.findViewById(R.id.display);
-        btnConcert = view.findViewById(R.id.concert);
-        btnMusical = view.findViewById(R.id.musical);
-        btnMovie = view.findViewById(R.id.movie);
-        btnFestival = view.findViewById(R.id.festival);
-        btnContentEtc = view.findViewById(R.id.content_etc);
-        btnWhole = view.findViewById(R.id.whole);
-        btnSeoul = view.findViewById(R.id.seoul);
-        btnGyeongIncheon = view.findViewById(R.id.gyeongIncheon);
-        btnGangwon = view.findViewById(R.id.gangwon);
-        btnChung = view.findViewById(R.id.chung);
-        btnGyeong = view.findViewById(R.id.gyeong);
-        btnJeolla = view.findViewById(R.id.jeolla);
-        btnWholeEtc = view.findViewById(R.id.wholeEtc);
+        // 지역 버튼 설정
+        areaButtons[0] = view.findViewById(R.id.locationAreaButton01);
+        areaButtons[1] = view.findViewById(R.id.locationAreaButton02);
+        areaButtons[2] = view.findViewById(R.id.locationAreaButton03);
+        areaButtons[3] = view.findViewById(R.id.locationAreaButton04);
+        areaButtons[4] = view.findViewById(R.id.locationAreaButton05);
+        areaButtons[5] = view.findViewById(R.id.locationAreaButton06);
+        areaButtons[6] = view.findViewById(R.id.locationAreaButton07);
+        areaButtons[7] = view.findViewById(R.id.locationAreaButton08);
+        areaButtons[8] = view.findViewById(R.id.locationAreaButton09);
+        areaButtons[9] = view.findViewById(R.id.locationAreaButton10);
 
-        // 버튼이벤트.
-        btnbtnAll.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(1);
-            }
-        });
+        // 종류 버튼 설정
+        contentButtons[0] = view.findViewById(R.id.locationContentButton01);
+        contentButtons[1] = view.findViewById(R.id.locationContentButton02);
+        contentButtons[2] = view.findViewById(R.id.locationContentButton03);
+        contentButtons[3] = view.findViewById(R.id.locationContentButton04);
+        contentButtons[4] = view.findViewById(R.id.locationContentButton05);
+        contentButtons[5] = view.findViewById(R.id.locationContentButton06);
+        contentButtons[6] = view.findViewById(R.id.locationContentButton07);
+        contentButtons[7] = view.findViewById(R.id.locationContentButton08);
 
-        btnShow.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(2);
-            }
-        });
-
-        btnDisplay.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(3);
-            }
-        });
-
-        btnConcert.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(4);
-            }
-        });
-
-        btnMusical.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(5);
-            }
-        });
-
-        btnMovie.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(6);
-            }
-        });
-
-        btnFestival.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(7);
-            }
-        });
-
-        btnContentEtc.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(8);
-            }
-        });
-
-        btnWhole.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(9);
-            }
-        });
-
-        btnSeoul.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(10);
-            }
-        });
-
-        btnGyeongIncheon.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(11);
-            }
-        });
-
-        btnGangwon.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(12);
-            }
-        });
-
-        btnChung.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(13);
-            }
-        });
-
-        btnGyeong.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(14);
-            }
-        });
-
-        btnJeolla.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(15);
-            }
-        });
-
-        btnWholeEtc.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                activity.setCategory(16);
-            }
-        });
+        // 버튼 이벤트 설정
+        for(Button b: areaButtons)      b.setOnClickListener(areaListener);
+        for(Button b: contentButtons)   b.setOnClickListener(contentListener);
 
         return view;
     }

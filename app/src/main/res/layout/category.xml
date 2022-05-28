@@ -17,121 +17,62 @@
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:columnCount="2"
+        android:rowCount="5">
 
         <Button
-            android:id="@+id/allContent"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton01"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="전체" />
+            android:text="관광지"/>
 
         <Button
-            android:id="@+id/show"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton02"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="공연" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="문화시설"/>
 
         <Button
-            android:id="@+id/display"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="전시" />
+            android:id="@+id/locationContentButton03"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:textSize="20dp"
+            android:text="행사/공연/축제"/>
 
         <Button
-            android:id="@+id/concert"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton04"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="콘서트" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="여행코스"/>
 
         <Button
-            android:id="@+id/musical"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton05"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="뮤지컬" />
+            android:text="레포츠"/>
 
         <Button
-            android:id="@+id/movie"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton06"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="영화" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="숙박"/>
 
         <Button
-            android:id="@+id/festival"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton07"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="축제" />
+            android:text="쇼핑"/>
 
         <Button
-            android:id="@+id/content_etc"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationContentButton08"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="기타" />
-
-    </LinearLayout>
+            android:text="음식점"/>
+    </GridLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,120 +87,72 @@
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:columnCount="2"
+        android:rowCount="5">
 
         <Button
-            android:id="@+id/whole"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton01"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="전국" />
+            android:text="서울"/>
 
         <Button
-            android:id="@+id/seoul"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton02"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="서울" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="경기"/>
 
         <Button
-            android:id="@+id/gyeongIncheon"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton03"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="경기/인천" />
+            android:text="강원"/>
 
         <Button
-            android:id="@+id/gangwon"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton04"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="강원" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="충청북도"/>
 
         <Button
-            android:id="@+id/chung"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton05"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="충청도" />
+            android:text="충첨남도"/>
 
         <Button
-            android:id="@+id/gyeong"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton06"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="경상도" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="경상북도"/>
 
         <Button
-            android:id="@+id/jeolla"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton07"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="전라도" />
+            android:text="경상남도"/>
 
         <Button
-            android:id="@+id/wholeEtc"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/locationAreaButton08"
+            android:layout_columnWeight="1"
             android:textSize="30dp"
-            android:background="@drawable/button_radius"
-            android:text="기타" />
+            android:text="전라북도"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/locationAreaButton09"
+            android:layout_columnWeight="1"
+            android:textSize="30dp"
+            android:text="전라남도"/>
+
+        <Button
+            android:id="@+id/locationAreaButton10"
+            android:layout_columnWeight="1"
+            android:textSize="30dp"
+            android:text="제주"/>
+    </GridLayout>
 
 </LinearLayout>
