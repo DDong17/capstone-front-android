@@ -61,20 +61,6 @@ public class LocationInfo extends Fragment {
                 ((MainActivity) getActivity()).setCategory(0);
             }
         });
-        /*button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(categoryType == 1 && categoryCode != 99) {
-                    ((MainActivity) getActivity()).setCategory(categoryCode | 0x00001000);
-                } else if(categoryType == 2 && categoryCode != 99) {
-                    ((MainActivity) getActivity()).setCategory(categoryCode | 0x00002000);
-                } else {
-                    ((MainActivity) getActivity()).setCategory(0);
-                }
-
-            }
-        });*/
 
         // 문화생활 상세정보 표시
         locTitle.setText(location.getTitle());
