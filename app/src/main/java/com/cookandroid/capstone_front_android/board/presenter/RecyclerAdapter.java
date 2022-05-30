@@ -17,16 +17,13 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<BoardResponse> dataList;
+    private final Context context;
+    private final List<BoardResponse> dataList;
     LayoutInflater layoutInflater;
-
-
 
     public RecyclerAdapter(Context context, List<BoardResponse> dataList){
         this.context = context;
         this.dataList= dataList;
-
     }
 
     @NonNull
@@ -39,28 +36,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
-        holder.title.setText(dataList.get(position).getTitle());
-
+        holder.title.setText("제목: " + dataList.get(position).getTitle());
+        holder.writer.setText("작성자: " + dataList.get(position).getWriterNickName());
+        holder.viewCount.setText("조회수: " + dataList.get(position).getViewCount());
     }
-
 
     @Override
     public int getItemCount() {
-
-
         return dataList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-
-
+        TextView writer;
+        TextView viewCount;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            title = (TextView)itemView.findViewById(R.id.dataTitle);
-
-
+            title = (TextView)itemView.findViewById(R.id.tv_item_board_title);
+            writer = (TextView)itemView.findViewById(R.id.tv_item_board_writer);
+            viewCount = (TextView)itemView.findViewById(R.id.tv_item_board_viewCount);
         }
     }
 

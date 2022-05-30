@@ -10,13 +10,4 @@ public class BoardListResponse {
     @SerializedName("boards")
     public List<BoardResponse> boards;
 
-
-
-//    @Override
-//    public String toString(){
-//        return "test"+boards;
-//
-//    }
-
-
 }

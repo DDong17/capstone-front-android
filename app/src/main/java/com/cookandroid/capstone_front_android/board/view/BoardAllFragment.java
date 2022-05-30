@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +38,7 @@ public class BoardAllFragment extends Fragment {
     private final BoardApi boardApi = RetrofitClient.getClient(BoardApi.class, RetrofitClient.getSessionId());
 
 
-     BoardListResponse dataList;
+    BoardListResponse dataList;
     List<BoardResponse> dataInfo;
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
@@ -64,9 +65,6 @@ public class BoardAllFragment extends Fragment {
         recyclerAdapter = new RecyclerAdapter(getContext(), dataInfo);
         recyclerView.setAdapter(recyclerAdapter);
 
-
-
-
         activity = (MainActivity) getActivity();
         // 버튼 설정.
         btn_all = view.findViewById(R.id.all);
@@ -78,7 +76,9 @@ public class BoardAllFragment extends Fragment {
         btn_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getContext(), "전체보기 눌러짐", Toast.LENGTH_SHORT).show();
                 activity.setCommunity(0);
+                start();
 
             }
         });
@@ -105,8 +105,6 @@ public class BoardAllFragment extends Fragment {
         });
         start();
         return view;
-
-
     }
 
     private void start() {
@@ -114,22 +112,14 @@ public class BoardAllFragment extends Fragment {
         call.enqueue(new Callback<BoardListResponse>() {
             @Override
             public void onResponse(Call<BoardListResponse> call, Response<BoardListResponse> response) {
-
-
-                dataList=response.body();
-
-
-
+                Log.e("온리스폰스", "눌러짐");
+                dataList = response.body();
                 dataInfo = dataList.boards;
+                Log.e("데이터인포", dataInfo.toString());
                 start2(dataInfo);
-
                 recyclerAdapter = new RecyclerAdapter(getContext(), dataInfo);
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerAdapter.notifyDataSetChanged();
-
-
-
-
 
             }
 
