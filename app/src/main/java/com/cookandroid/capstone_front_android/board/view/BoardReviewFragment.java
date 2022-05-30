@@ -9,15 +9,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
-import com.cookandroid.capstone_front_android.board.model.BoardListResponse;
-import com.cookandroid.capstone_front_android.board.model.BoardResponse;
-import com.cookandroid.capstone_front_android.board.presenter.RecyclerAdapter;
-
-import java.util.List;
 
 public class BoardReviewFragment extends Fragment {
     private View view;
