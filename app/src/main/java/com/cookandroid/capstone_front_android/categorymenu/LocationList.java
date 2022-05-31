@@ -121,7 +121,7 @@ public class LocationList extends Fragment {
                         locationAdapter = new LocationAdapter(r.getLocations(), LocationList.this);
                         recyclerView.setAdapter(locationAdapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(getContext()).getOrientation()));
+                        //recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(getContext()).getOrientation()));
 
                     }
 

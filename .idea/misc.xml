@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/category.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/category_all.xml" value="0.30104166666666665" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/category_festival.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/item_board_list.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_info.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_item.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_list.xml" value="0.30104166666666665" />
@@ -39,9 +40,6 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/custom_button.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/find_id.xml" value="0.1890625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/find_password.xml" value="0.10364583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/fragment_blank.xml" value="0.140625" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/item.xml" value="0.13677536231884058" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/item_board_list.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/item_community_all.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/item_community_review.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android-master/app/src/main/res/layout/item_community_together.xml" value="0.11666666666666667" />
