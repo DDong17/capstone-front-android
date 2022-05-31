@@ -70,18 +70,32 @@ public class BoardAllFragment extends Fragment {
         btn_write = view.findViewById(R.id.write);
 
         // 버튼이벤트.
-        btn_all.setOnClickListener(new View.OnClickListener() {
+//        btn_all.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getContext(), "전체보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                activity.setCommunity(0);
+//                start();
+//                boardAdapter.setItemClickListener(new BoardAdapter.OnItemClickListener() {
+//                    @Override
+//                    public void onClick(View v, int position) {
+//                        Toast.makeText(getContext(), "상세보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
+
+//        boardAdapter.onItemClickListener = new BoardAdapter.OnItemClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+//                Toast.makeText(getContext(), "상세보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                Log.d("Asdfasdfasdf", "ASdfasdfasdf");
+//            }
+//        };
+        boardAdapter.setItemClickListener(new BoardAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "전체보기 눌러짐", Toast.LENGTH_SHORT).show();
-                activity.setCommunity(0);
-                start();
-                boardAdapter.setItemClickListener(new BoardAdapter.OnItemClickListener() {
-                    @Override
-                    public void onClick(View v, int position) {
-                        Toast.makeText(getContext(), "상세보기 눌러짐", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            public void onItemClick(View v, int position) {
+                Log.d("Asdfasdfasdf", "ASdfasdfasdf");
             }
         });
 
@@ -119,6 +133,7 @@ public class BoardAllFragment extends Fragment {
                 start2(dataInfo);
                 boardAdapter = new BoardAdapter(getContext(), dataInfo);
                 recyclerView.setAdapter(boardAdapter);
+//                boardAdapter.onItemClickListener = BoardAdapter.OnItemClickListener
                 boardAdapter.notifyDataSetChanged();
 
             }

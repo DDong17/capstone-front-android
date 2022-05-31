@@ -1,6 +1,7 @@
 package com.cookandroid.capstone_front_android.board.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,13 +47,13 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
     }
 
     // 게시글 상세 페이지 버튼
-    public OnItemClickListener onItemClickListener;
+    public OnItemClickListener mListener = null;
 
     public interface OnItemClickListener {
-        void onClick(View v, int position);
+        void onItemClick(View v, int position);
     }
-    public void setItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public void setItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
     }
 
 
@@ -62,18 +63,21 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
         TextView viewCount;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.tv_item_board_list_title);
-            writer = (TextView)itemView.findViewById(R.id.tv_item_board_list_writerNickname);
-            viewCount = (TextView)itemView.findViewById(R.id.tv_item_board_list_viewCount);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
-                        onItemClickListener.onClick(v, pos);
+                        mListener.onItemClick(v, pos);
                     }
+                    Log.d("asdasdasd", Integer.toString(pos));
                 }
             });
+
+            title = (TextView)itemView.findViewById(R.id.tv_item_board_list_title);
+            writer = (TextView)itemView.findViewById(R.id.tv_item_board_list_writerNickname);
+            viewCount = (TextView)itemView.findViewById(R.id.tv_item_board_list_viewCount);
         }
 
     }
