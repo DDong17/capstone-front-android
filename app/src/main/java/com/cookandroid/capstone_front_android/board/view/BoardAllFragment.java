@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,12 +18,9 @@ import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.board.model.BoardApi;
 import com.cookandroid.capstone_front_android.board.model.BoardListResponse;
-import com.cookandroid.capstone_front_android.board.model.BoardRequest;
 import com.cookandroid.capstone_front_android.board.model.BoardResponse;
 //import com.cookandroid.capstone_front_android.board.presenter.RecyclerAdapter;
-import com.cookandroid.capstone_front_android.board.presenter.RecyclerAdapter;
-import com.cookandroid.capstone_front_android.member.model.MemberApi;
-import com.cookandroid.capstone_front_android.util.model.BooleanDTO;
+import com.cookandroid.capstone_front_android.board.presenter.BoardAdapter;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 
 import java.util.ArrayList;
@@ -37,10 +35,10 @@ public class BoardAllFragment extends Fragment {
     private final BoardApi boardApi = RetrofitClient.getClient(BoardApi.class, RetrofitClient.getSessionId());
 
 
-     BoardListResponse dataList;
+    BoardListResponse dataList;
     List<BoardResponse> dataInfo;
     RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
+    BoardAdapter boardAdapter;
 
     private View view;
     private MainActivity activity;
@@ -61,11 +59,8 @@ public class BoardAllFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerAdapter(getContext(), dataInfo);
-        recyclerView.setAdapter(recyclerAdapter);
-
-
-
+        boardAdapter = new BoardAdapter(getContext(), dataInfo);
+        recyclerView.setAdapter(boardAdapter);
 
         activity = (MainActivity) getActivity();
         // 버튼 설정.
@@ -75,11 +70,32 @@ public class BoardAllFragment extends Fragment {
         btn_write = view.findViewById(R.id.write);
 
         // 버튼이벤트.
-        btn_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.setCommunity(0);
+//        btn_all.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getContext(), "전체보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                activity.setCommunity(0);
+//                start();
+//                boardAdapter.setItemClickListener(new BoardAdapter.OnItemClickListener() {
+//                    @Override
+//                    public void onClick(View v, int position) {
+//                        Toast.makeText(getContext(), "상세보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
 
+//        boardAdapter.onItemClickListener = new BoardAdapter.OnItemClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+//                Toast.makeText(getContext(), "상세보기 눌러짐", Toast.LENGTH_SHORT).show();
+//                Log.d("Asdfasdfasdf", "ASdfasdfasdf");
+//            }
+//        };
+        boardAdapter.setItemClickListener(new BoardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.d("Asdfasdfasdf", "ASdfasdfasdf");
             }
         });
 
@@ -105,8 +121,6 @@ public class BoardAllFragment extends Fragment {
         });
         start();
         return view;
-
-
     }
 
     private void start() {
@@ -114,22 +128,13 @@ public class BoardAllFragment extends Fragment {
         call.enqueue(new Callback<BoardListResponse>() {
             @Override
             public void onResponse(Call<BoardListResponse> call, Response<BoardListResponse> response) {
-
-
-                dataList=response.body();
-
-
-
+                dataList = response.body();
                 dataInfo = dataList.boards;
                 start2(dataInfo);
-
-                recyclerAdapter = new RecyclerAdapter(getContext(), dataInfo);
-                recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
-
-
-
-
+                boardAdapter = new BoardAdapter(getContext(), dataInfo);
+                recyclerView.setAdapter(boardAdapter);
+//                boardAdapter.onItemClickListener = BoardAdapter.OnItemClickListener
+                boardAdapter.notifyDataSetChanged();
 
             }
 
@@ -146,8 +151,8 @@ public class BoardAllFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 //        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerAdapter(getContext(), dataInfo);
-        recyclerView.setAdapter(recyclerAdapter);
+        boardAdapter = new BoardAdapter(getContext(), dataInfo);
+        recyclerView.setAdapter(boardAdapter);
     }
 
 }

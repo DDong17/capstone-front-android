@@ -1,6 +1,9 @@
 package com.cookandroid.capstone_front_android.board.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BoardResponse {
 
@@ -10,16 +13,16 @@ public class BoardResponse {
     private String content;
     private int viewCount;
     private String locationTitle;
-    private LocalDateTime createdTime;
+    private String createdTime;
 
-//    @SerializedName("comments")
-//    private List<CommentResponse> comments;
+    @SerializedName("comments")
+    private List<CommentResponse> comments;
 
-//    public List<CommentResponse> getComments() {
-//        return comments;
+    public List<CommentResponse> getComments() {
+        return comments;
+    }
 
-
-    public BoardResponse(Long boardId, String writerNickName, String title, String content, int viewCount, String locationTitle, LocalDateTime createdTime) {
+    public BoardResponse(Long boardId, String writerNickName, String title, String content, int viewCount, String locationTitle, String createdTime) {
         this.boardId = boardId;
         this.writerNickName = writerNickName;
         this.title = title;
@@ -45,15 +48,15 @@ public class BoardResponse {
         return content;
     }
 
-    public int getViewCount() {
-        return viewCount;
+    public String getViewCount() {
+        return Integer.toString(viewCount);
     }
 
     public String getLocationTitle() {
         return locationTitle;
     }
 
-    public LocalDateTime getCreatedTime() {
+    public String getCreatedTime() {
         return createdTime;
     }
 
@@ -81,7 +84,7 @@ public class BoardResponse {
         this.locationTitle = locationTitle;
     }
 
-    public void setCreatedTime(LocalDateTime createdTime) {
+    public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
     }
 }
