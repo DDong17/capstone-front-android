@@ -15,7 +15,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="280dp"
         android:gravity="center_horizontal"
-        android:text="슬기로운 문화생활"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/back"
@@ -32,10 +32,10 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
 
-        android:src="@drawable/mg2"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
