@@ -79,9 +79,9 @@ public class category extends Fragment {
                 case R.id.locationContentButton03:
                     code = 15;
                     break;
-                case R.id.locationContentButton04:
-                    code = 25;
-                    break;
+//                case R.id.locationContentButton04:
+//                    code = 25;
+//                    break;
                 case R.id.locationContentButton05:
                     code = 28;
                     break;
@@ -125,15 +125,17 @@ public class category extends Fragment {
         contentButtons[0] = view.findViewById(R.id.locationContentButton01);
         contentButtons[1] = view.findViewById(R.id.locationContentButton02);
         contentButtons[2] = view.findViewById(R.id.locationContentButton03);
-        contentButtons[3] = view.findViewById(R.id.locationContentButton04);
+//        contentButtons[3] = view.findViewById(R.id.locationContentButton04);
         contentButtons[4] = view.findViewById(R.id.locationContentButton05);
         contentButtons[5] = view.findViewById(R.id.locationContentButton06);
         contentButtons[6] = view.findViewById(R.id.locationContentButton07);
         contentButtons[7] = view.findViewById(R.id.locationContentButton08);
 
         // 버튼 이벤트 설정
-        for(Button b: areaButtons)      b.setOnClickListener(areaListener);
-        for(Button b: contentButtons)   b.setOnClickListener(contentListener);
+        for(Button b: areaButtons)
+            if(b != null) b.setOnClickListener(areaListener);
+        for(Button b: contentButtons)
+            if(b != null) b.setOnClickListener(contentListener);
 
         return view;
     }

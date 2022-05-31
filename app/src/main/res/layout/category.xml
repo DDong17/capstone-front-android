@@ -43,11 +43,13 @@
             android:textSize="20dp"
             android:text="행사/공연/축제"/>
 
+        <!--
         <Button
             android:id="@+id/locationContentButton04"
             android:layout_columnWeight="1"
             android:textSize="30dp"
             android:text="여행코스"/>
+        -->
 
         <Button
             android:id="@+id/locationContentButton05"

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.cookandroid.capstone_front_android.Jmap;
 import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.location.model.LocationResponse;
@@ -24,7 +23,7 @@ public class LocationInfo extends Fragment {
     private int categoryCode = 99;          // 문화 생활 분류 코드
     private LocationResponse location;      // 문화 생활 정보 객체
     private View view;                      //
-    private Button button;                  // 뒤로 가기 버튼
+    private Button backButton;                  // 뒤로 가기 버튼
     private ImageView locImage;             // 문화 생활 이미지
     private TextView locTitle;              // 문화 생활 이름
     private TextView locInfo;               // 문화 생활 정보
@@ -46,13 +45,13 @@ public class LocationInfo extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.location_info, container, false);
 
-        button   = view.findViewById(R.id.button);
+        backButton = view.findViewById(R.id.button);
         locImage = view.findViewById(R.id.image);
         locTitle = view.findViewById(R.id.title);
         locInfo  = view.findViewById(R.id.info);
 
         // 뒤로 가기 버튼 리스너
-        button.setOnClickListener(v -> {
+        backButton.setOnClickListener(v -> {
             if(categoryType == 1 && categoryCode != 99) { // 지역 분류로 돌아가기
                 ((MainActivity) getActivity()).setCategory(categoryCode | 0x00001000);
             } else if(categoryType == 2 && categoryCode != 99) { // 문화 종류별 분류로 돌아가기
