@@ -60,6 +60,8 @@ public class LocationList extends Fragment {
         backButton = view.findViewById(R.id.button);
         catTitle = view.findViewById(R.id.title);
 
+        recyclerView = view.findViewById(R.id.list);
+
         // 뒤로 가기 버튼 리스너
         backButton.setOnClickListener(v -> ((MainActivity) getActivity()).setCategory(0));
 
@@ -69,70 +71,43 @@ public class LocationList extends Fragment {
         // 레트로핏 클라이언트 가져오기
         locationAPI = RetrofitClient.getClient(LocationAPI.class);
 
-        recyclerView = view.findViewById(R.id.list);
+        // 같은 형태의 Callback 개체가 switch 문의 2가지 case 에서 모두 사용되므로 한 번에 수정할 수 있도록 따로 빼서 작성
+        Callback<LocationListResponse> callback = new Callback<LocationListResponse>() {
+            @Override
+            public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
+
+                LocationListResponse r = response.body();
+
+                if (r == null) {
+                    Log.e("tag", "정보가 없습니다.");
+                    Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Log.e("tag", "정보 가져옴");
+
+                locationAdapter = new LocationAdapter(r.getLocations(), LocationList.this);
+                recyclerView.setAdapter(locationAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                //recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(getContext()).getOrientation()));
+
+            }
+
+            @Override
+            public void onFailure(Call<LocationListResponse> call, Throwable t) {
+
+                Log.e("정보 받아오기 에러 발생", t.getMessage());
+                Toast.makeText(getActivity(), "정보 받아오기 에러 발생", Toast.LENGTH_SHORT).show();
+
+            }
+        };
 
         switch(categoryType) {
             case 1: // 지역으로 조회
-                locationAPI.findAllByArea(categoryCode).enqueue(new Callback<LocationListResponse>() {
-                    @Override
-                    public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
-
-                        LocationListResponse r = response.body();
-
-                        if (r == null) {
-                            Log.e("tag", "정보가 없습니다.");
-                            Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        Log.e("tag", "정보 가져옴");
-
-                        locationAdapter = new LocationAdapter(r.getLocations(), LocationList.this);
-                        recyclerView.setAdapter(locationAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(getContext()).getOrientation()));
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<LocationListResponse> call, Throwable t) {
-
-                        Log.e("정보 받아오기 에러 발생", t.getMessage());
-                        Toast.makeText(getActivity(), "정보 받아오기 에러 발생", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                locationAPI.findAllByArea(categoryCode).enqueue(callback);
                 break;
             case 2: // 문화 종류로 조회
-                locationAPI.findAllByContent(categoryCode).enqueue(new Callback<LocationListResponse>() {
-                    @Override
-                    public void onResponse(Call<LocationListResponse> call, Response<LocationListResponse> response) {
-
-                        LocationListResponse r = response.body();
-                        ;
-                        if (r == null) {
-                            Log.e("tag", "정보가 없습니다.");
-                            Toast.makeText(getActivity(), "현재 위치에 문화 생활 정보가 없습니다.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        Log.e("tag", "정보 가져옴");
-
-                        locationAdapter = new LocationAdapter(r.getLocations(), LocationList.this);
-                        recyclerView.setAdapter(locationAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        //recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(getContext()).getOrientation()));
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<LocationListResponse> call, Throwable t) {
-
-                        Log.e("정보 받아오기 에러 발생", t.getMessage());
-                        Toast.makeText(getActivity(), "정보 받아오기 에러 발생", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                locationAPI.findAllByContent(categoryCode).enqueue(callback);
                 break;
             default:
         }
