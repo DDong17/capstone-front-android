@@ -12,4 +12,12 @@ public interface LocationAPI {
     @GET("/locations/position/{X}/{Y}")
     Call<LocationListResponse> findAllByPostition(@Path("X") double X, @Path("Y") double Y);
 
+    // 지역 기반 조회
+    @GET("/locations/area/{areaCode}")
+    Call<LocationListResponse> findAllByArea(@Path("areaCode") int area);
+
+    // 문화 기반 조회
+    @GET("/locations/content/{contentTypeId}")
+    Call<LocationListResponse> findAllByContent(@Path("contentTypeId") int content);
+
 }
