@@ -14,7 +14,7 @@
     app:umanoOverlay="true"
     app:umanoShadowHeight="0dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -22,7 +22,16 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/sMap"
             android:layout_width="match_parent"
-            android:layout_height="500dp"/>
+            android:layout_height="605dp" />
+
+        <Button
+            android:id="@+id/getLocationButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/radar"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="160dp"
+            android:layout_gravity="bottom|right" />
 
         <TextView
             android:id="@+id/txt"
