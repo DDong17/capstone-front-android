@@ -78,7 +78,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.map, container, false);
-        text = view.findViewById(R.id.txt);
+        //text = view.findViewById(R.id.txt);
         lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getActivity(), "GPS OFF상태", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         }
 
         refreshLocationButton = view.findViewById(R.id.getLocationButton);
-        mjButton    = view.findViewById(R.id.myongji_button);
+        //mjButton    = view.findViewById(R.id.myongji_button);
         locInfo     = view.findViewById(R.id.location_info);
         locImage    = view.findViewById(R.id.location_image);
         mapLayout   = view.findViewById(R.id.map);
@@ -105,12 +105,12 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
             provider = "null";
             longitude = 127.187559;
             latitude = 37.224158;
-            text.setText("위치정보 확인 불가");
+            //text.setText("위치정보 확인 불가");
         } else { // 위치 확인 성공한 경우
             provider = location.getProvider();
             longitude = location.getLongitude();
             latitude = location.getLatitude();
-            text.setText("위치정보 : " + provider + "\n" + "위도 : " + longitude + "\n" + "경도 : " + latitude);
+            //text.setText("위치정보 : " + provider + "\n" + "위도 : " + longitude + "\n" + "경도 : " + latitude);
 
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, gpsLocationListener);
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, gpsLocationListener);
@@ -129,7 +129,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
             provider = location.getProvider();
             longitude = location.getLongitude();
             latitude = location.getLatitude();
-            text.setText("위치정보 : " + provider + "   " + "위도 : " + latitude + "\n" + "경도 : " + longitude);
+            //text.setText("위치정보 : " + provider + "   " + "위도 : " + latitude + "\n" + "경도 : " + longitude);
         }
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
@@ -186,10 +186,10 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         refreshLocationButton.setOnClickListener(v -> updateLocations(googleMap));
 
         // 학교로 순간이동 버튼
-        mjButton.setOnClickListener(v -> {
+        /*mjButton.setOnClickListener(v -> {
             curLocMarker.setPosition(new LatLng(37.224158, 127.187559));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(curLocMarker.getPosition()));
-        });
+        });*/
 
         // 정보창 클릭시 상세정보 표시
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -236,7 +236,7 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         curLocMarker.setPosition(googleMap.getCameraPosition().target);
         longitude = googleMap.getCameraPosition().target.longitude;
         latitude = googleMap.getCameraPosition().target.latitude;
-        text.setText(text.getText() + "\n지도위치: " + longitude + ", " + latitude);
+        //text.setText(text.getText() + "\n지도위치: " + longitude + ", " + latitude);
 
         Log.e("tag", "위치:" + longitude + "," + latitude);
 

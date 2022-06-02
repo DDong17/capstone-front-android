@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/messageId"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="id보기"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:id="@+id/messageReceived"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="받은 메시지"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:id="@+id/messageSent"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_radius"
+            android:text="보낸 메시지"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/write"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/talk2" />
+
+        <Button
+            android:id="@+id/deleteMessage"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="65dp"
+            android:layout_marginBottom="70dp"
+            android:text="삭제"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>

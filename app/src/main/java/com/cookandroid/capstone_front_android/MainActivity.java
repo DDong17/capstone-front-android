@@ -16,6 +16,10 @@ import com.cookandroid.capstone_front_android.categorymenu.*;
 
 import com.cookandroid.capstone_front_android.location.model.LocationResponse;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
+import com.cookandroid.capstone_front_android.message.view.MessageReadId;
+import com.cookandroid.capstone_front_android.message.view.MessageReadReceived;
+import com.cookandroid.capstone_front_android.message.view.MessageReadSent;
+import com.cookandroid.capstone_front_android.message.view.MessageWrite;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
     private Jmap jmap;
 
     // 네번째 메뉴(메시지).
-    private MessageRead messageRead;
+    private MessageReadId messageReadId;
     private MessageWrite messageWrite;
+    private MessageReadReceived messageReadReceived;
+    private MessageReadSent messageReadSent;
 
     // 다섯번째 메뉴(내정보).
     private MyInfoFragment myinfo;
@@ -73,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
+        bottomNavigationView.setSelectedItemId(R.id.actionStayCurrentPortrait);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -129,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 메시지 객체생성.
         messageWrite = new MessageWrite();
-        messageRead =new MessageRead();
+        messageReadId =new MessageReadId();
+        messageReadReceived = new MessageReadReceived();
+        messageReadSent = new MessageReadSent();
 
         // 내정보 객체생성.
         myinfo =new MyInfoFragment();
@@ -212,11 +221,19 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.mainFrame, messageRead);
+                ft.replace(R.id.mainFrame, messageReadId);
                 ft.commit();
                 break;
             case 1:
                 ft.replace(R.id.mainFrame, messageWrite);
+                ft.commit();
+                break;
+            case 2:
+                ft.replace(R.id.mainFrame, messageReadReceived);
+                ft.commit();
+                break;
+            case 3:
+                ft.replace(R.id.mainFrame, messageReadSent);
                 ft.commit();
                 break;
         }
