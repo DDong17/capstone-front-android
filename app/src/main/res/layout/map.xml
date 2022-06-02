@@ -40,6 +40,8 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
+                android:textColor="@android:color/white"
                 android:text="주변 문화 생활 찾기" />
 
             <Button
@@ -47,6 +49,8 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
+                android:textColor="@android:color/white"
                 android:text="명지버튼" />
 
         </LinearLayout>

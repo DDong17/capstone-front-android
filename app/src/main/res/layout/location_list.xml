@@ -25,7 +25,9 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="뒤로가기"/>
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
+            android:text="뒤로가기" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
