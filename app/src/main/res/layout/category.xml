@@ -68,10 +68,10 @@
         <Button
             android:id="@+id/locationContentButton06"
             android:layout_columnWeight="1"
-            android:textSize="30dp"
             android:background="@drawable/custom_button"
+            android:text="숙박"
             android:textColor="@android:color/white"
-            android:text="숙박"/>
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/locationContentButton07"
