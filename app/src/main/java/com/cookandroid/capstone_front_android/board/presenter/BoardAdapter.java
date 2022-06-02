@@ -1,7 +1,6 @@
 package com.cookandroid.capstone_front_android.board.presenter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.capstone_front_android.MainActivity;
 import com.cookandroid.capstone_front_android.R;
 import com.cookandroid.capstone_front_android.board.model.BoardResponse;
+import com.cookandroid.capstone_front_android.board.view.BoardDetailFragment;
 
 import java.util.List;
 
@@ -64,15 +65,19 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        mListener.onItemClick(v, pos);
-                    }
-                    Log.d("asdasdasd", Integer.toString(pos));
-                }
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int pos = getAdapterPosition();
+//                    if (pos != RecyclerView.NO_POSITION) {
+//                        mListener.onItemClick(v, pos);
+//                    }
+//                    Log.d("asdasdasd", Integer.toString(pos));
+//                }
+//            });
+
+            itemView.setOnClickListener(v -> {
+
             });
 
             title = (TextView)itemView.findViewById(R.id.tv_item_board_list_title);
