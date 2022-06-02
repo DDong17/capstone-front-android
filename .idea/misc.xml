@@ -67,6 +67,8 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/activity_main.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/activity_main_log.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/activity_splash.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/activity_update_nickname.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/category.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/category_all.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/category_chung.xml" value="0.20364583333333333" />
@@ -86,9 +88,19 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/category_whole_etc.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/community_read.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/community_write.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/find_id.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/find_password.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/fragment_blank.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/fragment_board_detail.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/fragment_profile.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/fragment_write_board.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/item_board_list.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/item_community_all.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/item_community_review.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/item_community_together.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/location_info.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/location_item.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/location_list.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/map.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/message_read.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/capstone-front-android/app/src/main/res/layout/message_write.xml" value="0.20364583333333333" />
