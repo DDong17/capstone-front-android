@@ -37,9 +37,10 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BoardAdapter.MyViewHolder holder, int position) {
-        holder.title.setText("제목: " + dataList.get(position).getTitle());
+        holder.title.setText(dataList.get(position).getTitle());
         holder.writer.setText("작성자: " + dataList.get(position).getWriterNickName());
         holder.viewCount.setText("조회수: " + dataList.get(position).getViewCount());
+        holder.content.setText(dataList.get(position).getContent());
     }
 
     @Override
@@ -62,6 +63,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
         TextView title;
         TextView writer;
         TextView viewCount;
+        TextView content;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -83,6 +85,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
             title = (TextView)itemView.findViewById(R.id.tv_item_board_list_title);
             writer = (TextView)itemView.findViewById(R.id.tv_item_board_list_writerNickname);
             viewCount = (TextView)itemView.findViewById(R.id.tv_item_board_list_viewCount);
+            content = (TextView)itemView.findViewById(R.id.tv_item_board_list_content);
         }
 
     }
