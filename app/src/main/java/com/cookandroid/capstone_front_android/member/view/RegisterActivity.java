@@ -2,6 +2,7 @@ package com.cookandroid.capstone_front_android.member.view;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -163,11 +164,17 @@ public class RegisterActivity extends AppCompatActivity {
         memberApi.postRegister(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                dialog = builder.setMessage("회원가입성공.").setPositiveButton("확인", null).create();
-                dialog.show();
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
+                new AlertDialog.Builder(RegisterActivity.this).
+                        setMessage("회원 가입에 성공했습니다!\n 로그인 화면으로 이동합니다").
+                        setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        }).
+                        create().
+                        show();
             }
             @Override
             public void onFailure(@NonNull Call<MemberResponse> call, @NonNull Throwable t) {

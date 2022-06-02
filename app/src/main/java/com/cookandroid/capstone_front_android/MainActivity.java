@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 //import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardDetailFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardWriteFragment;
@@ -181,6 +182,16 @@ public class MainActivity extends AppCompatActivity {
 
         ft.commit();
 
+    }
+
+    // 게시물 상세보기
+    public void setBoardDetail() {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+
+        ft.replace(R.id.mainFrame, new BoardDetailFragment());
+
+        ft.commit();
     }
 
     // 커뮤니티 화면이동(순서는 선언순서).

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +32,6 @@ import retrofit2.Response;
 public class BoardAllFragment extends Fragment {
 
     private final BoardApi boardApi = RetrofitClient.getClient(BoardApi.class, RetrofitClient.getSessionId());
-
 
     BoardListResponse dataList;
     List<BoardResponse> dataInfo;
@@ -148,8 +146,9 @@ public class BoardAllFragment extends Fragment {
 
     private void start2(List<BoardResponse> dataInfo) {
         recyclerView = view.findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
         boardAdapter = new BoardAdapter(getContext(), dataInfo);
         recyclerView.setAdapter(boardAdapter);

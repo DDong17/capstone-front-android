@@ -27,6 +27,8 @@
         <Button
             android:id="@+id/locationContentButton01"
             android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:textSize="30dp"
             android:text="관광지"/>
 
@@ -34,6 +36,8 @@
             android:id="@+id/locationContentButton02"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="문화시설"/>
 
         <Button
@@ -41,36 +45,50 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:textSize="20dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="행사/공연/축제"/>
 
+        <!--
         <Button
             android:id="@+id/locationContentButton04"
             android:layout_columnWeight="1"
             android:textSize="30dp"
             android:text="여행코스"/>
+        -->
 
         <Button
             android:id="@+id/locationContentButton05"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="레포츠"/>
 
         <Button
             android:id="@+id/locationContentButton06"
             android:layout_columnWeight="1"
-            android:textSize="30dp"
-            android:text="숙박"/>
+            android:background="@drawable/custom_button"
+            android:text="숙박"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/locationContentButton07"
+            android:layout_row="0"
+
             android:layout_columnWeight="1"
-            android:textSize="30dp"
-            android:text="쇼핑"/>
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
+            android:text="쇼핑"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/locationContentButton08"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="음식점"/>
     </GridLayout>
 
@@ -98,60 +116,80 @@
             android:id="@+id/locationAreaButton01"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="서울"/>
 
         <Button
             android:id="@+id/locationAreaButton02"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="경기"/>
 
         <Button
             android:id="@+id/locationAreaButton03"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="강원"/>
 
         <Button
             android:id="@+id/locationAreaButton04"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="충청북도"/>
 
         <Button
             android:id="@+id/locationAreaButton05"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="충청남도"/>
 
         <Button
             android:id="@+id/locationAreaButton06"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="경상북도"/>
 
         <Button
             android:id="@+id/locationAreaButton07"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="경상남도"/>
 
         <Button
             android:id="@+id/locationAreaButton08"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="전라북도"/>
 
         <Button
             android:id="@+id/locationAreaButton09"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="전라남도"/>
 
         <Button
             android:id="@+id/locationAreaButton10"
             android:layout_columnWeight="1"
             android:textSize="30dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@android:color/white"
             android:text="제주"/>
     </GridLayout>
 

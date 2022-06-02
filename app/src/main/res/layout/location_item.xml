@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="1">
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_weight="0.3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="문화 정보 이미지"/>
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="18dp">
 
     <LinearLayout
-        android:layout_weight="0.7"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:weightSum="1">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/image"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="30dp"/>
+            android:layout_gravity="center_vertical"
+            android:contentDescription="문화 정보 이미지"/>
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15dp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="제목"
+                android:textSize="30dp"/>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
