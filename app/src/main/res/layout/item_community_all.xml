@@ -11,39 +11,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/all"
-            android:layout_width="120dp"
+<!--        <Button-->
+<!--            android:id="@+id/all"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/button_radius"-->
+<!--            android:text="전체보기"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            />-->
+<!--        <Button-->
+<!--            android:id="@+id/together"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/button_radius"-->
+<!--            android:text="같이 갈 사람"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            />-->
+<!--        <Button-->
+<!--            android:id="@+id/review"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/button_radius"-->
+<!--            android:text="리뷰"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            />-->
+        <ImageView
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="전체보기"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            />
-        <Button
-            android:id="@+id/together"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="같이 갈 사람"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
-        <Button
-            android:id="@+id/review"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="리뷰"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:src="@drawable/conversation"
+            android:layout_margin="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="슬기로운 사용자들과 문화 생활을 같이 해 보세요!"
+            android:fontFamily="@font/hy"
+            android:textSize="20dp"
+            android:layout_margin="15dp"/>
     </LinearLayout>
 
     <FrameLayout
@@ -62,14 +74,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
+    <ImageView
         android:id="@+id/write"
-        android:layout_width="50dp"
-        android:layout_height="55dp"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
         android:layout_gravity="bottom|right"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/talk2" />
+        android:src="@drawable/edit" />
 
     <!--<com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavi"

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public class MyInfoFragment extends Fragment {
 
         Button btnPasswordModify = (Button) view.findViewById(R.id.btn_profile_updatePassword);
         Button btnRegisterDelete = (Button) view.findViewById(R.id.btn_profile_deleteMember);
-        Button btnNewNickname = (Button) view.findViewById(R.id.btn_profile_updateNickname);
+        ImageView btnNewNickname = (ImageView) view.findViewById(R.id.btn_profile_updateNickname);
 
         tvUserId = view.findViewById(R.id.tv_profile_userId);
         tvUserName = view.findViewById(R.id.tv_profile_userName);
@@ -96,10 +97,10 @@ public class MyInfoFragment extends Fragment {
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
                 try {
                     MemberResponse member = response.body();
-                    tvUserId.setText("유저아이디 : " + member.getUserId());
+                    tvUserId.setText("계졍 : " + member.getUserId());
                     tvUserName.setText(member.getName() + "님");
-                    tvUserNickname.setText("닉네임 : " + member.getNickname());
-                    tvUserPoints.setText("포인트 : " + member.getPoint());
+                    tvUserNickname.setText("활동명 : " + member.getNickname());
+                    tvUserPoints.setText("기여도 : " + member.getPoint());
                 } catch (Exception e) {
                     Log.e("프로필 통신 오류", "세팅 실패");
                 }
