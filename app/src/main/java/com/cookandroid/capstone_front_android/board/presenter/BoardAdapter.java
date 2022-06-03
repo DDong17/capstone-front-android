@@ -21,10 +21,17 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
     private final Context context;
     private final List<BoardResponse> dataList;
     LayoutInflater layoutInflater;
+    MainActivity mainActivity;
 
     public BoardAdapter(Context context, List<BoardResponse> dataList){
         this.context = context;
         this.dataList= dataList;
+    }
+
+    public BoardAdapter(Context context, List<BoardResponse> dataList, MainActivity mainActivity){
+        this.context = context;
+        this.dataList= dataList;
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -78,9 +85,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.MyViewHolder
 //                }
 //            });
 
-            itemView.setOnClickListener(v -> {
-
-            });
+            itemView.setOnClickListener(v -> mainActivity.setBoardDetail(dataList.get(getAbsoluteAdapterPosition()).getTitle(), dataList.get(getAbsoluteAdapterPosition()).getContent()));
 
             title = (TextView)itemView.findViewById(R.id.tv_item_board_list_title);
             writer = (TextView)itemView.findViewById(R.id.tv_item_board_list_writerNickname);

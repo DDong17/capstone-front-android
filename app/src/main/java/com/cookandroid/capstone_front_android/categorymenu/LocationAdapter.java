@@ -61,7 +61,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             image = itemView.findViewById(R.id.image);
 
             itemView.setOnClickListener(v -> {
-                ((MainActivity) locationList.getActivity()).setLocation(list.get(getAdapterPosition()), locationList.getCategoryType(), locationList.getCategoryCode());
+                //((MainActivity) locationList.getActivity()).setLocation(list.get(getAdapterPosition()), locationList.getCategoryType(), locationList.getCategoryCode());
+                ((MainActivity) locationList.getActivity()).setLocation(list.get(getAbsoluteAdapterPosition()), locationList.getCategoryType(), locationList.getCategoryCode());
             });
         }
     }

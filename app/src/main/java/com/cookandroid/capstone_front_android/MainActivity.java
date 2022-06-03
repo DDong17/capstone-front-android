@@ -8,9 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 //import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
+import com.cookandroid.capstone_front_android.board.model.BoardResponse;
 import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardDetailFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardTest;
 import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardWriteFragment;
 import com.cookandroid.capstone_front_android.categorymenu.*;
@@ -185,11 +187,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 게시물 상세보기
-    public void setBoardDetail() {
+    public void setBoardDetail(String title, String content) {
+
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
 
-        ft.replace(R.id.mainFrame, new BoardDetailFragment());
+        ft.replace(R.id.mainFrame, new BoardTest().setTitle(title).setContent(content));
 
         ft.commit();
     }
