@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.webkit.CookieManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private Button btnRegister;
-    private Button btnIdPassword;
-    private Button btnFindPassword;
+    private TextView btnIdPassword;
+    private TextView btnFindPassword;
 
     private AlertDialog dialog;
     private SharedPreferencesUtils pref;
@@ -65,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.loginPassword);
         btnLogin = (Button) findViewById(R.id.loginButton);
         btnRegister = (Button) findViewById(R.id.registerButton);
-        btnIdPassword= (Button) findViewById(R.id.idFindBtn);
-        btnFindPassword = (Button) findViewById((R.id.passwordFindBtn));
+        btnIdPassword= (TextView) findViewById(R.id.idFindBtn);
+        btnFindPassword = (TextView) findViewById((R.id.passwordFindBtn));
 
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
