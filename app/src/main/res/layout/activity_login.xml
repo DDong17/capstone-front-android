@@ -18,6 +18,7 @@
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
+
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -47,6 +48,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:fontFamily="@font/hy"
         android:hint="사용자 계정"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -62,8 +64,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:fontFamily="@font/hy"
         android:hint="비밀번호"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/loginUserId"
         app:layout_constraintStart_toStartOf="@+id/loginUserId"
@@ -73,52 +76,52 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="248dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/hy"
+        android:text="입장하기"
         android:textColor="@android:color/white"
-        android:text="로그인"
-        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/loginPassword"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/registerButton"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="248dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/hy"
         android:text="회원가입"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.673"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/idFindBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:background="@drawable/custom_button"
-        android:text="아이디찾기"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="224dp"
+        android:fontFamily="@font/hy"
+        android:text="계정 찾기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/passwordFindBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:background="@drawable/custom_button"
-        android:text="비밀번호찾기"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="224dp"
+        android:fontFamily="@font/hy"
+        android:text="비밀번호 재설정"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="parent" />
 
 

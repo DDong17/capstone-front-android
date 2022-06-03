@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class UpdateNicknameActivity extends AppCompatActivity {
 
         edtNewNickname = (EditText) findViewById(R.id.edt_updateNickname);
         Button btnUpdateNickname = (Button) findViewById(R.id.btn_nicknameCheck);
-        Button btnBack = (Button) findViewById(R.id.btn_updateNickname_back);
+        ImageButton btnBack = (ImageButton) findViewById(R.id.btn_updateNickname_back);
 
         // 닉네임 중복 확인
         btnUpdateNickname.setOnClickListener(new View.OnClickListener() {
