@@ -179,6 +179,13 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
         googleMap.setOnMarkerClickListener(this);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
 
+        // 이전 마커 표시
+        for(Map.Entry<LatLng, LocationResponse> i : locationMap.entrySet()) googleMap.addMarker(new MarkerOptions().
+                position(new LatLng(i.getValue().getMapY(), i.getValue().getMapX())).
+                title(i.getValue().getTitle()).
+                snippet(i.getValue().getAddress()).
+                icon(BitmapDescriptorFactory.defaultMarker(color(i.getValue().getContentName()))));
+
         // 현재 위치 주변 정보 마커 표시
         updateLocations(googleMap);
 
@@ -270,55 +277,12 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
                     Log.e("tag", "정보 추가: " + i.getTitle() + ", 위치: " + (new LatLng(i.getMapY(), i.getMapX())).toString());
 
-                    // 마커 추가
-
-                    // 마커 색상 결정
-                    // HUE.BLUE 는 현위치 표시
-                    // 색상이 지정되지 않은 경우 기본값(HUE_ORANGE)으로 표시
-                    // BitmapDescriptorFactory 사용하지 않고 float 값을 직접 주는 것도 가능
-                    // ex) color = 250;
-                    float color = BitmapDescriptorFactory.HUE_ORANGE;
-                    switch(i.getContentName()) {
-                        // 여행, 관광
-                        case "관광지":
-                        case "여행코스":
-                        case "숙박":
-                            color = BitmapDescriptorFactory.HUE_GREEN;
-                            break;
-                        // 문화, 행사
-                        case "문화시설":
-                        case "행사/공연/축제":
-                            color = BitmapDescriptorFactory.HUE_VIOLET;
-                            break;
-                        // 레포츠
-                        case "레포츠":
-                            color = BitmapDescriptorFactory.HUE_AZURE;
-                            break;
-                        // 쇼핑
-                        case "쇼핑":
-                            color = BitmapDescriptorFactory.HUE_CYAN;
-                            break;
-                        // 음식, 카페
-                        case "음식점":
-                            color = BitmapDescriptorFactory.HUE_ROSE;
-                            break;
-                        default:
-                    }
-
                     // 지도에 마커 추가
                     googleMap.addMarker(new MarkerOptions().
                             position(new LatLng(i.getMapY(), i.getMapX())).
                             title(i.getTitle()).
                             snippet(i.getAddress()).
-                            icon(BitmapDescriptorFactory.defaultMarker(color)));
-
-                    /*
-                    googleMap.addMarker(new MarkerOptions().
-                            position(new LatLng(i.getMapY(), i.getMapX())).
-                            title(i.getTitle()).
-                            snippet(i.getAddress()).
-                            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                     */
+                            icon(BitmapDescriptorFactory.defaultMarker(color(i.getContentName()))));
                 }
 
                 Log.e("tag", "정보 추가완료");
@@ -333,5 +297,35 @@ public class Jmap extends Fragment implements OnMapReadyCallback, GoogleMap.OnMa
 
             }
         });
+    }
+
+    private float color(String type) {
+        // 마커 색상 결정
+        // HUE.BLUE 는 현위치 표시
+        // 색상이 지정되지 않은 경우 기본값(HUE_ORANGE)으로 표시
+        // BitmapDescriptorFactory 사용하지 않고 float 값을 직접 주는 것도 가능
+        // ex) color = 250;
+        switch(type) {
+            // 여행, 관광
+            case "관광지":
+            case "여행코스":
+            case "숙박":
+                return BitmapDescriptorFactory.HUE_GREEN;
+            // 문화, 행사
+            case "문화시설":
+            case "행사/공연/축제":
+                return BitmapDescriptorFactory.HUE_VIOLET;
+            // 레포츠
+            case "레포츠":
+                return BitmapDescriptorFactory.HUE_AZURE;
+            // 쇼핑
+            case "쇼핑":
+                return BitmapDescriptorFactory.HUE_CYAN;
+            // 음식, 카페
+            case "음식점":
+                return BitmapDescriptorFactory.HUE_ROSE;
+            default:
+                return BitmapDescriptorFactory.HUE_ORANGE;
+        }
     }
 }
