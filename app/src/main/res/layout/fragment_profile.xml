@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/people"
+            android:src="@drawable/profile"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"/>
 
@@ -33,7 +33,8 @@
                 android:gravity="center"
                 android:text="사용자 이름"
                 android:textColor="@color/black"
-                android:textSize="23dp" />
+                android:textSize="30dp"
+                android:fontFamily="@font/hy"/>
 
             <TextView
                 android:id="@+id/tv_profile_userId"
@@ -43,7 +44,8 @@
                 android:gravity="center"
                 android:text="abc@mju.ac.kr"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:fontFamily="@font/hy"/>
 
             <TextView
                 android:id="@+id/tv_profile_point"
@@ -53,7 +55,8 @@
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:fontFamily="@font/hy"/>
 
         </LinearLayout>
 
@@ -61,49 +64,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ranking"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_weight="5">
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/tv_profile_userNickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="사용자 닉네임"
-            android:textSize="30dp"/>
+            android:text="활동명"
+            android:textSize="30dp"
+            android:fontFamily="@font/hy"/>
 
-        <Button
+        <ImageView
             android:id="@+id/btn_profile_updateNickname"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/custom_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:textColor="@android:color/white"
-            android:text="닉네임 변경"
-
+            android:src="@drawable/edit"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="10dp" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ranking"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="30dp"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="기여도는 얼마나 슬기로운 문화생활을 했는지 나타내는 척도입니다.\n현재 당신은 총 100점으로 꽤 슬기로운 문화생활은 하고 계시군요!"
+            android:fontFamily="@font/hy"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_weight="5"
+        android:layout_weight="1"
         android:gravity="center">
 
         <Button
@@ -113,7 +139,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-
+            android:fontFamily="@font/hy"
             android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:text="비밀번호 변경"
@@ -126,7 +152,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-
+            android:fontFamily="@font/hy"
             android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:text="회원탈퇴"

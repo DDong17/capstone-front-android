@@ -12,7 +12,7 @@
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_info.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_item.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/location_list.xml" value="0.30104166666666665" />
-        <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/map.xml" value="0.1" />
+        <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/map.xml" value="0.33" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/layout/message_read.xml" value="0.24322916666666666" />
         <entry key="..\:/Users/Rena/AndroidStudioProjects/capstone-front-android4/app/src/main/res/menu/bottom_menu.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/drawable-v24/custom_button.xml" value="0.144" />
@@ -35,7 +35,7 @@
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/community_read.xml" value="0.1" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/community_write.xml" value="0.121875" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/fragment_board_detail.xml" value="0.14990942028985507" />
-        <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/fragment_profile.xml" value="0.11231884057971014" />
+        <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/fragment_write_board.xml" value="0.1" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/item_board_list.xml" value="0.2" />
         <entry key="..\:/Users/mopil/AndroidStudioProjects/capstone-front-android-dong/app/src/main/res/layout/item_community_together.xml" value="0.1" />
