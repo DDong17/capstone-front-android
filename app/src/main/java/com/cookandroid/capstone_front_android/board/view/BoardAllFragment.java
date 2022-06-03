@@ -129,7 +129,8 @@ public class BoardAllFragment extends Fragment {
                 dataList = response.body();
                 dataInfo = dataList.boards;
                 start2(dataInfo);
-                boardAdapter = new BoardAdapter(getContext(), dataInfo);
+                //boardAdapter = new BoardAdapter(getContext(), dataInfo);
+                boardAdapter = new BoardAdapter(getContext(), dataInfo, activity);
                 recyclerView.setAdapter(boardAdapter);
 //                boardAdapter.onItemClickListener = BoardAdapter.OnItemClickListener
                 boardAdapter.notifyDataSetChanged();
