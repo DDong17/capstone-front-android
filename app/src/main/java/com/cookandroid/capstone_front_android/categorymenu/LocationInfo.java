@@ -23,7 +23,7 @@ public class LocationInfo extends Fragment {
     private int categoryCode = 99;          // 문화 생활 분류 코드
     private LocationResponse location;      // 문화 생활 정보 객체
     private View view;                      //
-    private Button backButton;                  // 뒤로 가기 버튼
+    private Button backButton;              // 뒤로 가기 버튼
     private ImageView locImage;             // 문화 생활 이미지
     private TextView locTitle;              // 문화 생활 이름
     private TextView locInfo;               // 문화 생활 정보
