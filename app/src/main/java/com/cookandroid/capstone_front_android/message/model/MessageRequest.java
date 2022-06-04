@@ -2,22 +2,22 @@ package com.cookandroid.capstone_front_android.message.model;
 
 public class MessageRequest {
 
-    private String receiverNickname;
+    private String receiverUserId;
     private String title;
     private String content;
 
-    public MessageRequest(String receiverNickname, String title, String content) {
-        this.receiverNickname = receiverNickname;
+    public MessageRequest(String receiverUserId, String title, String content) {
+        this.receiverUserId = receiverUserId;
         this.title = title;
         this.content = content;
     }
 
-    public String getReceiverNickname() {
-        return receiverNickname;
+    public String getReceiverUserId() {
+        return receiverUserId;
     }
 
-    public void setReceiverNickname(String receiverNickname) {
-        this.receiverNickname = receiverNickname;
+    public void setReceiverUserId(String receiverUserId) {
+        this.receiverUserId = receiverUserId;
     }
 
     public String getTitle() {

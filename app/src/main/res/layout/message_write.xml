@@ -13,19 +13,18 @@
             android:id="@+id/messageReceiver"
             android:layout_width="310dp"
             android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:hint="보낼 사람"
+            android:layout_margin="15dp"
+            android:hint="받는 계정"
+            android:fontFamily="@font/hy"
             android:textSize="40dp"
             android:background="@null"/>
 
-        <Button
+        <ImageView
             android:id="@+id/exit"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:background="@drawable/button_radius"
-            android:text="나가기"
-            android:textSize="20dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_keyboard_return_24" />
 
     </LinearLayout>
 
@@ -33,11 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="20dp"
-            android:text="03/29 PM 4:40 사용자1" />
 
     </LinearLayout>
 
@@ -50,8 +44,10 @@
             android:id="@+id/messageTitle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="제목을 입력해 주세요."
+            android:hint="제목"
+            android:fontFamily="@font/hy"
             android:textSize="20dp"
+            android:layout_margin="15dp"
             android:gravity="top"/>
 
         <EditText
@@ -61,7 +57,9 @@
             android:background="@null"
             android:gravity="top"
             android:hint="메시지를 입력해 주세요."
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:fontFamily="@font/hy"
+            android:layout_margin="15dp"/>
 
     </LinearLayout>
 
@@ -70,12 +68,13 @@
         android:layout_height="70dp"
         android:orientation="horizontal">
 
-        <Button
+        <ImageView
             android:id="@+id/sent"
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="60dp"
-            android:text="보내기"
-            android:layout_marginLeft="7dp"/>
+            android:src="@drawable/send"
+            android:fontFamily="@font/hy"
+            android:layout_marginStart="160dp"/>
 
     </LinearLayout>
 

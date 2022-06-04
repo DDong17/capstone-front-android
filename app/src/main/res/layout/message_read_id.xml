@@ -9,24 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/messageId"
-            android:layout_width="120dp"
+<!--        <Button-->
+<!--            android:id="@+id/messageId"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/button_radius"-->
+<!--            android:text="id보기"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            />-->
+        <ImageView
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="id보기"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:src="@drawable/messages"
+            android:layout_margin="10dp"/>
         <Button
             android:id="@+id/messageReceived"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="받은 메시지"
+            android:background="@drawable/custom_button"
+            android:text="받은 쪽지"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -35,12 +40,22 @@
             android:id="@+id/messageSent"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:background="@drawable/button_radius"
-            android:text="보낸 메시지"
+            android:background="@drawable/custom_button"
+            android:text="보낸 쪽지"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp" />
+        <ImageView
+            android:id="@+id/deleteMessage"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginBottom="70dp"
+            android:src="@drawable/trash"
+            android:layout_margin="10dp"/>
+
+
     </LinearLayout>
 
     <FrameLayout
@@ -56,23 +71,16 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
+        <ImageView
             android:id="@+id/write"
             android:layout_width="50dp"
             android:layout_height="55dp"
             android:layout_gravity="bottom|right"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/talk2" />
+            android:background="@drawable/email" />
 
-        <Button
-            android:id="@+id/deleteMessage"
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="65dp"
-            android:layout_marginBottom="70dp"
-            android:text="삭제"/>
+
 
     </FrameLayout>
 

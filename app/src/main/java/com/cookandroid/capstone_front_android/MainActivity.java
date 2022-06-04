@@ -8,9 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 //import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
-import com.cookandroid.capstone_front_android.board.model.BoardResponse;
 import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
-import com.cookandroid.capstone_front_android.board.view.BoardDetailFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardTest;
 import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
@@ -19,10 +17,8 @@ import com.cookandroid.capstone_front_android.categorymenu.*;
 
 import com.cookandroid.capstone_front_android.location.model.LocationResponse;
 import com.cookandroid.capstone_front_android.member.model.MemberApi;
-import com.cookandroid.capstone_front_android.message.view.MessageReadId;
-import com.cookandroid.capstone_front_android.message.view.MessageReadReceived;
-import com.cookandroid.capstone_front_android.message.view.MessageReadSent;
-import com.cookandroid.capstone_front_android.message.view.MessageWrite;
+import com.cookandroid.capstone_front_android.message.view.MessageFragment;
+import com.cookandroid.capstone_front_android.message.view.MessageWriteFragment;
 import com.cookandroid.capstone_front_android.util.network.RetrofitClient;
 import com.cookandroid.capstone_front_android.profile.view.MyInfoFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -68,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private Jmap jmap;
 
     // 네번째 메뉴(메시지).
-    private MessageReadId messageReadId;
-    private MessageWrite messageWrite;
-    private MessageReadReceived messageReadReceived;
-    private MessageReadSent messageReadSent;
+//    private MessageReadId messageReadId;
+    private MessageWriteFragment messageWrite;
+    private MessageFragment messageReadReceived;
+//    private MessageReadSent messageReadSent;
 
     // 다섯번째 메뉴(내정보).
     private MyInfoFragment myinfo;
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         setMap();
                         break;
                     case R.id.actionEmail:
-                        setMessage(0);
+                        setMessage(2);
                         break;
                     case R.id.actionPerson:
                         setMyInfo(0);
@@ -138,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
         jmap =new Jmap();
 
         // 메시지 객체생성.
-        messageWrite = new MessageWrite();
-        messageReadId =new MessageReadId();
-        messageReadReceived = new MessageReadReceived();
-        messageReadSent = new MessageReadSent();
+        messageWrite = new MessageWriteFragment();
+//        messageReadId =new MessageReadId();
+        messageReadReceived = new MessageFragment();
+//        messageReadSent = new MessageReadSent();
 
         // 내정보 객체생성.
         myinfo =new MyInfoFragment();
@@ -234,10 +230,10 @@ public class MainActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
-            case 0:
-                ft.replace(R.id.mainFrame, messageReadId);
-                ft.commit();
-                break;
+//            case 0:
+//                ft.replace(R.id.mainFrame, messageReadId);
+//                ft.commit();
+//                break;
             case 1:
                 ft.replace(R.id.mainFrame, messageWrite);
                 ft.commit();
@@ -246,10 +242,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.mainFrame, messageReadReceived);
                 ft.commit();
                 break;
-            case 3:
-                ft.replace(R.id.mainFrame, messageReadSent);
-                ft.commit();
-                break;
+//            case 3:
+//                ft.replace(R.id.mainFrame, messageReadSent);
+//                ft.commit();
+//                break;
         }
     }
 

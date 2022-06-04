@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,27 +30,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessageReadSent extends Fragment {
+public class MessageFragment extends Fragment {
 
     private final MessageApi messageApi = RetrofitClient.getClient(MessageApi.class, RetrofitClient.getSessionId());
 
     private View view;
     private MainActivity activity;
 
-    private Button btnId;
     private Button btnReceived;
-    private Button btnWrite;
-    private Button btnDelete;
+    private Button btnSent;
+    private ImageView btnWrite;
+    private ImageView btnDelete;
 
     MessageListResponse dataList;
     List<MessageResponse> dataInfo;
     RecyclerView recyclerView;
     MessageAdapter messageAdapter;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.message_read_sent,container,false);
+        view = inflater.inflate(R.layout.fragment_message,container,false);
         activity = (MainActivity) getActivity();
 
         dataInfo = new ArrayList<>();
@@ -59,23 +61,22 @@ public class MessageReadSent extends Fragment {
         messageAdapter = new MessageAdapter(getContext(), dataInfo);
         recyclerView.setAdapter(messageAdapter);
 
-        // 버튼 설정.
-        btnId = view.findViewById(R.id.messageSent);
         btnReceived = view.findViewById(R.id.messageReceived);
+        btnSent = view.findViewById(R.id.messageSent);
         btnWrite = view.findViewById(R.id.write);
         btnDelete = view.findViewById(R.id.deleteMessage);
 
-        // 버튼 이벤트.
-        btnId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.setMessage(0);
-            }
-        });
         btnReceived.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View v) {
+                getReceivedMessages();
+            }
+        });
+
+        btnSent.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                activity.setMessage(2);
+                getSentMessages();
             }
         });
         btnWrite.setOnClickListener(new View.OnClickListener(){
@@ -88,8 +89,8 @@ public class MessageReadSent extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                        .setTitle("보낸 메시지삭제")
-                        .setMessage("보낸 메시지를 전부 삭제하시겠습니까?")
+                        .setTitle("쪽지 전체 삭제")
+                        .setMessage("받은 쪽지를 전부 삭제하시겠습니까?")
                         .setNegativeButton("예", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -108,16 +109,38 @@ public class MessageReadSent extends Fragment {
             }
         });
 
-        start();
-
         return view;
     }
 
-    private void start() {
+    private void getReceivedMessages() {
+        Call<MessageListResponse> call = messageApi.getMessageReceived();
+        call.enqueue(new Callback<MessageListResponse>() {
+            @Override
+            public void onResponse(Call<MessageListResponse> call, Response<MessageListResponse> response) {
+                dataInfo.clear();
+                dataList = response.body();
+                dataInfo = dataList.messages;
+                start2(dataInfo);
+                messageAdapter = new MessageAdapter(getContext(), dataInfo);
+                recyclerView.setAdapter(messageAdapter);
+                messageAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<MessageListResponse> call, Throwable t) {
+
+            }
+
+        });
+    }
+
+    private void getSentMessages() {
         Call<MessageListResponse> call = messageApi.getMessageSent();
         call.enqueue(new Callback<MessageListResponse>() {
             @Override
             public void onResponse(Call<MessageListResponse> call, Response<MessageListResponse> response) {
+                dataInfo.clear();
                 dataList = response.body();
                 dataInfo = dataList.messages;
                 start2(dataInfo);
@@ -144,10 +167,10 @@ public class MessageReadSent extends Fragment {
     }
 
     private void deleteMessage(){
-        messageApi.deleteMessageSent().enqueue(new Callback<Void>() {
+        messageApi.deleteMessageReceived().enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                activity.setMessage(3);
+                activity.setMessage(2);
             }
 
             @Override
@@ -156,4 +179,5 @@ public class MessageReadSent extends Fragment {
             }
         });
     }
+
 }

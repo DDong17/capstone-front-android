@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +39,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MessageWrite extends Fragment {
+public class MessageWriteFragment extends Fragment {
 
     private View view;
 
@@ -47,8 +49,8 @@ public class MessageWrite extends Fragment {
     private EditText title;
     private EditText content;
 
-    private Button btnExit; // 나가기 버튼.
-    private Button btnSent; // 보내기 버튼.
+    private ImageView btnExit; // 나가기 버튼.
+    private ImageView btnSent; // 보내기 버튼.
 
     private final MessageApi messageApi = RetrofitClient.getClient(MessageApi.class, RetrofitClient.getSessionId());
 
@@ -62,69 +64,60 @@ public class MessageWrite extends Fragment {
         receiver = (EditText) view.findViewById(R.id.messageReceiver);
         title = (EditText) view.findViewById(R.id.messageTitle);
         content = (EditText) view.findViewById(R.id.messageContent);
-        btnExit = (Button) view.findViewById(R.id.exit);
-        btnSent = (Button) view.findViewById(R.id.sent);
+        btnExit = (ImageView) view.findViewById(R.id.exit);
+        btnSent = (ImageView) view.findViewById(R.id.sent);
 
         // 버튼 이벤트.
         btnExit.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) { activity.setMessage(0); }
+            public void onClick(View view) { activity.setMessage(2); }
         });
 
         btnSent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                writeMessage();
+                String messageReceiver = receiver.getText().toString();
+                String messageTitle = title.getText().toString();
+                String messageContent = content.getText().toString();
+                startMessageWrite(new MessageRequest(messageReceiver, messageTitle, messageContent));
             }
         });
 
         return view;
     }
 
-    private void writeMessage(){
-        receiver.setError(null);
-        title.setError(null);
-        content.setError(null);
-
-        String messageReceiver = receiver.getText().toString();
-        String messageTitle = title.getText().toString();
-        String messageContent = content.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            startMessageWrite(new MessageRequest(messageReceiver, messageTitle, messageContent));
-        }
-    }
+//    private void writeMessage(){
+//        receiver.setError(null);
+//        title.setError(null);
+//        content.setError(null);
+//
+//        String messageReceiver = receiver.getText().toString();
+//        String messageTitle = title.getText().toString();
+//        String messageContent = content.getText().toString();
+//
+//        boolean cancel = false;
+//        View focusView = null;
+//
+//        if (cancel) {
+//            focusView.requestFocus();
+//        } else {
+//            startMessageWrite(new MessageRequest(messageReceiver, messageTitle, messageContent));
+//        }
+//    }
 
     private void startMessageWrite(MessageRequest data){
-        /*Log.i("밖", data.getReceiverNickname());
-        Log.i("밖", data.getTitle());
-        Log.i("밖", data.getContent());
-
         messageApi.messageWrite(data).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                Log.i("실행 결과", String.valueOf(response.code()));
-                Log.i("실행 결과", String.valueOf(response.body()));
-                try {
-                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                    Log.i("실행 결과", jsonObject.getJSONObject("error").getString("message"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(getActivity(), "쪽지를 보냈습니다.", Toast.LENGTH_SHORT).show();
+                activity.setMessage(2);
             }
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Log.i(" 에러 발생", t.getMessage());
             }
-        });*/
+        });
     }
 
 }
