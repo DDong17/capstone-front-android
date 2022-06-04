@@ -22,15 +22,42 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/message"
+                android:layout_margin="10dp"/>
+
             <TextView
                 android:id="@+id/message_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="메시지 제목"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/hy"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/message_content"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="메시지 내용"
+                android:textSize="13sp"
+                android:fontFamily="@font/hy"/>
+
         </LinearLayout>
 
         <TextView
@@ -43,24 +70,8 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="8dp"
             android:text="사람"
-            android:textSize="15sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/message_content"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:text="메시지 내용"
-                android:textSize="13sp" />
-
-        </LinearLayout>
+            android:textSize="15sp"
+            android:fontFamily="@font/hy"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

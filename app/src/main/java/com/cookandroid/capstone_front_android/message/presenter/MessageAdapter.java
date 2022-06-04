@@ -39,9 +39,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MyViewHolder holder, int position) {
-        holder.title.setText("메시지 제목: " + dataList.get(position).getTitle());
-        holder.writer.setText("보낸 사람: " + dataList.get(position).getSender());
-        holder.content.setText("메시지 내용: " + dataList.get(position).getContent());
+        holder.title.setText(dataList.get(position).getTitle());
+        holder.writer.setText(dataList.get(position).getSender().getUserId());
+        holder.content.setText(dataList.get(position).getContent());
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.cookandroid.capstone_front_android.message.model;
 import com.cookandroid.capstone_front_android.board.model.BoardListResponse;
 import com.cookandroid.capstone_front_android.board.model.BoardRequest;
 import com.cookandroid.capstone_front_android.board.model.BoardResponse;
+import com.cookandroid.capstone_front_android.member.model.response.MemberResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -42,4 +43,8 @@ public interface MessageApi {
     // 메시지 삭제(보낸 메시지).
     @DELETE("/messages/sent")
     Call<Void> deleteMessageSent();
+
+    // 받는 사람 조회
+    @GET("/users/{userId}")
+    Call<MemberResponse> getReceiver(@Path("userId") String userId);
 }
