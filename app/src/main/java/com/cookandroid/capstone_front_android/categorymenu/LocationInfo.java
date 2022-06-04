@@ -23,10 +23,13 @@ public class LocationInfo extends Fragment {
     private int categoryCode = 99;          // 문화 생활 분류 코드
     private LocationResponse location;      // 문화 생활 정보 객체
     private View view;                      //
-    private Button backButton;              // 뒤로 가기 버튼
+    private ImageView backButton;              // 뒤로 가기 버튼
     private ImageView locImage;             // 문화 생활 이미지
     private TextView locTitle;              // 문화 생활 이름
-    private TextView locInfo;               // 문화 생활 정보
+    private TextView locationTitle;               // 문화 생활 정보
+    private TextView locationAddress;
+    private TextView locationArea;
+    private TextView locationContent;
 
     public LocationInfo setLocation(LocationResponse location) {
         this.location = location;
@@ -48,7 +51,10 @@ public class LocationInfo extends Fragment {
         backButton = view.findViewById(R.id.button);
         locImage = view.findViewById(R.id.image);
         locTitle = view.findViewById(R.id.title);
-        locInfo  = view.findViewById(R.id.info);
+        locationTitle  = view.findViewById(R.id.tv_locationTitle);
+        locationAddress  = view.findViewById(R.id.tv_locationAddress);
+        locationArea  = view.findViewById(R.id.tv_locationArea);
+        locationContent  = view.findViewById(R.id.tv_locationContent);
 
         // 뒤로 가기 버튼 리스너
         backButton.setOnClickListener(v -> {
@@ -63,10 +69,10 @@ public class LocationInfo extends Fragment {
 
         // 문화생활 상세정보 표시
         locTitle.setText(location.getTitle());
-        locInfo.setText("문화생활:" + location.getTitle() + "\n" +
-                "주소: " + location.getAddress() + "\n" +
-                "지역: " + location.getAreaName() + "\n" +
-                "종류: " + location.getContentName());
+        locationTitle.setText(location.getTitle());
+        locationAddress.setText(location.getAddress());
+        locationArea.setText(location.getAreaName());
+        locationContent.setText(location.getContentName());
         if(location.getFirstImage() != null) Glide.with(this).load(location.getFirstImage()).into(locImage);
 
         return view;

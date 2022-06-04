@@ -38,7 +38,7 @@ public class BoardTest extends Fragment {
         view = inflater.inflate(R.layout.location_info, container, false);
 
         locTitle = view.findViewById(R.id.title);
-        locInfo  = view.findViewById(R.id.info);
+//        locInfo  = view.findViewById(R.id.info);
 
         locTitle.setText(title);
         locInfo.setText(content);

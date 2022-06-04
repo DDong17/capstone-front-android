@@ -68,6 +68,7 @@ public class LocationList extends Fragment {
         // 카테고리 이름 설정
         catTitle.setText(getCategoryTitle());
 
+
         // 레트로핏 클라이언트 가져오기
         locationAPI = RetrofitClient.getClient(LocationAPI.class);
 
