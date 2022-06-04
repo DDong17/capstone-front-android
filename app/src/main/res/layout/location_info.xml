@@ -10,19 +10,16 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:text="제목"
             android:fontFamily="@font/hy"
             android:layout_margin="10dp"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+
 
         <ImageView
             android:id="@+id/button"
@@ -30,7 +27,8 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_keyboard_return_24"
             android:text="뒤로가기"
-            android:layout_margin="20dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"/>
     </LinearLayout>
 
     <ImageView
@@ -74,7 +72,7 @@
             android:id="@+id/tv_locationAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="13dp"
             android:fontFamily="@font/hy"
             android:text="주소"
             android:layout_marginTop="30dp"
