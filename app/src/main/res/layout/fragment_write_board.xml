@@ -17,18 +17,18 @@
             android:layout_gravity="center"
             android:hint="제목"
             android:textColor="@color/black"
+            android:fontFamily="@font/hy"
             android:textSize="20dp"
             android:layout_marginStart="25dp"/>
 
-        <Button
+        <ImageView
             android:id="@+id/btn_write_board_back"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/custom_button"
-            android:textColor="@android:color/white"
             android:text="나가기"
             android:textSize="20dp"
+            android:src="@drawable/ic_baseline_keyboard_return_24"
             android:layout_gravity="center"/>
 
     </LinearLayout>
@@ -44,6 +44,8 @@
             android:layout_height="550dp"
             android:gravity="top"
             android:hint="내용입력"
+            android:fontFamily="@font/hy"
+            android:layout_margin="15dp"
             android:textSize="30dp" />
 
     </LinearLayout>
@@ -62,6 +64,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/custom_button"
             android:textColor="@android:color/white"
+            android:fontFamily="@font/hy"
             android:text="게시글 등록" />
 
     </LinearLayout>

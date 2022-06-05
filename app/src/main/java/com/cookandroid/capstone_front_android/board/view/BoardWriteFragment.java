@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class BoardWriteFragment extends Fragment {
     private EditText edtBoardWriteTitle;
     private EditText edtBoardWriteContent;
     private Button btnBoardWriteRegister;
-    private Button btnBack;
+    private ImageView btnBack;
     private MainActivity activity;
 
 

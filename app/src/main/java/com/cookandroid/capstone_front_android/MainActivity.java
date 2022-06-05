@@ -8,10 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 //import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
+//import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
+//import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardAllFragment;
-import com.cookandroid.capstone_front_android.board.view.BoardReviewFragment;
-import com.cookandroid.capstone_front_android.board.view.BoardTest;
-import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
+import com.cookandroid.capstone_front_android.board.view.BoardDetailFragment;
+//import com.cookandroid.capstone_front_android.board.view.BoardTogetherFragment;
 import com.cookandroid.capstone_front_android.board.view.BoardWriteFragment;
 import com.cookandroid.capstone_front_android.categorymenu.*;
 
@@ -56,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 두번째 메뉴(커뮤니티).
     private BoardAllFragment communityAll; // 전체 보기.
-    private BoardTogetherFragment communityTogether; // 같이 갈 사람.
-    private BoardReviewFragment communityReview; // 리뷰.
+//    private BoardTogetherFragment communityTogether; // 같이 갈 사람.
+//    private BoardReviewFragment communityReview; // 리뷰.
     private BoardWriteFragment communityWrite; // 글쓰기.
 
     // 세번째 메뉴(지도).
@@ -126,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 커뮤니티 객체생성.
         communityAll =new BoardAllFragment();
-        communityTogether = new BoardTogetherFragment();
-        communityReview = new BoardReviewFragment();
+//        communityTogether = new BoardTogetherFragment();
+//        communityReview = new BoardReviewFragment();
         communityWrite = new BoardWriteFragment();
 
         // 지도 객체생성.
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
 
-        ft.replace(R.id.mainFrame, new BoardTest().setTitle(title).setContent(content));
+        ft.replace(R.id.mainFrame, new BoardDetailFragment().setTitle(title).setContent(content));
 
         ft.commit();
     }
@@ -203,11 +204,11 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.mainFrame, communityTogether);
+//                ft.replace(R.id.mainFrame, communityTogether);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.mainFrame, communityReview);
+//                ft.replace(R.id.mainFrame, communityReview);
                 ft.commit();
                 break;
             case 3:
