@@ -38,7 +38,7 @@ public class FindIdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_id);
         edtEmail = (EditText) findViewById(R.id.findIdUser);
-        edtName = (EditText) findViewById(R.id.findIdName);
+//        edtName = (EditText) findViewById(R.id.findIdName);
         Button btnFindId = (Button) findViewById(R.id.findIdBtn);
         Button btnBack = (Button) findViewById(R.id.findIdBack);
         edtIdResult = (TextView) findViewById(R.id.idResult);
@@ -46,11 +46,8 @@ public class FindIdActivity extends AppCompatActivity {
         btnFindId.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                edtEmail.setError(null);
-                edtName.setError(null);
                 String email = edtEmail.getText().toString();
-                String name = edtName.getText().toString();
-                findId(new FindIdRequest(email,name));
+                findId(new FindIdRequest(email));
             }
         });
         btnBack.setOnClickListener(new OnClickListener() {
@@ -63,12 +60,15 @@ public class FindIdActivity extends AppCompatActivity {
     }
 
     private void findId(FindIdRequest data) {
+        Log.e("호출", "호출");
         memberApi.postFindUserId(data).enqueue(new Callback<MemberResponse>() {
             @Override
             public void onResponse(@NonNull Call<MemberResponse> call, @NonNull Response<MemberResponse> response) {
-               MemberResponse result = response.body();
-                edtIdResult.setText(result.getUserId());
+                MemberResponse result = response.body();
+                Log.e("호출2", "호출2");
+                edtIdResult.setText("찾아진 계정은 " + result.getUserId());
             }
+
             @Override
             public void onFailure(@NonNull Call<MemberResponse> call, Throwable t) {
                 Log.e("로그인 에러 발생", t.getMessage());

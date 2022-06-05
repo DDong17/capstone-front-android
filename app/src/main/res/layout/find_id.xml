@@ -7,6 +7,7 @@
     tools:context=".member.view.LoginActivity">
 
     <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="84dp"
@@ -31,34 +32,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/findIdName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="이름"
-        android:fontFamily="@font/hy"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/findIdUser"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/findIdUser"
-        app:layout_constraintTop_toBottomOf="@+id/findIdUser" />
+<!--    <EditText-->
+<!--        android:id="@+id/findIdName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="이름"-->
+<!--        android:fontFamily="@font/hy"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:minHeight="48dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/findIdUser"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/findIdUser"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/findIdUser" />-->
 
     <Button
         android:id="@+id/findIdBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="284dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/hy"
         android:text="찾기"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/findIdName"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="@+id/findIdName"
-        app:layout_constraintTop_toBottomOf="@+id/findIdName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/findIdBack"
@@ -75,10 +76,10 @@
 
     <TextView
         android:id="@+id/idResult"
-        android:layout_width="168dp"
-        android:layout_height="112dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="168dp"
-        android:textSize="40dp"
+        android:textSize="25dp"
         android:fontFamily="@font/hy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
