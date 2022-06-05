@@ -6,29 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".member.view.LoginActivity">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/findIdUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="216dp"
         android:ems="10"
         android:hint="이메일"
+        android:fontFamily="@font/hy"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/findIdName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="이름"
+        android:fontFamily="@font/hy"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/findIdUser"
@@ -40,10 +50,11 @@
         android:id="@+id/findIdBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/custom_button"
-        android:textColor="@android:color/white"
+        android:fontFamily="@font/hy"
         android:text="찾기"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/findIdName"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/findIdName"
@@ -53,12 +64,12 @@
         android:id="@+id/findIdBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/custom_button"
-        android:textColor="@android:color/white"
+        android:fontFamily="@font/hy"
         android:text="돌아가기"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/findIdBtn"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/findIdBtn"
         app:layout_constraintTop_toBottomOf="@+id/findIdBtn" />
 
@@ -68,6 +79,7 @@
         android:layout_height="112dp"
         android:layout_marginBottom="168dp"
         android:textSize="40dp"
+        android:fontFamily="@font/hy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

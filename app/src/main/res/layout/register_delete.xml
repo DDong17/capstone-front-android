@@ -6,18 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".registerDelete">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/hy"
+        android:text="회원 탈퇴는 되돌릴수 없습니다!! 신중하게 생각하고 진행해 주세요"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/btnDeletePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="284dp"
         android:ems="10"
         android:hint="패스워드"
+        android:fontFamily="@font/hy"
         android:inputType="numberPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,27 +49,27 @@
         android:id="@+id/btnDeletePasswordCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="패스워드 확인"
+        android:fontFamily="@font/hy"
         android:inputType="numberPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/btnDeletePassword"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btnDeletePassword"
         app:layout_constraintTop_toBottomOf="@+id/btnDeletePassword" />
-
-
 
     <Button
         android:id="@+id/btnDeleteRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/custom_button"
-        android:textColor="@android:color/white"
         android:text="탈퇴"
-       app:layout_constraintEnd_toEndOf="@+id/btnDeletePasswordCheck"
+        android:fontFamily="@font/hy"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnDeletePasswordCheck"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/btnDeletePasswordCheck"
         app:layout_constraintTop_toBottomOf="@+id/btnDeletePasswordCheck" />
@@ -56,7 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/custom_button"
-        android:textColor="@android:color/white"       android:text="돌아가기"
+        android:textColor="@android:color/white"
+        android:text="돌아가기"
+        android:fontFamily="@font/hy"
         app:layout_constraintEnd_toEndOf="@+id/btnDeleteRegister"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnDeleteRegister"

@@ -45,6 +45,6 @@ public interface MessageApi {
     Call<Void> deleteMessageSent();
 
     // 받는 사람 조회
-    @GET("/users/{userId}")
+    @GET("/users/user-id/{userId}")
     Call<MemberResponse> getReceiver(@Path("userId") String userId);
 }
